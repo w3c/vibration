@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vibration API</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <script src='../ReSpec.js/js/respec.js' class='remove'></script>
+    <script class='remove'>
+      var respecConfig = {
+          specStatus:           "ED",
+          shortName:            "vibration",
+          // publishDate:  "2011-10-21",
+          // previousPublishDate:  "2011-10-21",
+          // previousMaturity:     "ED",
+          edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
+          // lcEnd: "2009-08-05",
+          editors:  [
+              { name: "Anssi Kostiainen", company: "Nokia" }
+          ],
+          inlineCSS:    true,
+          noIDLIn:      true,
+          extraCSS:     ["../ReSpec.js/css/respec.css"],
+          wg:           "Device APIs Working Group",
+          wgURI:        "http://www.w3.org/2009/dap/",
+          wgPublicList: "public-device-apis",
+          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/43696/status",
+      };
+    </script>
+  </head>
+  <body>
+    <section id='abstract'>
+      This specification defines an API that provides access to vibration
+      mechanism of the hosting device. Vibration is a form of tactile feedback.
+    </section>
+    
+    <section class="informative">
+      <h2>Introduction</h2>
+        <p>
+          This Editor's Draft is inspired by Mozilla's
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=679966">
+          Web Vibrator prototype</a>. Below is an excerpt extracted from
+          the
+          <a href="https://bugzilla.mozilla.org/attachment.cgi?id=568777&amp;action=diff#a/dom/interfaces/base/nsIDOMNavigator.idl_sec2">
+          source code</a> to be more readily available:
+        </p>
+        <div class='example'>
+          <pre class='example sh_javascript'>
+          /**
+           * Pulse the device's vibrator, if it has one.  If the device does not have a
+           * vibrator, this function does nothing.
+           *
+           * mozVibrate takes one optional argument.  The argument specifies how long
+           * to vibrate for, or it gives a pattern of vibrator-on/vibrator-off timings.
+           *
+           * If a vibration pattern is in effect when this function is called, this
+           * call will overwrite the existing pattern, if this call successfully
+           * completes.
+           *
+           * We handle the argument to mozVibrate as follows.
+           *
+           * - If the argument is undefined, null, 0, or the empty list, we cancel any
+           *   outstanding vibration pattern; that is, we stop the device from vibrating.
+           *
+           * - Otherwise, if the argument X is not a list, we treat it as though it's
+           *   the singleton list [X] and then proceed as below.
+           *
+           * - If the argument is a list (or if we wrapped it as a list above), then we
+           *   try to convert each element in the list to an integer, by first
+           *   converting it to a number and then rounding.  If we cannot convert any
+           *   element to an integer, or if any of the integers are negative, we throw
+           *   an illegal value exception.
+           *
+           *   This list of integers specifies a vibration pattern.  Given a list of
+           *   numbers
+           *
+           *      [a_1, b_1, a_2, b_2, ..., a_n]
+           *
+           *   the device will vibrate for a_1 milliseconds, then be still for b_1
+           *   milliseconds, then vibrate for a_2 milliseconds, and so on.
+           *
+           *   The list may contain an even or an odd number of elements, but if you
+           *   pass an even number of elements (that is, if your list ends with b_n
+           *   instead of a_n), the final element doesn't specify anything meaningful.
+           *
+           *   We may throw an illegal value exception if the vibration pattern is too
+           *   long, or if any of its elements is too large.
+           *
+           */
+           [implicit_jscontext]
+           void mozVibrate([optional] in jsval aPattern);
+          </pre>
+        </div>
+    </section>
+    
+    <section id='conformance'>
+      <p>
+        This specification defines conformance criteria that apply to a single
+        product: the <dfn id="ua">user agent</dfn> that implements the
+        interfaces that it contains.
+      </p>
+    </section>
+    <section>
+      <h2><a>NavigatorVibration</a> Interface</h2>
+      <p>
+        The <a>NavigatorVibration</a> interface is exposed on the 
+        <code>Navigator</code> object.
+      </p>
+      <div class='idl' title='Navigator implements NavigatorVibration'></div>
+      <dl title='[NoInterfaceObject] interface NavigatorVibration' class='idl'>
+        <dt>readonly attribute VibrationManager vibration</dt>
+        <dd>
+          The object that exposes the vibration functionality.
+        </dd>
+      </dl>
+    </section>
+    
+    <section>
+      <h2><a>VibrationManager</a> Interface</h2>
+      <dl title='[NoInterfaceObject]
+                 interface VibrationManager : EventTarget'
+          class='idl'>
+        <dt>void vibrate()</dt>
+        <dd>
+          <dl class='parameters'>
+            <dt>optional double? pattern</dt>
+            <dd>
+              Vibration duration in milliseconds.
+            </dd>
+          </dl>
+          <dt>void vibrate()</dt>
+          <dd>
+            <dl class='parameters'>
+              <dt>optional double[]? pattern</dt>
+              <dd>
+                A vibration pattern represented by a list of duration entries.
+                Odd entries represent vibration duration in milliseconds, even
+                entries still periods in milliseconds between the vibrations.
+              </dd>
+            </dl>
+            <dl class='exception' title='SyntaxError'>
+              <dt>
+                SYNTAX_ERR (12)
+              </dt>
+              <dd>
+                The <code>pattern</code> argument does not match the expected
+                pattern.
+              </dd>
+            </dl>
+            <dl class='exception' title='NotSupportedError'>
+              <dt>
+                NOT_SUPPORTED_ERR (9)
+              </dt>
+              <dd>
+                The <code>pattern</code> argument defined an operation that
+                exceeds an implementation dependent limit.
+              </dd>
+            </dl>
+          </dd>
+        <dt>attribute Function? onvibrationstart</dt>
+        <dd></dd>
+        <dt>attribute Function? onvibrationend</dt>
+        <dd></dd>
+      </dl>
+      
+      <p>
+        The <code>vibrate()</code> method, when invoked, MUST run the algorithm
+        for <a>processing vibration patterns</a>.
+      </p>
+      <p>
+        The rules for <dfn>processing vibration patterns</dfn> are as given in
+        the following algorithm:
+      </p>
+      <ol>
+        <li>
+          If the <var>already started</var> flag is set to true, the
+          <a class="product-ua" href="#ua">user agent</a> MUST cancel the
+          pre-existing instance of the <a>processing vibration patterns</a>
+          algorithm, if any.
+        </li>
+        <li>
+          If the <code>
+          <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
+          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true, the
+          <a class="product-ua" href="#ua">user agent</a> MUST cancel any
+          instances of the <a>processing vibration patterns</a> algorithm, and
+          abort these steps.
+        </li>
+        <li>
+          Let <var>already started</var> flag be true.
+        <li>
+          Let <var>pattern</var> be the value of the first argument.
+        </li>
+        <li>
+          If <var>pattern</var> is undefined, null, 0 or an empty list,
+          cancel the pre-existing attempt, if any, set the <var>already
+          started</var> flag to false, and abort these steps.
+        </li>
+        <li>
+          If <var>pattern</var> is a list, proceed to the next step,
+          otherwise run the following substeps:
+          <ol>
+            <li>
+              Let <var>list</var> be an initially empty list, and add
+              <var>pattern</var> to <var>list</var>.
+            </li>
+            <li>
+              Let <var>pattern</var> be <var>list</var>.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Let <var>valid pattern</var> be an empty list.
+        </li>
+        <li>
+          For each <var>raw entry</var> in <var>pattern</var>, run the
+          following substeps:
+          <ol>
+            <li>
+              Let <var>entry</var> be the result of parsing <var>raw
+                entry</var> using the rules of
+                <a href="http://dev.w3.org/html5/spec/common-microsyntaxes.html#rules-for-parsing-integers">
+                parsing integers</a> [[!HTML5]].
+            </li>
+            <li>
+              If <var>entry</var> is less than zero or an error, then the
+              <a class="product-ua" href="#ua">user agent</a> MUST throw
+              a <code>SyntaxError</code> exception [[!DOM4]], set the
+              <var>already started</var> flag to false, and abort these steps.
+            </li>
+            <li>
+              If <var>entry</var> exceeds an implementation dependent limit,
+              the <a class="product-ua" href="#ua">user agent</a> MAY throw
+              a <code>NotSupportedError</code> exception, set the
+              <var>already started</var> flag to false, and abort these steps.
+            </li>
+            <li>
+              Otherwise add <var>entry</var> to <var>valid pattern</var>.
+            </li>
+          </ol>
+        </li>
+        <li>
+          If the length of <var>valid pattern</var> is greater than 1
+          and divides by 2 leaving no remainder, then remove the last
+          entry in <var>valid pattern</var>.
+        </li>
+        <li>
+          If the length of <var>valid pattern</var> exceeds an
+          implementation dependent limit, the
+          <a class="product-ua" href="#ua">user agent</a> MAY throw a
+          <code>NotSupportedError</code> exception [[!DOM4]], set the
+          <var>already started</var> flag to false, and abort these steps.
+        </li>
+        <li>
+          For each <var>duration</var> in <var>valid pattern</var>, run
+          the following substeps:
+          <ol>
+            <li>
+              If the index of <var>duration</var> is 0 or it divides by 2
+              and leaves no remainder (the earliest entry has index 0),
+              vibrate the device for <var>duration</var> milliseconds.
+            </li>
+            <li>
+              Otherwise
+              <a href="http://dev.w3.org/html5/spec/webappapis.html#pause">
+              pause</a> [[!HTML5]] for a period of <var>duration</var>
+              milliseconds.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Set the <var>already started</var> flag to false.
+        </li>
+      </ol>
+      <p>
+        When the <code>vibrate()</code> method is invoked, the
+        <a class="product-ua" href="#ua">user agent</a> MUST fire a simple
+        event [[!HTML5]], which does not bubble and is not cancelable, named
+        <code>vibrationstart</code> at the <a>VibrationManager</a> object.
+      </p>
+      <p>
+        When the vibration ends, the
+        <a class="product-ua" href="#ua">user agent</a> MUST fire a simple
+        event [[!HTML5]], which does not bubble and is not cancelable, named
+        <code>vibrationend</code> at the <a>VibrationManager</a> object.
+      </p>
+      <p>
+        When the
+        <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
+        visibilitychange</a></code> event [[!PAGE-VISIBILITY]] is dispatched at the
+        <code>Document</code>, and if the
+        <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
+        hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true, the
+        <a class="product-ua" href="#ua">user agent</a> MUST set the
+        <var>already started</var> flag to false and cancel any instances of
+        the <a>processing vibration patterns</a> algorithm.
+      </p>
+    </section>
+
+    <section class='informative'>
+      <h2>Examples</h2>
+      <p>
+        Vibrate the device for 1 second:
+      <div class='example'>
+        <pre class='example sh_javascript'>
+          // vibrate for 1 second
+          navigator.vibration.vibrate(1000);
+          
+          // or alternatively
+          navigator.vibration.vibrate([1000]);
+        </pre>
+      </div>
+      <p>
+        Vibrate the device for 1 second, be still for 0.5 seconds and vibrate
+        again for 2 seconds:
+      </p>
+      <div class='example'>
+        <pre class='example sh_javascript'>
+          navigator.vibration.vibrate([1000, 500, 2000]);
+        </pre>
+      </div>
+      <p>
+        Vibrate the device three times for 1 second and be still for 0.5
+        seconds in between the vibrations. The background color of the screen
+        is set to red when the vibration starts and set back to default when
+        the vibration ends (the background changes its color to red and back
+        to default three times):
+      </p>
+      <div class='example'>
+        <pre class='example sh_javascript'>
+          navigator.vibration.onvibrationstart = function () {
+            console.log('vibration starts');
+            document.body.style.backgroundColor = 'red';
+          };
+
+          navigator.vibration.onvibrationend = function () {
+            console.log('vibration ends');
+            document.body.style.backgroundColor = '';
+          };
+          
+          // 1000 ms on -> 500 ms off -> 1000 ms on -> 500 ms off -> 1000 ms on
+          navigator.vibration.vibrate([1000, 500, 1000, 500, 1000]);
+        </pre>
+      </div>
+    </section>
+    <section class='appendix'>
+      <h2>Acknowledgements</h2>
+      <p>
+        Thanks to the Mozilla WebAPI team for providing the WebVibrator
+        prototype as an initial input.
+      </p>
+    </section>
+  </body>
+</html>
