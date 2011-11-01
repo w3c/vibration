@@ -98,67 +98,30 @@
         interfaces that it contains.
       </p>
     </section>
-    <section>
-      <h2><a>NavigatorVibration</a> Interface</h2>
-      <p>
-        The <a>NavigatorVibration</a> interface is exposed on the 
-        <code>Navigator</code> object.
-      </p>
-      <div class='idl' title='Navigator implements NavigatorVibration'></div>
-      <dl title='[NoInterfaceObject] interface NavigatorVibration' class='idl'>
-        <dt>readonly attribute VibrationManager vibration</dt>
-        <dd>
-          The object that exposes the vibration functionality.
-        </dd>
-      </dl>
-    </section>
     
     <section>
-      <h2><a>VibrationManager</a> Interface</h2>
-      <dl title='[NoInterfaceObject]
-                 interface VibrationManager : EventTarget'
+      <h2>Vibration Interface</h2>
+      <dl title='partial interface Navigator VibrationManager : EventTarget'
           class='idl'>
         <dt>void vibrate()</dt>
         <dd>
           <dl class='parameters'>
-            <dt>optional double? pattern</dt>
+            <dt>optional long time</dt>
             <dd>
-              Vibration duration in milliseconds.
+              Vibration time in milliseconds.
             </dd>
           </dl>
           <dt>void vibrate()</dt>
           <dd>
             <dl class='parameters'>
-              <dt>optional double[]? pattern</dt>
+              <dt>optional long[] pattern</dt>
               <dd>
-                A vibration pattern represented by a list of duration entries.
-                Odd entries represent vibration duration in milliseconds, even
+                A vibration pattern represented by a list of time entries.
+                Odd entries represent vibration time in milliseconds, even
                 entries still periods in milliseconds between the vibrations.
               </dd>
             </dl>
-            <dl class='exception' title='SyntaxError'>
-              <dt>
-                SYNTAX_ERR (12)
-              </dt>
-              <dd>
-                The <code>pattern</code> argument does not match the expected
-                pattern.
-              </dd>
-            </dl>
-            <dl class='exception' title='NotSupportedError'>
-              <dt>
-                NOT_SUPPORTED_ERR (9)
-              </dt>
-              <dd>
-                The <code>pattern</code> argument defined an operation that
-                exceeds an implementation dependent limit.
-              </dd>
-            </dl>
           </dd>
-        <dt>attribute Function? onvibrationstart</dt>
-        <dd></dd>
-        <dt>attribute Function? onvibrationend</dt>
-        <dd></dd>
       </dl>
       
       <p>
@@ -190,9 +153,9 @@
           Let <var>pattern</var> be the value of the first argument.
         </li>
         <li>
-          If <var>pattern</var> is undefined, null, 0 or an empty list,
-          cancel the pre-existing attempt, if any, set the <var>already
-          started</var> flag to false, and abort these steps.
+          If <var>pattern</var> is 0 or an empty list, cancel the pre-existing
+          attempt, if any, set the <var>already started</var> flag to false,
+          and abort these steps.
         </li>
         <li>
           If <var>pattern</var> is a list, proceed to the next step,
@@ -208,60 +171,41 @@
           </ol>
         </li>
         <li>
-          Let <var>valid pattern</var> be an empty list.
-        </li>
-        <li>
-          For each <var>raw entry</var> in <var>pattern</var>, run the
+          For each <var>entry</var> in <var>pattern</var>, run the
           following substeps:
           <ol>
-            <li>
-              Let <var>entry</var> be the result of parsing <var>raw
-                entry</var> using the rules of
-                <a href="http://dev.w3.org/html5/spec/common-microsyntaxes.html#rules-for-parsing-integers">
-                parsing integers</a> [[!HTML5]].
-            </li>
-            <li>
-              If <var>entry</var> is less than zero or an error, then the
-              <a class="product-ua" href="#ua">user agent</a> MUST throw
-              a <code>SyntaxError</code> exception [[!DOM4]], set the
-              <var>already started</var> flag to false, and abort these steps.
-            </li>
             <li>
               If <var>entry</var> exceeds an implementation dependent limit,
               the <a class="product-ua" href="#ua">user agent</a> MAY throw
               a <code>NotSupportedError</code> exception, set the
               <var>already started</var> flag to false, and abort these steps.
             </li>
-            <li>
-              Otherwise add <var>entry</var> to <var>valid pattern</var>.
-            </li>
           </ol>
         </li>
         <li>
-          If the length of <var>valid pattern</var> is greater than 1
-          and divides by 2 leaving no remainder, then remove the last
-          entry in <var>valid pattern</var>.
+          If the length of <var>pattern</var> is greater than 1 and divides by
+          2 leaving no remainder, then remove the last entry in
+          <var>pattern</var>.
         </li>
         <li>
-          If the length of <var>valid pattern</var> exceeds an
-          implementation dependent limit, the
-          <a class="product-ua" href="#ua">user agent</a> MAY throw a
-          <code>NotSupportedError</code> exception [[!DOM4]], set the
-          <var>already started</var> flag to false, and abort these steps.
+          If the length of <var>pattern</var> exceeds an implementation
+          dependent limit, the <a class="product-ua" href="#ua">user agent</a>
+          MAY throw a <code>NotSupportedError</code> exception [[!DOM4]], set
+          the <var>already started</var> flag to false, and abort these steps.
         </li>
         <li>
-          For each <var>duration</var> in <var>valid pattern</var>, run
-          the following substeps:
+          For each <var>time</var> in <var>pattern</var>, run the following
+          substeps:
           <ol>
             <li>
-              If the index of <var>duration</var> is 0 or it divides by 2
+              If the index of <var>time</var> is 0 or it divides by 2
               and leaves no remainder (the earliest entry has index 0),
-              vibrate the device for <var>duration</var> milliseconds.
+              vibrate the device for <var>time</var> milliseconds.
             </li>
             <li>
               Otherwise
               <a href="http://dev.w3.org/html5/spec/webappapis.html#pause">
-              pause</a> [[!HTML5]] for a period of <var>duration</var>
+              pause</a> [[!HTML5]] for a period of <var>time</var>
               milliseconds.
             </li>
           </ol>
@@ -270,18 +214,6 @@
           Set the <var>already started</var> flag to false.
         </li>
       </ol>
-      <p>
-        When the <code>vibrate()</code> method is invoked, the
-        <a class="product-ua" href="#ua">user agent</a> MUST fire a simple
-        event [[!HTML5]], which does not bubble and is not cancelable, named
-        <code>vibrationstart</code> at the <a>VibrationManager</a> object.
-      </p>
-      <p>
-        When the vibration ends, the
-        <a class="product-ua" href="#ua">user agent</a> MUST fire a simple
-        event [[!HTML5]], which does not bubble and is not cancelable, named
-        <code>vibrationend</code> at the <a>VibrationManager</a> object.
-      </p>
       <p>
         When the
         <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
@@ -302,10 +234,10 @@
       <div class='example'>
         <pre class='example sh_javascript'>
           // vibrate for 1 second
-          navigator.vibration.vibrate(1000);
+          navigator.vibrate(1000);
           
           // or alternatively
-          navigator.vibration.vibrate([1000]);
+          navigator.vibrate([1000]);
         </pre>
       </div>
       <p>
@@ -314,32 +246,21 @@
       </p>
       <div class='example'>
         <pre class='example sh_javascript'>
-          navigator.vibration.vibrate([1000, 500, 2000]);
+          navigator.vibrate([1000, 500, 2000]);
         </pre>
       </div>
       <p>
-        Vibrate the device three times for 1 second and be still for 0.5
-        seconds in between the vibrations. The background color of the screen
-        is set to red when the vibration starts and set back to default when
-        the vibration ends (the background changes its color to red and back
-        to default three times):
-      </p>
-      <div class='example'>
-        <pre class='example sh_javascript'>
-          navigator.vibration.onvibrationstart = function () {
-            console.log('vibration starts');
-            document.body.style.backgroundColor = 'red';
-          };
-
-          navigator.vibration.onvibrationend = function () {
-            console.log('vibration ends');
-            document.body.style.backgroundColor = '';
-          };
-          
-          // 1000 ms on -> 500 ms off -> 1000 ms on -> 500 ms off -> 1000 ms on
-          navigator.vibration.vibrate([1000, 500, 1000, 500, 1000]);
-        </pre>
-      </div>
+        <p>
+          Cancel any existing vibrations:
+        </p>
+        <div class='example'>
+          <pre class='example sh_javascript'>
+            navigator.vibrate(0);
+            
+            // or alternatively
+            navigator.vibrate([]);
+          </pre>
+        </div>
     </section>
     <section class='appendix'>
       <h2>Acknowledgements</h2>
