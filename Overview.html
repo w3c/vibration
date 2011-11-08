@@ -102,13 +102,22 @@
     <section>
       <h2>Vibration Interface</h2>
       <div class='idl' title='Navigator implements Vibration'></div>
-      <dl title='partial interface Vibration' class='idl'>
+      <dl title='interface Vibration' class='idl'>
         <dt>void vibrate()</dt>
         <dd>
           <dl class='parameters'>
             <dt>optional long time</dt>
             <dd>
               Vibration time in milliseconds.
+            </dd>
+          </dl>
+          <dl class='exception' title='NotSupportedError'>
+            <dt>
+              NOT_SUPPORTED_ERR&nbsp;(9)
+            </dt>
+            <dd>
+              The <code>time</code> argument exceeds an implementation
+              dependent limit.
             </dd>
           </dl>
           <dt>void vibrate()</dt>
@@ -119,6 +128,17 @@
                 A vibration pattern represented by a list of time entries.
                 Odd entries represent vibration time in milliseconds, even
                 entries still periods in milliseconds between the vibrations.
+              </dd>
+            </dl>
+            <dl class='exception' title='NotSupportedError'>
+              <dt>
+                NOT_SUPPORTED_ERR&nbsp;(9)
+              </dt>
+              <dd>
+                The length of the <code>pattern</code> argument exceeds an
+                implementation dependent limit, or one or more entries in the
+                <code>pattern</code> argument exceed an implementation
+                dependent limit.
               </dd>
             </dl>
           </dd>
