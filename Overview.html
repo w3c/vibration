@@ -106,7 +106,7 @@
         <dt>void vibrate()</dt>
         <dd>
           <dl class='parameters'>
-            <dt>optional long time</dt>
+            <dt>optional unsigned long time</dt>
             <dd>
               Vibration time in milliseconds.
             </dd>
@@ -123,7 +123,7 @@
           <dt>void vibrate()</dt>
           <dd>
             <dl class='parameters'>
-              <dt>optional long[] pattern</dt>
+              <dt>optional unsigned long[] pattern</dt>
               <dd>
                 A vibration pattern represented by a list of time entries.
                 Odd entries represent vibration time in milliseconds, even
@@ -153,29 +153,28 @@
         the following algorithm:
       </p>
       <ol>
-        <li>
+        <!--li>
           If the <var>already started</var> flag is set to true, the
           <a class="product-ua" href="#ua">user agent</a> MUST cancel the
           pre-existing instance of the <a>processing vibration patterns</a>
           algorithm, if any.
-        </li>
+        </li-->
         <li>
           If the <code>
           <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
-          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true, the
-          <a class="product-ua" href="#ua">user agent</a> MUST cancel any
-          instances of the <a>processing vibration patterns</a> algorithm, and
+          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
           abort these steps.
         </li>
-        <li>
+        <!--li>
           Let <var>already started</var> flag be true.
+        </li-->
         <li>
           Let <var>pattern</var> be the value of the first argument.
         </li>
         <li>
-          If <var>pattern</var> is 0 or an empty list, cancel the pre-existing
-          attempt, if any, set the <var>already started</var> flag to false,
-          and abort these steps.
+          If <var>pattern</var> is 0, an empty list, null or undefined, cancel
+          the pre-existing instance of the <a>processing vibration patterns</a>
+          algorithm, if any, and abort these steps.
         </li>
         <li>
           If <var>pattern</var> is a list, proceed to the next step,
@@ -197,8 +196,7 @@
             <li>
               If <var>entry</var> exceeds an implementation dependent limit,
               the <a class="product-ua" href="#ua">user agent</a> MAY throw
-              a <code>NotSupportedError</code> exception, set the
-              <var>already started</var> flag to false, and abort these steps.
+              a <code>NotSupportedError</code> exception and abort these steps.
             </li>
           </ol>
         </li>
@@ -210,17 +208,21 @@
         <li>
           If the length of <var>pattern</var> exceeds an implementation
           dependent limit, the <a class="product-ua" href="#ua">user agent</a>
-          MAY throw a <code>NotSupportedError</code> exception [[!DOM4]], set
-          the <var>already started</var> flag to false, and abort these steps.
+          MAY throw a <code>NotSupportedError</code> exception [[!DOM4]] and
+          abort these steps.
+        </li>
+        <li>
+          Cancel the pre-existing instance of the <a>processing vibration
+          patterns</a> algorithm, if any.
         </li>
         <li>
           For each <var>time</var> in <var>pattern</var>, run the following
           substeps:
           <ol>
             <li>
-              If the index of <var>time</var> is 0 or it divides by 2
-              and leaves no remainder (the earliest entry has index 0),
-              vibrate the device for <var>time</var> milliseconds.
+              If the index of <var>time</var> is even (the earliest even entry
+              has index 0), vibrate the device for <var>time</var>
+              milliseconds.
             </li>
             <li>
               Otherwise
@@ -230,20 +232,34 @@
             </li>
           </ol>
         </li>
-        <li>
-          Set the <var>already started</var> flag to false.
-        </li>
       </ol>
       <p>
         When the
         <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
-        visibilitychange</a></code> event [[!PAGE-VISIBILITY]] is dispatched at the
-        <code>Document</code>, and if the
-        <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
-        hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true, the
-        <a class="product-ua" href="#ua">user agent</a> MUST set the
-        <var>already started</var> flag to false and cancel any instances of
-        the <a>processing vibration patterns</a> algorithm.
+        visibilitychange</a></code> event [[!PAGE-VISIBILITY]] is dispatched at
+        the <code>Document</code>, the <a class="product-ua" href="#ua">user
+        agent</a> MUST run the following steps:
+      </p>
+      <ol>
+        <li>
+          If the <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
+          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
+          the <a class="product-ua" href="#ua">user agent</a> MUST pause
+          [[!HTML5]] the pre-existing instance of the <a>processing vibration
+          patterns</a> algorithm, if any.
+        </li>
+        <li>
+          If the <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
+          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to false,
+          the <a class="product-ua" href="#ua">user agent</a> MUST resume
+          the pre-existing instance of the <a>processing vibration
+          patterns</a> algorithm, if any.
+        </li>
+      </ol>
+      <p>
+        If the device does not provide a vibration mechanism, or it is
+        disabled, the <a class="product-ua" href="#ua">user agent</a> MUST
+        silently ignore any invocations of the <code>vibrate()</code> method.
       </p>
     </section>
 
