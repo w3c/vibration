@@ -136,7 +136,7 @@
               </dt>
               <dd>
                 The length of the <code>pattern</code> argument exceeds an
-                implementation dependent limit, or one or more entries in the
+                implementation-dependent limit, or one or more entries in the
                 <code>pattern</code> argument exceed an implementation
                 dependent limit.
               </dd>
@@ -172,13 +172,13 @@
           Let <var>pattern</var> be the value of the first argument.
         </li>
         <li>
-          If <var>pattern</var> is 0, an empty list, null or undefined, cancel
-          the pre-existing instance of the <a>processing vibration patterns</a>
-          algorithm, if any, and abort these steps.
+          If <var>pattern</var> is 0, an empty list, or null, cancel the pre-existing
+          instance of the <a>processing vibration patterns</a> algorithm, if
+          any, and abort these steps.
         </li>
         <li>
-          If <var>pattern</var> is a list, proceed to the next step,
-          otherwise run the following substeps:
+          If <var>pattern</var> is a list, proceed to the next step.
+          Otherwise run the following substeps:
           <ol>
             <li>
               Let <var>list</var> be an initially empty list, and add
@@ -190,20 +190,14 @@
           </ol>
         </li>
         <li>
-          For each <var>entry</var> in <var>pattern</var>, run the
-          following substeps:
-          <ol>
-            <li>
-              If <var>entry</var> exceeds an implementation dependent limit,
-              the <a class="product-ua" href="#ua">user agent</a> MAY throw
-              a <code>NotSupportedError</code> exception and abort these steps.
-            </li>
-          </ol>
+          If any entry of <var>pattern</var> exceeds an
+          implementation-dependent limit, then the
+          <a class="product-ua" href="#ua">user agent</a> MAY throw a
+          <code>NotSupportedError</code> exception and abort these steps.
         </li>
         <li>
-          If the length of <var>pattern</var> is greater than 1 and divides by
-          2 leaving no remainder, then remove the last entry in
-          <var>pattern</var>.
+          If the length of <var>pattern</var> is even, then remove the last
+          entry in <var>pattern</var>.
         </li>
         <li>
           If the length of <var>pattern</var> exceeds an implementation
@@ -227,8 +221,7 @@
             <li>
               Otherwise
               <a href="http://dev.w3.org/html5/spec/webappapis.html#pause">
-              pause</a> [[!HTML5]] for a period of <var>time</var>
-              milliseconds.
+              pause</a> [[!HTML5]] for <var>time</var> milliseconds.
             </li>
           </ol>
         </li>
@@ -244,15 +237,15 @@
         <li>
           If the <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
           hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
-          the <a class="product-ua" href="#ua">user agent</a> MUST pause
-          [[!HTML5]] the pre-existing instance of the <a>processing vibration
-          patterns</a> algorithm, if any.
+          the <a class="product-ua" href="#ua">user agent</a> MUST suppress
+          the vibration produced by running the pre-existing instance of the
+          <a>processing vibration patterns</a> algorithm, if any.
         </li>
         <li>
           If the <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#pv-hidden">
           hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to false,
-          the <a class="product-ua" href="#ua">user agent</a> MUST resume
-          the pre-existing instance of the <a>processing vibration
+          the <a class="product-ua" href="#ua">user agent</a> MUST restore
+          the vibration produced by running the pre-existing instance of the <a>processing vibration
           patterns</a> algorithm, if any.
         </li>
       </ol>
@@ -260,6 +253,10 @@
         If the device does not provide a vibration mechanism, or it is
         disabled, the <a class="product-ua" href="#ua">user agent</a> MUST
         silently ignore any invocations of the <code>vibrate()</code> method.
+      </p>
+      <p>
+        An implementation SHOULD be allowed to disable vibration in any way if
+        it wants to for security or privacy reasons.
       </p>
     </section>
 
