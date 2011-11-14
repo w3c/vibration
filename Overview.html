@@ -210,6 +210,17 @@
           patterns</a> algorithm, if any.
         </li>
         <li>
+          An implementation MAY abort the algorithm at this point.
+          <div class="note">
+            For example, an implementation might abort the
+            algorithm because the user has set a preference indicating that
+            pages at a given origin should never be able to vibrate the page,
+            or an implementation might cap the total amount of time a page may
+            cause the device to vibrate and reject requests in excess of this
+            limit.
+          </div>
+        </li>
+        <li>
           For each <var>time</var> in <var>pattern</var>, run the following
           substeps:
           <ol>
