@@ -6,9 +6,9 @@
     <script src='../ReSpec.js/js/respec.js' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "ED",
+          specStatus:           "FPWD",
           shortName:            "vibration",
-          // publishDate:  "2011-10-21",
+          publishDate:  "2011-11-17",
           // previousPublishDate:  "2011-10-21",
           // previousMaturity:     "ED",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
@@ -28,15 +28,23 @@
   </head>
   <body>
     <section id='abstract'>
-      This specification defines an API that provides access to vibration
+      This specification defines an API that provides access to the vibration
       mechanism of the hosting device. Vibration is a form of tactile feedback.
+    </section>
+    
+    <section id='sotd'>
+      <p>
+        This document represents the early consensus of the group on the scope and features of the
+        Vibration API. It should be noted that the group is aware of more advanced use cases that cannot
+        be realised using this simpler first version. The intent is to address them in a future revision.
+      </p>
     </section>
     
     <section class="informative">
       <h2>Introduction</h2>
       <p>
         The Vibration API defines a means for web developers to
-        programmatically provide tactile feedback in a form of vibration. The
+        programmatically provide tactile feedback in the form of vibration. The
         API is designed to tackle high-value use cases related to gaming, and
         is not meant to be used as a generic notification mechanism.
       </p>
@@ -123,7 +131,7 @@
           Let <var>pattern</var> be the value of the first argument.
         </li>
         <li>
-          If <var>pattern</var> is 0, an empty list, or null, cancel the pre-existing
+          If <var>pattern</var> is 0, an empty list, or <code>null</code>, cancel the pre-existing
           instance of the <a>processing vibration patterns</a> algorithm, if
           any, and abort these steps.
         </li>
@@ -165,7 +173,7 @@
           <div class="note">
             For example, an implementation might abort the
             algorithm because the user has set a preference indicating that
-            pages at a given origin should never be able to vibrate the page,
+            pages at a given origin should never be able to vibrate the device,
             or an implementation might cap the total amount of time a page may
             cause the device to vibrate and reject requests in excess of this
             limit.
