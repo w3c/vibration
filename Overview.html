@@ -6,11 +6,11 @@
     <script src='../ReSpec.js/js/respec.js' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "FPWD",
+          specStatus:           "ED",
           shortName:            "vibration",
-          publishDate:  "2011-11-17",
-          // previousPublishDate:  "2011-10-21",
-          // previousMaturity:     "ED",
+          // publishDate:  "2011-11-17",
+          previousPublishDate:  "2011-11-17",
+          previousMaturity:     "FPWD",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
           // lcEnd: "2009-08-05",
           editors:  [
@@ -65,7 +65,7 @@
         <dt>void vibrate()</dt>
         <dd>
           <dl class='parameters'>
-            <dt>optional unsigned long time</dt>
+            <dt>unsigned long time</dt>
             <dd>
               Vibration time in milliseconds.
             </dd>
@@ -82,7 +82,7 @@
           <dt>void vibrate()</dt>
           <dd>
             <dl class='parameters'>
-              <dt>optional unsigned long[] pattern</dt>
+              <dt>unsigned long[] pattern</dt>
               <dd>
                 A vibration pattern represented by a list of time entries.
                 Odd entries represent vibration time in milliseconds, even
@@ -228,62 +228,6 @@
 
     <section class='informative'>
       <h2>Examples</h2>
-      <p>
-        This specification is inspired by Mozilla's
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=679966">
-        Web Vibrator prototype</a>. Below is an excerpt extracted from
-        the
-        <a href="https://bugzilla.mozilla.org/attachment.cgi?id=571161&amp;action=diff#a/dom/interfaces/base/nsIDOMNavigator.idl_sec2">
-        source code</a> to be more readily available:
-      </p>
-      <div class='example'>
-        <pre class='example sh_javascript'>
-        /**
-         * Pulse the device's vibrator, if it has one.  If the device does not have a
-         * vibrator, this function does nothing.
-         *
-         * mozVibrate takes one optional argument.  The argument specifies how long
-         * to vibrate for, or it gives a pattern of vibrator-on/vibrator-off timings.
-         *
-         * If a vibration pattern is in effect when this function is called, this
-         * call will overwrite the existing pattern, if this call successfully
-         * completes.
-         *
-         * We handle the argument to mozVibrate as follows.
-         *
-         * - If the argument is undefined, null, 0, or the empty list, we cancel any
-         *   outstanding vibration pattern; that is, we stop the device from vibrating.
-         *
-         * - Otherwise, if the argument X is not a list, we treat it as though it's
-         *   the singleton list [X] and then proceed as below.
-         *
-         * - If the argument is a list (or if we wrapped it as a list above), then we
-         *   try to convert each element in the list to an integer, by first
-         *   converting it to a number and then rounding.  If we cannot convert any
-         *   element to an integer, or if any of the integers are negative, we throw
-         *   an illegal value exception.
-         *
-         *   This list of integers specifies a vibration pattern.  Given a list of
-         *   numbers
-         *
-         *      [a_1, b_1, a_2, b_2, ..., a_n]
-         *
-         *   the device will vibrate for a_1 milliseconds, then be still for b_1
-         *   milliseconds, then vibrate for a_2 milliseconds, and so on.
-         *
-         *   The list may contain an even or an odd number of elements, but if you
-         *   pass an even number of elements (that is, if your list ends with b_n
-         *   instead of a_n), the final element doesn't specify anything meaningful.
-         *
-         *   We may throw an illegal value exception if the vibration pattern is too
-         *   long, or if any of its elements is too large.
-         *
-         */
-         [implicit_jscontext]
-         void mozVibrate([optional] in jsval aPattern);
-        </pre>
-      </div>
-      
       <p>
         In the following example the device vibrates for 1 second:
       <div class='example'>
