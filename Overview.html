@@ -6,10 +6,10 @@
     <script src='../ReSpec.js/js/respec.js' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "LC",
+          specStatus:           "ED",
           shortName:            "vibration",
-          publishDate:  "2012-02-02",
-          previousPublishDate:  "2011-11-17",
+          //publishDate:          "2012-02-02",
+          previousPublishDate:  "2012-02-02",
           previousMaturity:     "FPWD",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
           lcEnd: "2012-03-01",
@@ -55,6 +55,12 @@
         This specification defines conformance criteria that apply to a single
         product: the <dfn id="ua">user agent</dfn> that implements the
         interfaces that it contains.
+      </p>
+      <p>
+        Implementations that use ECMAScript to implement the APIs defined in
+        this specification must implement them in a manner consistent with the
+        ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]],
+        as this specification uses that specification and terminology.
       </p>
     </section>
     
@@ -152,7 +158,8 @@
           If any entry of <var>pattern</var> exceeds an
           implementation-dependent limit, then the
           <a class="product-ua" href="#ua">user agent</a> MAY throw a
-          <code>NotSupportedError</code> exception and abort these steps.
+          <code>NotSupportedError</code> exception [[!DOM4]] and abort these
+          steps.
         </li>
         <li>
           If the length of <var>pattern</var> is even, then remove the last
