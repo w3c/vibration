@@ -6,10 +6,10 @@
     <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "CR",
+          specStatus:           "ED",
           shortName:            "vibration",
           publishDate:          "2012-05-08",
-          previousPublishDate:  "2012-02-02",
+          previousPublishDate:  "2012-05-08",
           previousMaturity:     "LC",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
           crEnd: "2012-07-01",
@@ -82,8 +82,6 @@
               <dt>unsigned long[] pattern</dt>
               <dd>
                 A vibration pattern represented by a list of time entries.
-                Odd entries represent vibration time in milliseconds, even
-                entries still periods in milliseconds between the vibrations.
               </dd>
             </dl>
           </dd>
@@ -216,37 +214,32 @@
     <section class='informative'>
       <h2>Examples</h2>
       <p>
-        In the following example the device vibrates for 1 second:
-      <div class='example'>
-        <pre class='example sh_javascript'>
-          // vibrate for 1 second
-          navigator.vibrate(1000);
-          
-          // or alternatively
-          navigator.vibrate([1000]);
-        </pre>
-      </div>
+        In the following example the device will vibrate for 1000 milliseconds (ms):
+      <pre class='example sh_javascript'>
+        // vibrate for 1000 ms
+        navigator.vibrate(1000);
+        
+        // or alternatively
+        navigator.vibrate([1000]);
+      </pre>
       <p>
-        In the following example the device vibrates for 1 second, is still for
-        0.5 seconds, and vibrates again for 2 seconds:
+        In the following example the pattern will cause the device to vibrate
+        for 50 ms, be still for 100 ms, and then vibrate for 150 ms:
       </p>
-      <div class='example'>
-        <pre class='example sh_javascript'>
-          navigator.vibrate([1000, 500, 2000]);
-        </pre>
-      </div>
+      <pre class='example sh_javascript'>
+        navigator.vibrate([50, 100, 150]);
+      </pre>
       <p>
         <p>
           The following example cancels any existing vibrations:
         </p>
-        <div class='example'>
-          <pre class='example sh_javascript'>
-            navigator.vibrate(0);
-            
-            // or alternatively
-            navigator.vibrate([]);
-          </pre>
-        </div>
+        <pre class='example sh_javascript'>
+          // cancel any existing vibrations
+          navigator.vibrate(0);
+          
+          // or alternatively
+          navigator.vibrate([]);
+        </pre>
     </section>
     <section class='appendix'>
       <h2>Acknowledgements</h2>
