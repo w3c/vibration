@@ -34,9 +34,11 @@
     
     <section id='sotd'>
       <p>
-        This document represents the consensus of the group on the scope and features of the
-        Vibration API. It should be noted that the group is aware of more advanced use cases that cannot
-        be realised using this simpler first version. The intent is to address them in a future revision.
+        This document represents the consensus of the group on the scope and
+        features of the Vibration API. It should be noted that the group is
+        aware of more advanced use cases that cannot be realized using this
+        simpler first version. The intent is to address them in a future
+        revision.
       </p>
     </section>
     
@@ -44,8 +46,8 @@
       <h2>Introduction</h2>
       <p>
         The Vibration API defines a means for web developers to
-        programmatically provide tactile feedback in the form of vibration. The
-        API is designed to tackle high-value use cases related to gaming, and
+        programmatically provide tactile feedback in the form of vibration.
+        The API is designed to tackle use cases related to gaming, and
         is not meant to be used as a generic notification mechanism.
       </p>
     </section>
@@ -61,6 +63,16 @@
         this specification must implement them in a manner consistent with the
         ECMAScript Bindings defined in the Web IDL specification [[!WEBIDL]],
         as this specification uses that specification and terminology.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Terminology</h2>
+      <p>
+        The concepts <dfn><a href="http://dev.w3.org/html5/spec/browsers.html#browsing-context">
+        browsing context</a></dfn> and
+        <dfn><a href="http://dev.w3.org/html5/spec/webappapis.html#spin-the-event-loop">
+        spin the event loop</a></dfn> are defined in [[!HTML5]].
       </p>
     </section>
     
@@ -81,7 +93,8 @@
             <dl class='parameters'>
               <dt>unsigned long[] pattern</dt>
               <dd>
-                A vibration pattern represented by a list of time entries.
+                A vibration pattern represented by a list of time entries,
+                in milliseconds.
               </dd>
             </dl>
           </dd>
@@ -96,28 +109,8 @@
         the following algorithm:
       </p>
       <ol>
-        <!--li>
-          If the <var>already started</var> flag is set to true, the
-          <a class="product-ua" href="#ua">user agent</a> MUST cancel the
-          pre-existing instance of the <a>processing vibration patterns</a>
-          algorithm, if any.
-        </li-->
-        <li>
-          If the <code>
-          <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
-          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
-          abort these steps.
-        </li>
-        <!--li>
-          Let <var>already started</var> flag be true.
-        </li-->
         <li>
           Let <var>pattern</var> be the value of the first argument.
-        </li>
-        <li>
-          If <var>pattern</var> is 0, or an empty list, cancel the pre-existing
-          instance of the <a>processing vibration patterns</a> algorithm, if
-          any, and abort these steps.
         </li>
         <li>
           If <var>pattern</var> is a list, proceed to the next step.
@@ -150,10 +143,11 @@
           abort these steps.
         </li>
         <li>
-          Cancel the pre-existing instance of the <a>processing vibration
-          patterns</a> algorithm, if any.
-        </li>
-        <li>
+          If the <code>
+          <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
+          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
+          abort these steps.
+
           An implementation MAY abort the algorithm at this point.
           <div class="note">
             For example, an implementation might abort the
@@ -165,18 +159,25 @@
           </div>
         </li>
         <li>
+          Cancel the pre-existing instance of the <a>processing vibration
+          patterns</a> algorithm, if any.
+        </li>
+        <li>
+          If <var>pattern</var> is 0, an empty list, or if the device does
+          not provide a vibration mechanism (or it is disabled) abort these 
+          steps.
+        </li>
+        <li>
           For each <var>time</var> in <var>pattern</var>, run the following
           substeps:
           <ol>
             <li>
-              If the index of <var>time</var> is even (the earliest even entry
-              has index 0), vibrate the device for <var>time</var>
-              milliseconds.
+              If the index of <var>time</var> is even (the first entry has
+              index 0), vibrate the device for <var>time</var> milliseconds.
             </li>
             <li>
-              Otherwise
-              <a href="http://dev.w3.org/html5/spec/webappapis.html#pause">
-              pause</a> [[!HTML5]] for <var>time</var> milliseconds.
+              Otherwise <a>spin the event loop</a> for <var>time</var>
+              milliseconds.
             </li>
           </ol>
         </li>
@@ -185,29 +186,9 @@
         When the
         <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
         visibilitychange</a></code> event [[!PAGE-VISIBILITY]] is dispatched at
-        the <code>Document</code>, the <a class="product-ua" href="#ua">user
-        agent</a> MUST run the following steps:
-      </p>
-      <ol>
-        <li>
-          If the <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
-          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
-          the <a class="product-ua" href="#ua">user agent</a> MUST suppress
-          the vibration produced by running the pre-existing instance of the
-          <a>processing vibration patterns</a> algorithm, if any.
-        </li>
-        <li>
-          If the <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
-          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to false,
-          the <a class="product-ua" href="#ua">user agent</a> MUST restore
-          the vibration produced by running the pre-existing instance of the <a>processing vibration
-          patterns</a> algorithm, if any.
-        </li>
-      </ol>
-      <p>
-        If the device does not provide a vibration mechanism, or it is
-        disabled, the <a class="product-ua" href="#ua">user agent</a> MUST
-        silently ignore any invocations of the <code>vibrate()</code> method.
+        the <code>Document</code> in a <a>browsing context</a>, the
+        <a class="product-ua" href="#ua">user agent</a> MUST cancel the
+        vibration.
       </p>
     </section>
 
@@ -244,9 +225,9 @@
     <section class='appendix'>
       <h2>Acknowledgements</h2>
       <p>
-        The group is deeply indebted to Mounir Lamouri, Jonas Sicking, and
-        the Mozilla WebAPI team in general for providing the WebVibrator
-        prototype as an initial input.
+        The group is deeply indebted to Justin Lebar, Mounir Lamouri, Jonas
+        Sicking, and the Mozilla WebAPI team for their contributions, and for
+        providing the WebVibrator prototype as an initial input.
       </p>
     </section>
   </body>
