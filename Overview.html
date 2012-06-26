@@ -147,7 +147,8 @@
           <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
           hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
           abort these steps.
-
+        </li>
+        <li>
           An implementation MAY abort the algorithm at this point.
           <div class="note">
             For example, an implementation might abort the
@@ -188,7 +189,8 @@
         visibilitychange</a></code> event [[!PAGE-VISIBILITY]] is dispatched at
         the <code>Document</code> in a <a>browsing context</a>, the
         <a class="product-ua" href="#ua">user agent</a> MUST cancel the
-        vibration.
+        pre-existing instance of the <a>processing vibration patterns</a>
+        algorithm, if any.
       </p>
     </section>
 
