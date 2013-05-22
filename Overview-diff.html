@@ -1,0 +1,2695 @@
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Vibration API</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/*<![CDATA[*/
+/*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+cite .bibref {
+    font-style: normal;
+}
+
+code {
+    color:  #ff4500;
+}
+
+/* --- TOC --- */
+.toc a, .tof a {
+    text-decoration:    none;
+}
+
+a .secno, a .figno {
+    color:  #000;
+}
+
+ul.tof, ol.tof {
+    list-style: none outside none;
+}
+
+.caption {
+    margin-top: 0.5em;
+    font-style:   italic;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+/*]]>*/
+</style>
+
+<style type="text/css">
+/*<![CDATA[*/
+/* --- EXAMPLES --- */
+div.example-title {
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.example-title span {
+    text-transform: uppercase;   
+}
+aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+div.illegal-example { color: red }
+div.illegal-example p { color: black }
+aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;    
+}
+
+aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+}
+aside.example div.example div.example-title {
+    color: #999;
+}
+/*]]>*/
+</style>
+
+<style type="text/css">
+/*<![CDATA[*/
+/* --- ISSUES/NOTES --- */
+div.issue-title, div.note-title {
+    padding-right:  1em;
+    min-width: 7.5em;
+    color: #b9ab2d;
+}
+div.issue-title { color: #e05252; }
+div.note-title { color: #2b2; }
+div.issue-title span, div.note-title span {
+    text-transform: uppercase;
+}
+div.note, div.issue {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.note > p:first-child, .issue > p:first-child { margin-top: 0 }
+.issue, .note {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+}
+div.issue, div.note {
+    padding: 1em 1.2em 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+}
+span.note, span.issue { padding: .1em .5em .15em; }
+
+.issue {
+    border-color: #e05252;
+    background: #fbe9e9;
+}
+.note {
+    border-color: #52e052;
+    background: #e9fbe9;
+}
+
+
+/*]]>*/
+</style>
+
+<style type="text/css">
+/*<![CDATA[*/
+/* HIGHLIGHTS */
+code.prettyprint {
+    color:  inherit;
+}
+
+/* this from google-code-prettify */
+.pln{color:#000}@media screen{.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun,.opn,.clo{color:#660}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec,.var{color:#606}.fun{color:red}}@media print,projection{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun,.opn,.clo{color:#440}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style-type:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}
+/*]]>*/
+</style>
+
+<style type="text/css">
+/*<![CDATA[*/
+/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID, .idlDictionaryID, .idlCallbackID, .idlEnumID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+a.idlEnumItem {
+    color:  #000;
+    border-bottom:  1px dotted #ccc;
+    text-decoration: none;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType, .idlFieldType, .idlMemberType {
+    color:  #005a9c;
+}
+.idlAttrName, .idlFieldName, .idlMemberName {
+    color:  #ff4500;
+}
+.idlAttrName a, .idlFieldName a, .idlMemberName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType, .idlCallbackType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlCtor*/
+.idlCtorName {
+    color:  #ff4500;
+}
+.idlCtorName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName, .idlDefaultValue {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlSectionComment*/
+.idlSectionComment {
+    color: gray;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
+.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
+
+.idlImplements a {
+    font-weight:    bold;
+}
+
+dl.attributes, dl.methods, dl.constants, dl.constructors, dl.fields, dl.dictionary-members {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt, .constructors dt, .fields dt, .dictionary-members dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code, .constructors dt code, .fields dt code, .dictionary-members dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code, .fields dt code, .dictionary-members dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code, .fields dt .idlFieldType code, .dictionary-members dt .idlMemberType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.constructors dt code {
+    background:  #cfc;
+}
+
+.attributes dd, .methods dd, .constants dd, .constructors dd, .fields dd, .dictionary-members dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-family:    initial;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters tr:first-child td, .exceptions tr:first-child td {
+    border-top: none;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+/*]]>*/
+</style>
+<link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-WD" type="text/css" /><!--[if lt IE 9]><script src='http://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+<style type='text/css'>
+.diff-old-a {
+  font-size: smaller;
+  color: red;
+}
+
+.diff-new { background-color: yellow; }
+.diff-chg { background-color: lime; }
+.diff-new:before,
+.diff-new:after
+    { content: "\2191" }
+.diff-chg:before, .diff-chg:after
+    { content: "\2195" }
+.diff-old { text-decoration: line-through; background-color: #FBB; }
+.diff-old:before,
+.diff-old:after
+    { content: "\2193" }
+:focus { border: thin red solid}
+</style>
+</head>
+<body class="h-entry">
+<div class="head">
+<p>
+<a href="http://www.w3.org/">
+<img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C" />
+</a>
+</p>
+<h1 class="title p-name" id="title">
+<ins class="diff-chg">Vibration
+API
+</ins></h1><h2 id="w3c-last-call-working-draft-23-may-2013"><abbr title="World Wide Web Consortium"><ins class="diff-chg">
+W3C
+</ins></abbr><ins class="diff-chg">
+Last
+Call
+Working
+Draft
+</ins><time class="dt-published" datetime="2013-05-23"><ins class="diff-chg">
+23
+May
+2013
+</ins></time></h2><dl><dt><ins class="diff-chg">
+This
+version:
+</ins></dt><dd><a class="u-url" href="http://www.w3.org/TR/2013/WD-vibration-20130523/"><ins class="diff-chg">
+http://www.w3.org/TR/2013/WD-vibration-20130523/
+</ins></a></dd><dt><ins class="diff-chg">
+Latest
+published
+version:
+</ins></dt><dd><a href="http://www.w3.org/TR/vibration/"><ins class="diff-chg">
+http://www.w3.org/TR/vibration/
+</ins></a></dd><dt><ins class="diff-chg">
+Latest
+editor's
+draft:
+</ins></dt><dd><a href="http://dev.w3.org/2009/dap/vibration/"><ins class="diff-chg">
+http://dev.w3.org/2009/dap/vibration/
+</ins></a></dd><dt><ins class="diff-chg">
+Previous
+version:
+</ins></dt><dd>
+<a href="http://www.w3.org/TR/2012/CR-vibration-20120508/">
+<ins class="diff-new">http://www.w3.org/TR/2012/CR-vibration-20120508/
+</ins></a></dd><dt><ins class="diff-new">
+Editor:
+</ins></dt><dd class="p-author h-card vcard"><span class="p-name fn"><ins class="diff-new">
+Anssi
+Kostiainen
+</ins></span>,<ins class="diff-new">
+Intel
+</ins></dd></dl>
+<p class="copyright">
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">
+Copyright
+</a>
+©
+<del class="diff-old">2012
+</del>
+<ins class="diff-chg">2013
+</ins>
+<a href="http://www.w3.org/">
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+</a>
+<sup>
+®
+</sup>
+(
+<a href="http://www.csail.mit.edu/">
+<abbr title="Massachusetts Institute of Technology">
+MIT
+</abbr>
+</a>,
+<a href="http://www.ercim.eu/">
+<abbr title="European Research Consortium for Informatics and Mathematics">
+ERCIM
+</abbr>
+</a>,
+<a href="http://www.keio.ac.jp/">
+Keio
+</a>,
+<a href="http://ev.buaa.edu.cn/">
+<ins class="diff-new">Beihang
+</ins>
+</a>
+),
+All
+Rights
+Reserved.
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
+liability
+</a>,
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">
+trademark
+</a>
+and
+<a href="http://www.w3.org/Consortium/Legal/copyright-documents">
+document
+use
+</a>
+rules
+apply.
+</p>
+<hr />
+</div>
+<section id="abstract" class="introductory">
+<h2>
+Abstract
+</h2>
+<p>
+This
+specification
+defines
+an
+API
+that
+provides
+access
+to
+the
+vibration
+mechanism
+of
+the
+hosting
+device.
+Vibration
+is
+a
+form
+of
+tactile
+feedback.
+</p>
+</section>
+<section id="sotd" class="introductory">
+<h2>
+Status
+of
+This
+Document
+</h2>
+<p>
+<em>
+This
+section
+describes
+the
+status
+of
+this
+document
+at
+the
+time
+of
+its
+publication.
+Other
+documents
+may
+supersede
+this
+document.
+A
+list
+of
+current
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+publications
+and
+the
+latest
+revision
+of
+this
+technical
+report
+can
+be
+found
+in
+the
+<a href="http://www.w3.org/TR/">
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+technical
+reports
+index
+</a>
+at
+http://www.w3.org/TR/.
+</em>
+</p>
+<p>
+<ins class="diff-new">The
+changes
+made
+since
+the
+</ins><a href="http://www.w3.org/TR/2012/CR-vibration-20120508/"><ins class="diff-new">
+08
+May
+2012
+</ins><abbr title="World Wide Web Consortium"><ins class="diff-new">
+W3C
+</ins></abbr><ins class="diff-new">
+Candidate
+Recommendation
+</ins></a><ins class="diff-new">
+(diff):
+</ins></p><ul><li><a href="#vibration-interface"><ins class="diff-new">
+IDL
+</ins></a>:<ins class="diff-new">
+change
+the
+</ins><code><ins class="diff-new">
+vibrate()
+</ins></code><ins class="diff-new">
+method's
+return
+type
+from
+void
+to
+boolean,
+use
+sequence
+type
+for
+the
+pattern
+attribute,
+make
+the
+interface
+partial
+</ins></li><li><a href="#dfn-processing-vibration-patterns" class="internalDFN"><ins class="diff-new">
+processing
+vibration
+patterns
+</ins></a><ins class="diff-new">
+algorithm:
+do
+not
+throw
+exceptions,
+minor
+clarifications
+to
+the
+algorithm
+</ins></li></ul><p>
+This
+document
+represents
+the
+consensus
+of
+the
+group
+on
+the
+scope
+and
+features
+of
+the
+Vibration
+API.
+It
+should
+be
+noted
+that
+the
+group
+is
+aware
+of
+more
+advanced
+use
+cases
+that
+cannot
+be
+<del class="diff-old">realised
+</del>
+<ins class="diff-chg">realized
+</ins>
+using
+this
+simpler
+first
+version.
+The
+intent
+is
+to
+address
+them
+in
+a
+future
+revision.
+</p>
+<p>
+This
+document
+was
+published
+by
+the
+<a href="http://www.w3.org/2009/dap/">
+Device
+APIs
+Working
+Group
+</a>
+as
+a
+<del class="diff-old">Candidate
+Recommendation.
+</del>
+<ins class="diff-chg">Last
+Call
+Working
+Draft.
+</ins>
+This
+document
+is
+intended
+to
+become
+a
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+Recommendation.
+If
+you
+wish
+to
+make
+comments
+regarding
+this
+document,
+please
+send
+them
+to
+<a href="mailto:public-device-apis@w3.org">
+public-device-apis@w3.org
+</a>
+(
+<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">
+subscribe
+</a>,
+<a href="http://lists.w3.org/Archives/Public/public-device-apis/">
+archives
+</a>
+).
+<del class="diff-old">W3C
+publishes
+a
+Candidate
+Recommendation
+to
+indicate
+that
+the
+document
+is
+believed
+to
+be
+stable
+and
+to
+encourage
+implementation
+by
+the
+developer
+community.
+This
+Candidate
+Recommendation
+is
+expected
+to
+advance
+to
+Proposed
+Recommendation
+no
+earlier
+than
+01
+July
+2012.
+</del>
+<ins class="diff-chg">The
+Last
+Call
+period
+ends
+13
+June
+2013.
+</ins>
+All
+<del class="diff-old">feedback
+is
+</del>
+<ins class="diff-chg">comments
+are
+</ins>
+welcome.
+</p>
+<p>
+Publication
+as
+a
+<del class="diff-old">Candidate
+Recommendation
+</del>
+<ins class="diff-chg">Last
+Call
+Working
+Draft
+</ins>
+does
+not
+imply
+endorsement
+by
+the
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+Membership.
+This
+is
+a
+draft
+document
+and
+may
+be
+updated,
+replaced
+or
+obsoleted
+by
+other
+documents
+at
+any
+time.
+It
+is
+inappropriate
+to
+cite
+this
+document
+as
+other
+than
+work
+in
+progress.
+</p>
+<p>
+<ins class="diff-chg">This
+is
+a
+Last
+Call
+Working
+Draft
+and
+thus
+the
+Working
+Group
+has
+determined
+that
+this
+document
+has
+satisfied
+the
+relevant
+technical
+requirements
+and
+is
+sufficiently
+stable
+to
+advance
+through
+the
+Technical
+Recommendation
+process.
+</ins></p>
+<p>
+This
+document
+was
+produced
+by
+a
+group
+operating
+under
+the
+<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">
+5
+February
+2004
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+Patent
+Policy
+</a>.
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+maintains
+a
+<a href="http://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">
+public
+list
+of
+any
+patent
+disclosures
+</a>
+made
+in
+connection
+with
+the
+deliverables
+of
+the
+group;
+that
+page
+also
+includes
+instructions
+for
+disclosing
+a
+patent.
+An
+individual
+who
+has
+actual
+knowledge
+of
+a
+patent
+which
+the
+individual
+believes
+contains
+<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">
+Essential
+Claim(s)
+</a>
+must
+disclose
+the
+information
+in
+accordance
+with
+<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">
+section
+6
+of
+the
+<abbr title="World Wide Web Consortium">
+W3C
+</abbr>
+Patent
+Policy
+</a>.
+</p>
+</section>
+<section id="toc">
+<h2 class="introductory">
+Table
+of
+Contents
+</h2>
+<ul class="toc">
+<li class="tocline">
+<a href="#introduction" class="tocxref">
+<span class="secno">
+1.
+</span>
+Introduction
+</a>
+</li>
+<li class="tocline">
+<a href="#conformance" class="tocxref">
+<span class="secno">
+2.
+</span>
+Conformance
+</a>
+</li>
+<li class="tocline">
+<a href="#terminology" class="tocxref">
+<span class="secno">
+3.
+</span>
+<del class="diff-old">Vibration
+Interface
+</del>
+<ins class="diff-chg">Terminology
+</ins>
+</a>
+</li>
+<li class="tocline">
+<a href="#vibration-interface" class="tocxref">
+<span class="secno">
+<del class="diff-old">3.1
+</del>
+<ins class="diff-chg">4.
+</ins>
+</span>
+<del class="diff-old">Methods
+</del>
+<ins class="diff-chg">Vibration
+Interface
+</ins>
+</a>
+</li>
+<li class="tocline">
+<a href="#examples" class="tocxref">
+<span class="secno">
+<del class="diff-old">4.
+</del>
+<ins class="diff-chg">5.
+</ins>
+</span>
+Examples
+</a>
+</li>
+<li class="tocline">
+<a href="#acknowledgements" class="tocxref">
+<span class="secno">
+A.
+</span>
+Acknowledgements
+</a>
+</li>
+<li class="tocline">
+<a href="#references" class="tocxref">
+<span class="secno">
+B.
+</span>
+References
+</a>
+<ul class="toc">
+<li class="tocline">
+<a href="#normative-references" class="tocxref">
+<span class="secno">
+B.1
+</span>
+Normative
+references
+</a>
+</li>
+<del class="diff-old">B.2
+Informative
+references
+</del>
+</ul>
+</li>
+</ul>
+</section>
+<section class="informative" id="introduction">
+<h2>
+<span class="secno">
+1.
+</span>
+Introduction
+</h2>
+<p>
+<em>
+This
+section
+is
+non-normative.
+</em>
+</p>
+<p>
+The
+<del class="diff-old">Vibration
+API
+defines
+a
+means
+for
+web
+developers
+to
+programmatically
+provide
+tactile
+feedback
+in
+the
+form
+of
+vibration.
+The
+</del>
+API
+is
+<ins class="diff-new">specifically
+</ins>
+designed
+to
+<del class="diff-old">tackle
+high-value
+</del>
+<ins class="diff-chg">address
+</ins>
+use
+cases
+<del class="diff-old">related
+to
+gaming,
+and
+</del>
+<ins class="diff-chg">that
+require
+simple
+tactile
+feedback
+only.
+Use
+cases
+requiring
+more
+fine-grained
+control
+are
+out
+of
+scope
+for
+this
+specification.
+In
+addition,
+the
+API
+</ins>
+is
+not
+meant
+to
+be
+used
+as
+a
+generic
+notification
+mechanism.
+</p>
+</section>
+<section id="conformance">
+<h2>
+<span class="secno">
+2.
+</span>
+Conformance
+</h2>
+<p>
+As
+well
+as
+sections
+marked
+as
+non-normative,
+all
+authoring
+guidelines,
+diagrams,
+examples,
+and
+notes
+in
+this
+specification
+are
+non-normative.
+Everything
+else
+in
+this
+specification
+is
+normative.
+</p>
+<p>
+The
+key
+words
+<del class="diff-old">must
+</del>
+<em class="rfc2119" title="MUST">
+<ins class="diff-chg">MUST
+</ins>
+</em>,
+<del class="diff-old">must
+not
+</del>
+<em class="rfc2119" title="MUST NOT">
+<ins class="diff-chg">MUST
+NOT
+</ins>
+</em>,
+<del class="diff-old">required
+</del>
+<em class="rfc2119" title="REQUIRED">
+<ins class="diff-chg">REQUIRED
+</ins>
+</em>,
+<del class="diff-old">should
+</del>
+<em class="rfc2119" title="SHOULD">
+<ins class="diff-chg">SHOULD
+</ins>
+</em>,
+<del class="diff-old">should
+not
+</del>
+<em class="rfc2119" title="SHOULD NOT">
+<ins class="diff-chg">SHOULD
+NOT
+</ins>
+</em>,
+<del class="diff-old">recommended
+</del>
+<em class="rfc2119" title="RECOMMENDED">
+<ins class="diff-chg">RECOMMENDED
+</ins>
+</em>,
+<del class="diff-old">may
+</del>
+<em class="rfc2119" title="MAY">
+<ins class="diff-chg">MAY
+</ins>
+</em>,
+and
+<del class="diff-old">optional
+</del>
+<em class="rfc2119" title="OPTIONAL">
+<ins class="diff-chg">OPTIONAL
+</ins>
+</em>
+in
+this
+specification
+are
+to
+be
+interpreted
+as
+described
+in
+[
+<cite>
+<a class="bibref" href="#bib-RFC2119">
+RFC2119
+</a>
+</cite>
+].
+</p>
+<p>
+This
+specification
+defines
+conformance
+criteria
+that
+apply
+to
+a
+single
+product:
+the
+<dfn id="ua">
+user
+agent
+</dfn>
+that
+implements
+the
+interfaces
+that
+it
+contains.
+</p>
+<p>
+Implementations
+that
+use
+ECMAScript
+to
+implement
+the
+APIs
+defined
+in
+this
+specification
+must
+implement
+them
+in
+a
+manner
+consistent
+with
+the
+ECMAScript
+Bindings
+defined
+in
+the
+Web
+IDL
+specification
+[
+<cite>
+<a class="bibref" href="#bib-WEBIDL">
+WEBIDL
+</a>
+</cite>
+],
+as
+this
+specification
+uses
+that
+specification
+and
+terminology.
+</p>
+</section>
+<section id="terminology">
+<h2>
+<span class="secno">
+3.
+</span>
+<del class="diff-old">Vibration
+Interface
+</del>
+<ins class="diff-chg">Terminology
+</ins>
+</h2>
+<del class="diff-old">Navigator
+implements
+Vibration
+</del>
+<p>
+<ins class="diff-chg">The
+concepts
+</ins><dfn id="dfn-browsing-context">
+<a href="http://dev.w3.org/html5/spec/browsers.html#browsing-context">
+<ins class="diff-new">browsing
+context
+</ins>
+</a>
+<del class="diff-old">;
+</del>
+</dfn>
+<ins class="diff-chg">and
+</ins><dfn id="dfn-spin-the-event-loop">
+<del class="diff-old">All
+instances
+of
+</del>
+<a href="http://dev.w3.org/html5/spec/webappapis.html#spin-the-event-loop">
+<ins class="diff-chg">spin
+</ins>
+the
+<del class="diff-old">Navigator
+</del>
+<ins class="diff-chg">event
+loop
+</ins>
+</a>
+<del class="diff-old">type
+</del>
+</dfn>
+are
+defined
+<del class="diff-old">to
+also
+implement
+the
+Vibration
+</del>
+<ins class="diff-chg">in
+[
+</ins><cite>
+<a class="bibref" href="#bib-HTML5">
+<ins class="diff-new">HTML5
+</ins>
+</a>
+<del class="diff-old">interface.
+</del>
+<del class="diff-old">       {
+};
+</del>
+</cite>
+<ins class="diff-chg">].
+</ins></p></section><section id="vibration-interface"><h2>
+<span class="secno">
+<del class="diff-old">3.1
+</del>
+<ins class="diff-chg">4.
+</ins>
+</span>
+<del class="diff-old">Methods
+vibrate
+Parameter
+Type
+Nullable
+Optional
+Description
+time
+unsigned
+long
+✘
+✘
+</del>
+Vibration
+<del class="diff-old">time
+in
+milliseconds.
+Return
+type:
+void
+vibrate
+Parameter
+Type
+Nullable
+Optional
+Description
+pattern
+unsigned
+long
+[]
+✘
+✘
+A
+vibration
+pattern
+represented
+by
+a
+list
+of
+time
+entries.
+Odd
+entries
+represent
+vibration
+time
+in
+milliseconds,
+even
+entries
+still
+periods
+in
+milliseconds
+between
+the
+vibrations.
+Return
+type:
+void
+</del>
+<ins class="diff-chg">Interface
+</ins></h2><pre class="idl"><span class="idlInterface" id="idl-def-Navigator">partial interface <span class="idlInterfaceID">Navigator</span> {<span class="idlMethod">    <span class="idlMethType"><a>boolean</a></span> <span class="idlMethName"><a href="#widl-Navigator-vibrate-boolean-unsigned-long-sequence-unsigned-long--pattern">vibrate</a></span> (<span class="idlParam"><span class="idlParamType">(<a>unsigned long</a> or sequence&lt;<a>unsigned long</a>&gt;)</span> <span class="idlParamName">pattern</span></span>);</span><ins class="diff-chg">
+};</span>
+</ins></pre>
+<p>
+The
+<code>
+vibrate()
+</code>
+method,
+when
+invoked,
+<del class="diff-old">must
+</del>
+<em class="rfc2119" title="MUST">
+<ins class="diff-chg">MUST
+</ins>
+</em>
+run
+the
+algorithm
+for
+<a href="#dfn-processing-vibration-patterns" class="internalDFN">
+processing
+vibration
+patterns
+</a>.
+</p>
+<p>
+The
+rules
+for
+<dfn id="dfn-processing-vibration-patterns">
+processing
+vibration
+patterns
+</dfn>
+are
+as
+given
+in
+the
+following
+algorithm:
+</p>
+<ol>
+<li>
+<del class="diff-old">If
+the
+hidden
+attribute
+[
+PAGE-VISIBILITY
+]
+is
+set
+to
+true,
+abort
+these
+steps.
+</del>
+Let
+<var>
+pattern
+</var>
+be
+the
+value
+of
+the
+first
+argument.
+</li>
+<li>
+If
+<var>
+pattern
+</var>
+is
+<del class="diff-old">0,
+or
+an
+empty
+list,
+cancel
+the
+pre-existing
+instance
+of
+the
+processing
+vibration
+patterns
+algorithm,
+if
+any,
+and
+abort
+these
+steps.
+If
+pattern
+is
+</del>
+a
+list,
+proceed
+to
+the
+next
+step.
+Otherwise
+run
+the
+following
+substeps:
+<ol>
+<li>
+Let
+<var>
+list
+</var>
+be
+an
+initially
+empty
+list,
+and
+add
+<var>
+pattern
+</var>
+to
+<var>
+list
+</var>.
+</li>
+<li>
+<del class="diff-old">Let
+</del>
+<ins class="diff-chg">Set
+</ins>
+<var>
+pattern
+</var>
+<del class="diff-old">be
+</del>
+<ins class="diff-chg">to
+</ins>
+<var>
+list
+</var>.
+</li>
+</ol>
+</li>
+<li>
+If
+any
+entry
+of
+<var>
+pattern
+</var>
+exceeds
+an
+implementation-dependent
+limit,
+then
+<del class="diff-old">the
+user
+agent
+may
+throw
+a
+NotSupportedError
+exception
+[
+DOM4
+]
+</del>
+<ins class="diff-chg">return
+false
+</ins>
+and
+<del class="diff-old">abort
+</del>
+<ins class="diff-chg">terminate
+</ins>
+these
+steps.
+</li>
+<li>
+If
+the
+length
+of
+<var>
+pattern
+</var>
+is
+<del class="diff-old">even,
+</del>
+<ins class="diff-chg">even
+and
+is
+not
+zero,
+</ins>
+then
+remove
+the
+last
+entry
+in
+<var>
+pattern
+</var>.
+</li>
+<li>
+If
+the
+length
+of
+<var>
+pattern
+</var>
+exceeds
+an
+<del class="diff-old">implementation
+dependent
+</del>
+<ins class="diff-chg">implementation-dependent
+</ins>
+limit,
+<ins class="diff-new">then
+return
+false
+and
+terminate
+these
+steps.
+</ins></li><li><ins class="diff-new">
+If
+</ins>
+the
+<del class="diff-old">user
+agent
+may
+throw
+a
+</del>
+<code>
+<del class="diff-old">NotSupportedError
+</del>
+<a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
+<ins class="diff-chg">hidden
+</ins></a>
+</code>
+<del class="diff-old">exception
+</del>
+<ins class="diff-chg">attribute
+</ins>
+[
+<cite>
+<del class="diff-old">DOM4
+</del>
+<a class="bibref" href="#bib-PAGE-VISIBILITY">
+<ins class="diff-chg">PAGE-VISIBILITY
+</ins>
+</a>
+</cite>
+]
+<ins class="diff-new">is
+set
+to
+true,
+then
+return
+false
+</ins>
+and
+<del class="diff-old">abort
+</del>
+<ins class="diff-chg">terminate
+</ins>
+these
+steps.
+<del class="diff-old">Cancel
+</del>
+<div class="note">
+<div class="note-title" role="heading" aria-level="3">
+<span>
+<ins class="diff-chg">Note
+</ins></span></div><div class=""><ins class="diff-chg">
+A
+trusted
+(also
+known
+as
+privileged)
+application
+that
+integrates
+closely
+with
+</ins>
+the
+<del class="diff-old">pre-existing
+instance
+of
+</del>
+<ins class="diff-chg">operating
+system's
+functionality
+may
+vibrate
+</ins>
+the
+<del class="diff-old">processing
+vibration
+patterns
+algorithm,
+</del>
+<ins class="diff-chg">device
+even
+</ins>
+if
+<del class="diff-old">any.
+</del>
+<ins class="diff-chg">such
+an
+application
+is
+not
+visible
+at
+all,
+and
+thus
+may
+ignore
+the
+previous
+step.
+</ins></div></div>
+</li>
+<li>
+An
+implementation
+<del class="diff-old">may
+</del>
+<em class="rfc2119" title="MAY">
+<ins class="diff-chg">MAY
+</ins>
+</em>
+<del class="diff-old">abort
+the
+algorithm
+at
+this
+point.
+</del>
+<ins class="diff-chg">return
+false
+and
+terminate
+these
+steps.
+</ins>
+<div class="note">
+<div class="note-title" role="heading" aria-level="3">
+<span>
+<ins class="diff-new">Note
+</ins></span></div><div class="">
+For
+example,
+an
+implementation
+might
+abort
+the
+algorithm
+because
+the
+user
+has
+set
+a
+preference
+indicating
+that
+pages
+at
+a
+given
+origin
+should
+never
+be
+able
+to
+vibrate
+the
+device,
+or
+an
+implementation
+might
+cap
+the
+total
+amount
+of
+time
+a
+page
+may
+cause
+the
+device
+to
+vibrate
+and
+reject
+requests
+in
+excess
+of
+this
+limit.
+</div>
+</div>
+</li>
+<li>
+<ins class="diff-new">Cancel
+the
+pre-existing
+instance
+of
+the
+</ins><a href="#dfn-processing-vibration-patterns" class="internalDFN"><ins class="diff-new">
+processing
+vibration
+patterns
+</ins></a><ins class="diff-new">
+algorithm,
+if
+any.
+</ins></li><li><ins class="diff-new">
+If
+</ins><var><ins class="diff-new">
+pattern
+</ins></var><ins class="diff-new">
+is
+an
+empty
+list,
+or
+if
+the
+device
+does
+not
+provide
+a
+vibration
+mechanism
+(or
+it
+is
+disabled),
+then
+return
+true
+and
+terminate
+these
+steps.
+</ins></li><li><ins class="diff-new">
+Return
+true,
+and
+then
+continue
+running
+these
+steps
+asynchronously.
+</ins>
+</li>
+<li>
+For
+each
+<var>
+time
+</var>
+in
+<var>
+pattern
+</var>,
+run
+the
+following
+substeps:
+<ol>
+<li>
+If
+the
+index
+of
+<var>
+time
+</var>
+is
+even
+(the
+<del class="diff-old">earliest
+even
+</del>
+<ins class="diff-chg">first
+</ins>
+entry
+has
+index
+0),
+vibrate
+the
+device
+for
+<var>
+time
+</var>
+milliseconds.
+</li>
+<li>
+Otherwise
+<del class="diff-old">pause
+[
+HTML5
+]
+</del>
+<ins class="diff-chg">wait
+</ins>
+for
+<var>
+time
+</var>
+milliseconds.
+</li>
+</ol>
+</li>
+</ol>
+<p>
+When
+the
+<code>
+<a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
+visibilitychange
+</a>
+</code>
+event
+[
+<cite>
+<a class="bibref" href="#bib-PAGE-VISIBILITY">
+PAGE-VISIBILITY
+</a>
+</cite>
+]
+is
+dispatched
+at
+the
+<code>
+Document
+<del class="diff-old">,
+the
+user
+agent
+must
+run
+the
+following
+steps:
+If
+the
+hidden
+</del>
+</code>
+<del class="diff-old">attribute
+[
+PAGE-VISIBILITY
+]
+is
+set
+to
+true,
+the
+user
+agent
+must
+suppress
+the
+vibration
+produced
+by
+running
+the
+pre-existing
+instance
+of
+the
+processing
+vibration
+patterns
+algorithm,
+if
+any.
+If
+the
+hidden
+attribute
+[
+PAGE-VISIBILITY
+]
+is
+set
+to
+false,
+</del>
+<ins class="diff-chg">in
+a
+</ins><a href="#dfn-browsing-context" class="internalDFN"><ins class="diff-chg">
+browsing
+context
+</ins></a>,
+the
+<a class="product-ua" href="#ua">
+user
+agent
+</a>
+<del class="diff-old">must
+</del>
+<em class="rfc2119" title="MUST">
+<ins class="diff-chg">MUST
+</ins>
+</em>
+<del class="diff-old">restore
+the
+vibration
+produced
+by
+running
+</del>
+<ins class="diff-chg">cancel
+</ins>
+the
+pre-existing
+instance
+of
+the
+<a href="#dfn-processing-vibration-patterns" class="internalDFN">
+processing
+vibration
+patterns
+</a>
+algorithm,
+if
+any.
+<del class="diff-old">If
+the
+device
+does
+not
+provide
+a
+vibration
+mechanism,
+or
+it
+is
+disabled,
+the
+user
+agent
+must
+silently
+ignore
+any
+invocations
+of
+the
+vibrate()
+method.
+</del>
+</p>
+</section>
+<section class="informative" id="examples">
+<h2>
+<span class="secno">
+<del class="diff-old">4.
+</del>
+<ins class="diff-chg">5.
+</ins>
+</span>
+Examples
+</h2>
+<p>
+<em>
+This
+section
+is
+non-normative.
+</em>
+</p>
+<p>
+In
+the
+following
+example
+the
+device
+<del class="diff-old">vibrates
+</del>
+<ins class="diff-chg">will
+vibrate
+</ins>
+for
+<del class="diff-old">1
+second:
+</del>
+<ins class="diff-chg">1000
+milliseconds
+(ms):
+</ins>
+</p>
+<div class="example">
+<del class="diff-old">        
+navigator
+navigator
+.
+vibrate
+([
+</del>
+<div class="example-title">
+<del class="diff-old">1000
+</del>
+<span>
+<ins class="diff-chg">Example
+1
+</ins>
+</span>
+<del class="diff-old">]);
+</del>
+</div>
+<pre class="example highlight prettyprint">
+<span class="com">// vibrate for 1000 ms</span><span class="pln">
+<ins class="diff-chg">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">(</span><span class="lit">1000</span><span class="pun">);</span><span class="pln">
+</ins>
+</span><span class="com">// or alternatively</span><span class="pln">
+<ins class="diff-new">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">([</span><span class="lit">1000</span><span class="pun">]);</span>
+</ins>
+</pre>
+</div>
+<p>
+In
+the
+following
+example
+the
+<ins class="diff-new">pattern
+will
+cause
+the
+</ins>
+device
+<del class="diff-old">vibrates
+</del>
+<ins class="diff-chg">to
+vibrate
+</ins>
+for
+<del class="diff-old">1
+second,
+is
+</del>
+<ins class="diff-chg">50
+ms,
+be
+</ins>
+still
+for
+<del class="diff-old">0.5
+seconds,
+</del>
+<ins class="diff-chg">100
+ms,
+</ins>
+and
+<del class="diff-old">vibrates
+again
+</del>
+<ins class="diff-chg">then
+vibrate
+</ins>
+for
+<del class="diff-old">2
+seconds:
+</del>
+<ins class="diff-chg">150
+ms:
+</ins>
+</p>
+<div class="example">
+<del class="diff-old">navigator
+.
+vibrate
+([
+1000
+,
+500
+,
+2000
+</del>
+<div class="example-title">
+<del class="diff-old">]);
+</del>
+<span>
+<ins class="diff-chg">Example
+2
+</ins>
+</span>
+</div>
+<pre class="example highlight prettyprint">
+<span class="pln">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">([</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">150</span><span class="pun">]);</span>
+</pre>
+</div>
+<p>
+</p>
+<p>
+The
+following
+example
+cancels
+any
+existing
+vibrations:
+</p>
+<div class="example">
+<del class="diff-old">          
+navigator
+.
+</del>
+<div class="example-title">
+<del class="diff-old">vibrate
+</del>
+<span>
+<ins class="diff-chg">Example
+3
+</ins>
+</span>
+<del class="diff-old">([]);
+</del>
+</div>
+<pre class="example highlight prettyprint">
+<span class="com">// cancel any existing vibrations</span><span class="pln">
+<ins class="diff-chg">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
+</ins>
+</span><span class="com">// or alternatively</span><span class="pln">
+<ins class="diff-new">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">([]);</span>
+</ins>
+</pre>
+</div>
+</section>
+<section class="appendix" id="acknowledgements">
+<h2>
+<span class="secno">
+A.
+</span>
+Acknowledgements
+</h2>
+<p>
+The
+group
+is
+deeply
+indebted
+to
+<ins class="diff-new">Justin
+Lebar,
+</ins>
+Mounir
+Lamouri,
+Jonas
+Sicking,
+and
+the
+Mozilla
+WebAPI
+team
+<del class="diff-old">in
+general
+</del>
+<ins class="diff-chg">for
+their
+contributions,
+and
+</ins>
+for
+providing
+the
+WebVibrator
+prototype
+as
+an
+initial
+input.
+</p>
+</section>
+<section id="references" class="appendix">
+<h2>
+<span class="secno">
+B.
+</span>
+References
+</h2>
+<section id="normative-references">
+<h3>
+<span class="secno">
+B.1
+</span>
+Normative
+references
+</h3>
+<dl class="bibliography">
+<del class="diff-old">[DOM4]
+Anne
+van
+Kesteren;
+Aryeh
+Gregor;
+Ms2ger.
+DOM4.
+5
+January
+2012.
+W3C
+Working
+Draft.
+(Work
+in
+progress.)
+URL:
+http://www.w3.org/TR/2012/WD-dom-20120105/
+</del>
+<dt id="bib-HTML5">
+[HTML5]
+</dt>
+<dd>
+<del class="diff-old">Ian
+Hickson;
+David
+Hyatt.
+</del>
+<ins class="diff-chg">Robin
+Berjon
+et
+al.
+</ins><a href="http://www.w3.org/TR/html5/">
+<cite>
+<del class="diff-old">HTML5.
+</del>
+<ins class="diff-chg">HTML5
+</ins>
+</cite>
+<del class="diff-old">25
+May
+2011.
+</del>
+</a>.
+<ins class="diff-chg">17
+December
+2012.
+</ins>
+W3C
+<del class="diff-old">Working
+Draft.
+(Work
+in
+progress.)
+</del>
+<ins class="diff-chg">Candidate
+Recommendation.
+</ins>
+URL:
+<del class="diff-old">http://www.w3.org/TR/html5
+</del>
+<a href="http://www.w3.org/TR/html5/">
+<ins class="diff-chg">http://www.w3.org/TR/html5/
+</ins>
+</a>
+</dd>
+<dt id="bib-PAGE-VISIBILITY">
+[PAGE-VISIBILITY]
+</dt>
+<dd>
+J.
+Mann;
+A.
+Jain.
+<a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html">
+<cite>
+Page
+Visibility
+</cite>
+</a>.
+26
+September
+2011.
+W3C
+Editor's
+Draft.
+(Work
+in
+progress.)
+URL:
+<a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html">
+http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html
+</a>
+</dd>
+<dt id="bib-RFC2119">
+[RFC2119]
+</dt>
+<dd>
+S.
+Bradner.
+<a href="http://www.ietf.org/rfc/rfc2119.txt">
+<cite>
+Key
+words
+for
+use
+in
+RFCs
+to
+Indicate
+Requirement
+Levels.
+</cite>
+</a>
+March
+1997.
+Internet
+RFC
+2119.
+URL:
+<a href="http://www.ietf.org/rfc/rfc2119.txt">
+http://www.ietf.org/rfc/rfc2119.txt
+</a>
+</dd>
+<dt id="bib-WEBIDL">
+[WEBIDL]
+</dt>
+<dd>
+Cameron
+McCormack.
+<a href="http://www.w3.org/TR/2012/CR-WebIDL-20120419/">
+<cite>
+Web
+<del class="diff-old">IDL.
+</del>
+<ins class="diff-chg">IDL
+</ins>
+</cite>
+<del class="diff-old">27
+September
+2011.
+</del>
+</a>.
+<ins class="diff-chg">19
+April
+2012.
+</ins>
+W3C
+<del class="diff-old">Working
+Draft.
+(Work
+in
+progress.)
+</del>
+<ins class="diff-chg">Candidate
+Recommendation.
+</ins>
+URL:
+<del class="diff-old">http://www.w3.org/TR/2011/WD-WebIDL-20110927/
+</del>
+<a href="http://www.w3.org/TR/2012/CR-WebIDL-20120419/">
+<ins class="diff-chg">http://www.w3.org/TR/2012/CR-WebIDL-20120419/
+</ins>
+</a>
+</dd>
+</dl>
+<del class="diff-old">B.2
+Informative
+references
+No
+informative
+references.
+</del>
+</section>
+</section>
+</body>
+</html>
+
