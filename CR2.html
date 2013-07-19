@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:CR" about="" property="dcterms:language" content="en">
 <head>
     <title>Vibration API</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -421,16 +421,16 @@ table.exceptions table {
     border-collapse:    collapse;
     width:  100%;
 }
-</style><link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-CR"><!--[if lt IE 9]><script src='http://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-CR"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
   <body class="h-entry"><div class="head">
   <p>
     
-      <a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C"></a>
+      <a href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
     
   </p>
-  <h1 class="title p-name" id="title">Vibration API</h1>
+  <h1 class="title p-name" id="title" property="dcterms:title">Vibration API</h1>
   
-  <h2 id="w3c-candidate-recommendation-23-july-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Candidate Recommendation <time class="dt-published" datetime="2013-07-23">23 July 2013</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-07-23T04:00:00.000Z" id="w3c-candidate-recommendation-23-july-2013"><abbr title="World Wide Web Consortium">W3C</abbr> Candidate Recommendation <time class="dt-published" datetime="2013-07-23">23 July 2013</time></h2>
   <dl>
     
       <dt>This version:</dt>
@@ -447,11 +447,12 @@ table.exceptions table {
     
     
       <dt>Previous version:</dt>
-      <dd><a href="http://www.w3.org/TR/2013/WD-vibration-20130523/">http://www.w3.org/TR/2013/WD-vibration-20130523/</a></dd>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2013/WD-vibration-20130523/">http://www.w3.org/TR/2013/WD-vibration-20130523/</a></dd>
     
     
     <dt>Editor:</dt>
-    <dd class="p-author h-card vcard"><span class="p-name fn">Anssi Kostiainen</span>, Intel</dd>
+    <dd class="p-author h-card vcard" rel="bibo:editor" inlist=""><span typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anssi Kostiainen</span>, Intel</span>
+</dd>
 
     
     
@@ -477,10 +478,10 @@ table.exceptions table {
   
   <hr>
 </div>
-    <section id="abstract" class="introductory"><h2>Abstract</h2><p>
+    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#abstract" rel="bibo:chapter"><h2>Abstract</h2><p>
       This specification defines an API that provides access to the vibration
       mechanism of the hosting device. Vibration is a form of tactile feedback.
-    </p></section><section id="sotd" class="introductory"><h2>Status of This Document</h2>
+    </p></section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#sotd" rel="bibo:chapter"><h2>Status of This Document</h2>
   
     
       
@@ -493,7 +494,7 @@ table.exceptions table {
         
       <p>
         The following changes
-        (<a href="http://www.w3.org/2006/02/lc-comments-tracker/43696/WD-vibration-20130523/doc/">disposition of comments</a>,
+        (<a href="https://www.w3.org/2006/02/lc-comments-tracker/43696/WD-vibration-20130523/doc/">disposition of comments</a>,
         <a href="CR2-diff.html">redline</a>) have been made
         since the <a href="http://www.w3.org/TR/2013/WD-vibration-20130523/">
         <abbr title="World Wide Web Consortium">W3C</abbr> Last Call Working Draft 23 May 2013</a>:
@@ -511,6 +512,14 @@ table.exceptions table {
           Nightly in the <a href="#references">References</a> section.
         </li>
       </ul>
+      <p>
+        Before this specification
+        exits Candidate Recommendation, two or more independent deployed
+        implementations must demonstrate interoperability of each
+        feature. No features have been marked as 'at risk'.
+        The group will create an <a href="http://www.w3.org/2009/dap/wiki/Vibration_API_Interop_Report">Implementation
+        Report</a>.
+      </p>
       <p>
         This document represents the consensus of the group on the scope and
         features of the Vibration API. It should be noted that the group is
@@ -551,7 +560,9 @@ table.exceptions table {
         <p>
           
             This document was produced by a group operating under the 
-            <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+             
+                <a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+            
           
           
           
@@ -587,7 +598,7 @@ table.exceptions table {
       </p>
     </section>
     
-    <section id="conformance"><!--OddPage--><h2><span class="secno">2. </span>Conformance</h2>
+    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" rel="bibo:chapter"><!--OddPage--><h2><span class="secno">2. </span>Conformance</h2>
 <p>
   As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
   and notes in this specification are non-normative. Everything else in this specification is
@@ -761,9 +772,9 @@ navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span 
     </section>
   
 
-<section id="references" class="appendix"><!--OddPage--><h2><span class="secno">B. </span>References</h2><section id="normative-references"><h3><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-HTML5">[HTML5]</dt><dd>Robin Berjon et al. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 17 December 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
-</dd><dt id="bib-PAGE-VISIBILITY">[PAGE-VISIBILITY]</dt><dd>Jatinder Mann; Arvind Jain. <a href="http://www.w3.org/TR/page-visibility/"><cite>Page Visibility</cite></a>. 14 May 2013. W3C Recommendation. URL: <a href="http://www.w3.org/TR/page-visibility/">http://www.w3.org/TR/page-visibility/</a>
-</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
-</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd>Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a>
-</dd></dl></section><section id="informative-references"><h3><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography"><dt id="bib-notifications">[notifications]</dt><dd>Anne van Kesteren; John Gregg. <a href="http://www.w3.org/TR/notifications/"><cite>Web Notifications</cite></a>. 14 June 2012. W3C Working Draft. URL: <a href="http://www.w3.org/TR/notifications/">http://www.w3.org/TR/notifications/</a>
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:chapter"><!--OddPage--><h2><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:chapter"><h3><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon et al. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 17 December 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+</dd><dt id="bib-PAGE-VISIBILITY">[PAGE-VISIBILITY]</dt><dd rel="dcterms:requires">Jatinder Mann; Arvind Jain. <a href="http://www.w3.org/TR/page-visibility/"><cite>Page Visibility</cite></a>. 14 May 2013. W3C Recommendation. URL: <a href="http://www.w3.org/TR/page-visibility/">http://www.w3.org/TR/page-visibility/</a>
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
+</dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd rel="dcterms:requires">Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a>
+</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" rel="bibo:chapter"><h3><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography" about=""><dt id="bib-notifications">[notifications]</dt><dd rel="dcterms:references">Anne van Kesteren; John Gregg. <a href="http://www.w3.org/TR/notifications/"><cite>Web Notifications</cite></a>. 14 June 2012. W3C Working Draft. URL: <a href="http://www.w3.org/TR/notifications/">http://www.w3.org/TR/notifications/</a>
 </dd></dl></section></section></body></html>
