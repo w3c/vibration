@@ -1,5 +1,4 @@
-
-<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:CR" about="" property="dcterms:language" content="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Vibration API</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -443,7 +442,7 @@ table.exceptions table {
 }
 /*]]>*/
 </style>
-<link rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-CR" type="text/css" /><!--[if lt IE 9]><script src='http://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-CR" type="text/css" /><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
 <style type='text/css'>
 .diff-old-a {
   font-size: smaller;
@@ -468,14 +467,14 @@ table.exceptions table {
 <div class="head">
 <p>
 <a href="http://www.w3.org/">
-<img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C" />
+<img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C" />
 </a>
 </p>
-<h1 class="title p-name" id="title">
+<h1 class="title p-name" id="title" property="dcterms:title">
 Vibration
 API
 </h1>
-<h2 id="w3c-candidate-recommendation-23-july-2013">
+<h2 property="dcterms:issued" datatype="xsd:dateTime" content="2013-07-23T04:00:00.000Z" id="w3c-candidate-recommendation-23-july-2013">
 <abbr title="World Wide Web Consortium">
 W3C
 </abbr>
@@ -535,7 +534,7 @@ version:
 <dd>
 <del class="diff-old">http://www.w3.org/TR/2012/CR-vibration-20120508/
 </del>
-<a href="http://www.w3.org/TR/2013/WD-vibration-20130523/">
+<a rel="dcterms:replaces" href="http://www.w3.org/TR/2013/WD-vibration-20130523/">
 <ins class="diff-chg">http://www.w3.org/TR/2013/WD-vibration-20130523/
 </ins>
 </a>
@@ -543,12 +542,14 @@ version:
 <dt>
 Editor:
 </dt>
-<dd class="p-author h-card vcard">
-<span class="p-name fn">
+<dd class="p-author h-card vcard" rel="bibo:editor" inlist="">
+<span typeof="foaf:Person">
+<span property="foaf:name" class="p-name fn">
 Anssi
 Kostiainen
 </span>,
 Intel
+</span>
 </dd>
 </dl>
 <p class="copyright">
@@ -605,7 +606,7 @@ apply.
 </p>
 <hr />
 </div>
-<section id="abstract" class="introductory">
+<section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#abstract" rel="bibo:chapter">
 <h2>
 Abstract
 </h2>
@@ -635,7 +636,7 @@ tactile
 feedback.
 </p>
 </section>
-<section id="sotd" class="introductory">
+<section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#sotd" rel="bibo:chapter">
 <h2>
 Status
 of
@@ -703,7 +704,7 @@ The
 </ins>
 changes
 <ins class="diff-new">(
-</ins><a href="http://www.w3.org/2006/02/lc-comments-tracker/43696/WD-vibration-20130523/doc/"><ins class="diff-new">
+</ins><a href="https://www.w3.org/2006/02/lc-comments-tracker/43696/WD-vibration-20130523/doc/"><ins class="diff-new">
 disposition
 of
 comments
@@ -824,6 +825,41 @@ section.
 </li>
 </ul>
 <p>
+<ins class="diff-new">Before
+this
+specification
+exits
+Candidate
+Recommendation,
+two
+or
+more
+independent
+deployed
+implementations
+must
+demonstrate
+interoperability
+of
+each
+feature.
+No
+features
+have
+been
+marked
+as
+'at
+risk'.
+The
+group
+will
+create
+an
+</ins><a href="http://www.w3.org/2009/dap/wiki/Vibration_API_Interop_Report"><ins class="diff-new">
+Implementation
+Report
+</ins></a>.</p><p>
 This
 document
 represents
@@ -1088,7 +1124,7 @@ group
 operating
 under
 the
-<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">
+<a id="sotd_patent" about="" rel="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">
 5
 February
 2004
@@ -1350,7 +1386,7 @@ specification.
 </ins>
 </p>
 </section>
-<section id="conformance">
+<section id="conformance" typeof="bibo:Chapter" resource="#conformance" rel="bibo:chapter">
 <h2>
 <span class="secno">
 2.
@@ -1563,7 +1599,7 @@ Interface
 </pre>
 <p>
 The
-<code>
+<code id="widl-Navigator-vibrate-boolean-unsigned-long-sequence-unsigned-long--pattern">
 vibrate()
 </code>
 method,
@@ -2235,14 +2271,14 @@ initial
 input.
 </p>
 </section>
-<section id="references" class="appendix">
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:chapter">
 <h2>
 <span class="secno">
 B.
 </span>
 References
 </h2>
-<section id="normative-references">
+<section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:chapter">
 <h3>
 <span class="secno">
 B.1
@@ -2250,11 +2286,11 @@ B.1
 Normative
 references
 </h3>
-<dl class="bibliography">
+<dl class="bibliography" about="">
 <dt id="bib-HTML5">
 [HTML5]
 </dt>
-<dd>
+<dd rel="dcterms:requires">
 Robin
 Berjon
 et
@@ -2278,9 +2314,9 @@ http://www.w3.org/TR/html5/
 <dt id="bib-PAGE-VISIBILITY">
 [PAGE-VISIBILITY]
 </dt>
-<dd>
 <del class="diff-old">J.
 </del>
+<dd rel="dcterms:requires">
 <ins class="diff-chg">Jatinder
 </ins>
 Mann;
@@ -2311,7 +2347,7 @@ URL:
 <dt id="bib-RFC2119">
 [RFC2119]
 </dt>
-<dd>
+<dd rel="dcterms:requires">
 S.
 Bradner.
 <a href="http://www.ietf.org/rfc/rfc2119.txt">
@@ -2341,7 +2377,7 @@ http://www.ietf.org/rfc/rfc2119.txt
 <dt id="bib-WEBIDL">
 [WEBIDL]
 </dt>
-<dd>
+<dd rel="dcterms:requires">
 Cameron
 McCormack.
 <a href="http://www.w3.org/TR/WebIDL/">
@@ -2366,16 +2402,16 @@ URL:
 </dd>
 </dl>
 </section>
-<section id="informative-references">
+<section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" rel="bibo:chapter">
 <h3>
 <span class="secno">
 <ins class="diff-chg">B.2
 </ins></span><ins class="diff-chg">
 Informative
 references
-</ins></h3><dl class="bibliography"><dt id="bib-notifications"><ins class="diff-chg">
+</ins></h3><dl class="bibliography" about=""><dt id="bib-notifications"><ins class="diff-chg">
 [notifications]
-</ins></dt><dd><ins class="diff-chg">
+</ins></dt><dd rel="dcterms:references"><ins class="diff-chg">
 Anne
 van
 Kesteren;
