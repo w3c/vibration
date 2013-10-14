@@ -119,18 +119,26 @@
           </ol>
         </li>
         <li>
-          If the length of <var>pattern</var> exceeds an
-          implementation-dependent limit, then return false and terminate
-          these steps.
+          Let <var>max length</var> be an implementation-dependent maximum
+          length of <var>pattern</var>.
+        </li>
+        <li>
+          If the length of <var>pattern</var> is greater than
+          <var>max length</var>, truncate <var>pattern</var>, leaving only
+          the first <var>max length</var> entries.
         </li>
         <li>
           If the length of <var>pattern</var> is even and is not zero, then
           remove the last entry in <var>pattern</var>.
         </li>
         <li>
-          If any entry of <var>pattern</var> exceeds an
-          implementation-dependent limit, then return false and terminate
-          these steps.
+          Let <var>max duration</var> be an implementation-dependent maximum
+          duration for a single vibration entry in a <var>pattern</var>.
+        </li>
+        <li>
+          For each entry in <var>pattern</var> whose value is greater than
+          <var>max duration</var>, set the entry's value to
+          <var>max duration</var>.
         </li>
         <li>
           If the <code>
