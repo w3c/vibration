@@ -156,14 +156,20 @@
           </div>
         </li>
         <li>
-          Cancel the pre-existing instance of the <a>processing vibration
-          patterns</a> algorithm, if any.
-        </li>
-        <li>
-          If <var>pattern</var> is an empty list, or if the device does
-          not provide a vibration mechanism (or it is disabled), then return
-          true and terminate these steps.
-        </li>
+          If there is a pre-existing instance of the <a>processing vibration
+          patterns</a> algorithm running for this browsing context, run the
+          following substeps:
+          <ol>
+            <li>
+              Cancel the pre-existing instance of the <a>processing vibration
+              patterns</a> algorithm, if any.
+            </li>
+            <li>
+              If <var>pattern</var> is an empty list, or if the device does
+              not provide a vibration mechanism (or it is disabled), then
+              return true and terminate these steps.
+            </li>
+          </ol>
         <li>
           Return true, and then continue running these steps asynchronously.
         </li>
