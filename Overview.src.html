@@ -19,7 +19,6 @@
           inlineCSS:    true,
           noIDLIn:      true,
           noLegacyStyle:true,
-          extraCSS:     ["../ReSpec.js/css/respec.css"],
           wg:           "Device APIs Working Group",
           wgURI:        "http://www.w3.org/2009/dap/",
           wgPublicList: "public-device-apis",
@@ -242,7 +241,7 @@
       <h2>Examples</h2>
       <p>
         In the following example the device will vibrate for 1000 milliseconds (ms):
-      <pre class='example sh_javascript'>
+      <pre class='example highlight'>
         // vibrate for 1000 ms
         navigator.vibrate(1000);
         
@@ -253,14 +252,14 @@
         In the following example the pattern will cause the device to vibrate
         for 50 ms, be still for 100 ms, and then vibrate for 150 ms:
       </p>
-      <pre class='example sh_javascript'>
+      <pre class='example highlight'>
         navigator.vibrate([50, 100, 150]);
       </pre>
       <p>
         <p>
           The following example cancels any existing vibrations:
         </p>
-        <pre class='example sh_javascript'>
+        <pre class='example highlight'>
           // cancel any existing vibrations
           navigator.vibrate(0);
           
