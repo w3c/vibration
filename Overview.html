@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr" typeof="bibo:Document " about="" property="dcterms:language" content="en">
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:LastCall" about="" property="dcterms:language" content="en">
 <head>
     <title>Vibration API</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -428,7 +428,7 @@ table.exceptions table {
     border-collapse:    collapse;
     width:  100%;
 }
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-WD"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
   <body class="h-entry" style="" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
   <p>
     
@@ -437,11 +437,11 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Vibration API</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-01-29T05:54:56.000Z" id="w3c-editor-s-draft-29-january-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2014-01-29">29 January 2014</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-02-03T22:00:00.000Z" id="w3c-last-call-working-draft-04-february-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Last Call Working Draft <time class="dt-published" datetime="2014-02-04">04 February 2014</time></h2>
   <dl>
     
       <dt>This version:</dt>
-      <dd><a class="u-url" href="http://dev.w3.org/2009/dap/vibration/">http://dev.w3.org/2009/dap/vibration/</a></dd>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2014/WD-vibration-20140204/">http://www.w3.org/TR/2014/WD-vibration-20140204/</a></dd>
       <dt>Latest published version:</dt>
       <dd><a href="http://www.w3.org/TR/vibration/">http://www.w3.org/TR/vibration/</a></dd>
     
@@ -450,10 +450,14 @@ table.exceptions table {
       <dd><a href="http://dev.w3.org/2009/dap/vibration/">http://dev.w3.org/2009/dap/vibration/</a></dd>
     
     
+      <dt>Test suite:</dt>
+      <dd><a href="https://w3c-test.org/web-platform-tests/master/vibration/">https://w3c-test.org/web-platform-tests/master/vibration/</a></dd>
     
     
-      
     
+    
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2013/CR-vibration-20130723/">http://www.w3.org/TR/2013/CR-vibration-20130723/</a></dd>
     
     
     <dt>Editor:</dt>
@@ -461,6 +465,23 @@ table.exceptions table {
 </dd>
 
     
+    
+      
+        
+          <dt>Implementation status:</dt>
+          
+             
+                
+                  <dd>
+                    <a href="http://www.w3.org/2009/dap/wiki/ImplementationStatus#Vibration_API">
+                      http://www.w3.org/2009/dap/wiki/ImplementationStatus#Vibration_API
+                    </a>
+                  </dd>
+                
+             
+          
+        
+      
     
   </dl>
   
@@ -515,7 +536,7 @@ table.exceptions table {
           (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.7;r2=1.8;f=h">diff</a>).
         </li>
         <li>
-          Allow concurrent invocations in different browsing contexts
+          Specify how concurrent invocations in different browsing contexts are handled
           (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.6;r2=1.7;f=h">diff</a>).
         </li>
         <li>
@@ -532,7 +553,9 @@ table.exceptions table {
       </p>
     
         <p>
-          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as an Editor's Draft.
+          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as a Last Call Working Draft.
+          
+            This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
           
           
             If you wish to make comments regarding this document, please send them to 
@@ -540,7 +563,7 @@ table.exceptions table {
             (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
             <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
           
-          
+          The Last Call period ends 25 February 2014.
           
           
             All comments are welcome.
@@ -549,12 +572,18 @@ table.exceptions table {
         
         
           <p>
-            Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+            Publication as a Last Call Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
             Membership. This is a draft document and may be updated, replaced or obsoleted by other
             documents at any time. It is inappropriate to cite this document as other than work in
             progress.
           </p>
         
+        
+          <p>
+            This is a Last Call Working Draft and thus the Working Group has determined that this
+            document has satisfied the relevant technical requirements and is sufficiently stable to
+            advance through the Technical Recommendation process.
+          </p>
         
         <p>
           

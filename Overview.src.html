@@ -6,13 +6,13 @@
     <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "ED",
+          specStatus:           "LC",
           shortName:            "vibration",
-          //publishDate:        "2013-05-08",
+          publishDate:          "2014-02-04",
           previousPublishDate:  "2013-07-23",
           previousMaturity:     "CR",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
-          //lcEnd: "2013-06-13",
+          lcEnd:                "2014-02-25",
           editors:  [
               { name: "Anssi Kostiainen", company: "Intel" }
           ],
@@ -23,6 +23,14 @@
           wgURI:        "http://www.w3.org/2009/dap/",
           wgPublicList: "public-device-apis",
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/43696/status",
+          testSuiteURI: "https://w3c-test.org/web-platform-tests/master/vibration/",
+          otherLinks: [{
+            key: "Implementation status",
+            data: [{
+              value: "http://www.w3.org/2009/dap/wiki/ImplementationStatus#Vibration_API",
+              href:  "http://www.w3.org/2009/dap/wiki/ImplementationStatus#Vibration_API"
+            }]
+          }]
       };
     </script>
   </head>
@@ -44,7 +52,7 @@
           (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.7;r2=1.8;f=h">diff</a>).
         </li>
         <li>
-          Allow concurrent invocations in different browsing contexts
+          Specify how concurrent invocations in different browsing contexts are handled
           (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.6;r2=1.7;f=h">diff</a>).
         </li>
         <li>
