@@ -456,6 +456,7 @@ table.exceptions table {
     
     
     
+    
       <dt>Previous version:</dt>
       <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2013/CR-vibration-20130723/">http://www.w3.org/TR/2013/CR-vibration-20130723/</a></dd>
     
@@ -543,6 +544,10 @@ table.exceptions table {
           Add a note related to pattern truncation
           (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.9;r2=1.10;f=h">diff</a>).
         </li>
+        <li>
+          Clarify step 10 in the processing vibration patterns algorithm 
+          (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.14;r2=1.15;f=h">diff</a>).
+        </li>
       </ul>
       <p>
         This document represents the consensus of the group on the scope and
@@ -577,6 +582,7 @@ table.exceptions table {
             documents at any time. It is inappropriate to cite this document as other than work in
             progress.
           </p>
+        
         
         
           <p>
@@ -762,9 +768,8 @@ table.exceptions table {
               patterns</a> algorithm, if any.
             </li>
             <li>
-              If <var>pattern</var> is an empty list, or if the device does
-              not provide a vibration mechanism (or it is disabled), then
-              return true and terminate these steps.
+              If <var>pattern</var> is an empty list, or if the device is
+              unable to vibrate, then return true and terminate these steps.
             </li>
           </ol>
         </li><li>
