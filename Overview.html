@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en" dir="ltr" typeof="bibo:Document w3p:LastCall" about="" property="dcterms:language" content="en">
+<html lang="en" dir="ltr" typeof="bibo:Document " about="" property="dcterms:language" content="en">
 <head>
     <title>Vibration API</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -428,8 +427,8 @@ table.exceptions table {
     border-collapse:    collapse;
     width:  100%;
 }
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-WD"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
-  <body class="h-entry" style="" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+  <body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
   <p>
     
       <a href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/Icons/w3c_home" alt="W3C"></a>
@@ -437,11 +436,11 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Vibration API</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-02-10T22:00:00.000Z" id="w3c-last-call-working-draft-11-february-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Last Call Working Draft <time class="dt-published" datetime="2014-02-11">11 February 2014</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-04-28T08:25:54.000Z" id="w3c-editor-s-draft-28-april-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2014-04-28">28 April 2014</time></h2>
   <dl>
     
       <dt>This version:</dt>
-      <dd><a class="u-url" href="http://www.w3.org/TR/2014/WD-vibration-20140211/">http://www.w3.org/TR/2014/WD-vibration-20140211/</a></dd>
+      <dd><a class="u-url" href="http://dev.w3.org/2009/dap/vibration/">http://dev.w3.org/2009/dap/vibration/</a></dd>
       <dt>Latest published version:</dt>
       <dd><a href="http://www.w3.org/TR/vibration/">http://www.w3.org/TR/vibration/</a></dd>
     
@@ -451,14 +450,13 @@ table.exceptions table {
     
     
       <dt>Test suite:</dt>
-      <dd><a href="https://w3c-test.org/web-platform-tests/master/vibration/">https://w3c-test.org/web-platform-tests/master/vibration/</a></dd>
+      <dd><a href="http://w3c-test.org/vibration/">http://w3c-test.org/vibration/</a></dd>
     
     
     
     
+      
     
-      <dt>Previous version:</dt>
-      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2013/CR-vibration-20130723/">http://www.w3.org/TR/2013/CR-vibration-20130723/</a></dd>
     
     
     <dt>Editor:</dt>
@@ -512,10 +510,10 @@ table.exceptions table {
   
   <hr>
 </div>
-    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_abstract">Abstract</h2><p>
+    <section id="abstract" class="introductory" property="dcterms:abstract" datatype="" typeof="bibo:Chapter" resource="#abstract" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_abstract">Abstract</h2><p>
       This specification defines an API that provides access to the vibration
       mechanism of the hosting device. Vibration is a form of tactile feedback.
-    </p></section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_sotd">Status of This Document</h2>
+    </p></section><section id="sotd" class="introductory" typeof="bibo:Chapter" resource="#sotd" rel="bibo:Chapter"><h2 aria-level="1" role="heading" id="h2_sotd">Status of This Document</h2>
   
     
       
@@ -558,9 +556,7 @@ table.exceptions table {
       </p>
     
         <p>
-          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as a Last Call Working Draft.
-          
-            This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as an Editor's Draft.
           
           
             If you wish to make comments regarding this document, please send them to 
@@ -568,7 +564,7 @@ table.exceptions table {
             (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
             <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
           
-          The Last Call period ends 04 March 2014.
+          
           
           
             All comments are welcome.
@@ -577,19 +573,13 @@ table.exceptions table {
         
         
           <p>
-            Publication as a Last Call Working Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+            Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
             Membership. This is a draft document and may be updated, replaced or obsoleted by other
             documents at any time. It is inappropriate to cite this document as other than work in
             progress.
           </p>
         
         
-        
-          <p>
-            This is a Last Call Working Draft and thus the Working Group has determined that this
-            document has satisfied the relevant technical requirements and is sufficiently stable to
-            advance through the Technical Recommendation process.
-          </p>
         
         <p>
           
@@ -634,7 +624,7 @@ table.exceptions table {
       </p>
     </section>
     
-    <section id="conformance" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_conformance"><span class="secno">2. </span>Conformance</h2>
+    <section id="conformance" typeof="bibo:Chapter" resource="#conformance" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_conformance"><span class="secno">2. </span>Conformance</h2>
 <p>
   As well as sections marked as non-normative, all authoring guidelines, diagrams, examples,
   and notes in this specification are non-normative. Everything else in this specification is
@@ -804,7 +794,7 @@ table.exceptions table {
       <!--OddPage--><h2 aria-level="1" role="heading" id="h2_examples"><span class="secno">5. </span>Examples</h2><p><em>This section is non-normative.</em></p>
       <p>
         In the following example the device will vibrate for 1000 milliseconds (ms):
-      </p><div class="example"><div class="example-title"><span>Example 1</span></div><pre class="example highlight prettyprint prettyprinted" style=""><span class="com">// vibrate for 1000 ms</span><span class="pln">
+      </p><div class="example"><div class="example-title"><span>Example 1</span></div><pre class="example highlight prettyprint prettyprinted"><span class="com">// vibrate for 1000 ms</span><span class="pln">
 navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">(</span><span class="lit">1000</span><span class="pun">);</span><span class="pln">
 
 </span><span class="com">// or alternatively</span><span class="pln">
@@ -813,12 +803,12 @@ navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span 
         In the following example the pattern will cause the device to vibrate
         for 50 ms, be still for 100 ms, and then vibrate for 150 ms:
       </p>
-      <div class="example"><div class="example-title"><span>Example 2</span></div><pre class="example highlight prettyprint prettyprinted" style=""><span class="pln">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">([</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">150</span><span class="pun">]);</span></pre></div>
+      <div class="example"><div class="example-title"><span>Example 2</span></div><pre class="example highlight prettyprint prettyprinted"><span class="pln">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">([</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">150</span><span class="pun">]);</span></pre></div>
       <p>
         </p><p>
           The following example cancels any existing vibrations:
         </p>
-        <div class="example"><div class="example-title"><span>Example 3</span></div><pre class="example highlight prettyprint prettyprinted" style=""><span class="com">// cancel any existing vibrations</span><span class="pln">
+        <div class="example"><div class="example-title"><span>Example 3</span></div><pre class="example highlight prettyprint prettyprinted"><span class="com">// cancel any existing vibrations</span><span class="pln">
 navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
 
 </span><span class="com">// or alternatively</span><span class="pln">
@@ -834,9 +824,9 @@ navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span 
     </section>
   
 
-<section id="references" class="appendix" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 6 August 2013. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
+<section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" rel="bibo:Chapter"><!--OddPage--><h2 aria-level="1" role="heading" id="h2_references"><span class="secno">B. </span>References</h2><section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_normative-references"><span class="secno">B.1 </span>Normative references</h3><dl class="bibliography" about=""><dt id="bib-HTML5">[HTML5]</dt><dd rel="dcterms:requires">Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. <a href="http://www.w3.org/TR/html5/"><cite>HTML5</cite></a>. 4 February 2014. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/html5/">http://www.w3.org/TR/html5/</a>
 </dd><dt id="bib-PAGE-VISIBILITY">[PAGE-VISIBILITY]</dt><dd rel="dcterms:requires">Jatinder Mann; Arvind Jain. <a href="http://www.w3.org/TR/page-visibility/"><cite>Page Visibility</cite></a>. 14 May 2013. W3C Recommendation. URL: <a href="http://www.w3.org/TR/page-visibility/">http://www.w3.org/TR/page-visibility/</a>
 </dd><dt id="bib-RFC2119">[RFC2119]</dt><dd rel="dcterms:requires">S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
 </dd><dt id="bib-WEBIDL">[WEBIDL]</dt><dd rel="dcterms:requires">Cameron McCormack. <a href="http://www.w3.org/TR/WebIDL/"><cite>Web IDL</cite></a>. 19 April 2012. W3C Candidate Recommendation. URL: <a href="http://www.w3.org/TR/WebIDL/">http://www.w3.org/TR/WebIDL/</a>
-</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#ref" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_informative-references"><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography" about=""><dt id="bib-notifications">[notifications]</dt><dd rel="dcterms:references">John Gregg; Anne van Kesteren. <a href="http://www.w3.org/TR/notifications/"><cite>Web Notifications</cite></a>. 12 September 2013. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/notifications/">http://www.w3.org/TR/notifications/</a>
+</dd></dl></section><section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" rel="bibo:Chapter"><h3 aria-level="2" role="heading" id="h3_informative-references"><span class="secno">B.2 </span>Informative references</h3><dl class="bibliography" about=""><dt id="bib-notifications">[notifications]</dt><dd rel="dcterms:references">John Gregg; Anne van Kesteren. <a href="http://www.w3.org/TR/notifications/"><cite>Web Notifications</cite></a>. 12 September 2013. W3C Last Call Working Draft. URL: <a href="http://www.w3.org/TR/notifications/">http://www.w3.org/TR/notifications/</a>
 </dd></dl></section></section></body></html>
