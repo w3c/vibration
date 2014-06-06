@@ -6,13 +6,13 @@
     <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "ED",
+          specStatus:           "LC",
           shortName:            "vibration",
-          // publishDate:          "2014-02-11",
-          previousPublishDate:  "2013-07-23",
-          previousMaturity:     "CR",
+          publishDate:          "2014-06-19",
+          previousPublishDate:  "2014-02-11",
+          previousMaturity:     "LC",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
-          lcEnd:                "2014-03-04",
+          lcEnd:                "2014-07-24",
           editors:  [
               { name: "Anssi Kostiainen", company: "Intel" }
           ],
@@ -43,25 +43,16 @@
     <section id='sotd'>
       <p>
         The following changes have been made
-        since the <a href="http://www.w3.org/TR/2013/CR-vibration-20130723/">
-        W3C Candidate Recommendation 23 July 2013</a>:
+        since the <a href="http://www.w3.org/TR/2014/WD-vibration-20140211/">
+          W3C Last Call Working Draft 11 February 2014</a>:
       </p>
       <ul>
         <li>
-          Allow implementations to truncate long vibrations
-          (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.7;r2=1.8;f=h">diff</a>).
-        </li>
-        <li>
-          Specify how concurrent invocations in different browsing contexts are handled
-          (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.6;r2=1.7;f=h">diff</a>).
-        </li>
-        <li>
-          Add a note related to pattern truncation
-          (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.9;r2=1.10;f=h">diff</a>).
-        </li>
-        <li>
-          Clarify step 10 in the processing vibration patterns algorithm 
-          (<a href="http://dev.w3.org/cvsweb/2009/dap/vibration/Overview.src.html.diff?r1=1.14;r2=1.15;f=h">diff</a>).
+          <a href="http://www.w3.org/TR/2014/WD-vibration-20140211/#dfn-processing-vibration-patterns">
+          The step 5 in the processing vibration patterns algorithm defined in
+          the previous LC</a> was made a <a href="#remove-last-entry">
+          non-normative note</a>, since it is an implementation detail that
+          cannot be tested.
         </li>
       </ul>
       <p>
@@ -169,10 +160,11 @@
           If the length of <var>pattern</var> is greater than
           <var>max length</var>, truncate <var>pattern</var>, leaving only
           the first <var>max length</var> entries.
-        </li>
-        <li>
-          If the length of <var>pattern</var> is even and is not zero, then
-          remove the last entry in <var>pattern</var>.
+          <div class="note" id="remove-last-entry">
+            If the length of the <var>pattern</var> is even and not zero then
+            the last entry in the pattern will have no effect so an
+            implementation can remove it from the <var>pattern</var> at this point.
+          </div>
         </li>
         <li>
           Let <var>max duration</var> be an implementation-dependent maximum
