@@ -6,13 +6,13 @@
     <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "LC",
+          specStatus:           "CR",
           shortName:            "vibration",
-          publishDate:          "2014-06-19",
-          previousPublishDate:  "2014-02-11",
+          publishDate:          "2014-08-28",
+          previousPublishDate:  "2014-06-19",
           previousMaturity:     "LC",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
-          lcEnd:                "2014-07-24",
+          crEnd:                "2014-11-01",
           editors:  [
               { name: "Anssi Kostiainen", company: "Intel" }
           ],
@@ -24,13 +24,7 @@
           wgPublicList: "public-device-apis",
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/43696/status",
           testSuiteURI: "http://w3c-test.org/vibration/",
-          otherLinks: [{
-            key: "Implementation status",
-            data: [{
-              value: "http://www.w3.org/2009/dap/wiki/ImplementationStatus#Vibration_API",
-              href:  "http://www.w3.org/2009/dap/wiki/ImplementationStatus#Vibration_API"
-            }]
-          }]
+          implementationReportURI: "http://www.w3.org/2009/dap/wiki/ImplementationStatus"
       };
     </script>
   </head>
@@ -43,19 +37,23 @@
     <section id='sotd'>
       <p>
         The following changes have been made
-        since the <a href="http://www.w3.org/TR/2014/WD-vibration-20140211/">
-        W3C Last Call Working Draft 11 February 2014</a>
-        (<a href="LC4-diff.html">diff</a>):
+        since the <a href="http://www.w3.org/TR/2014/WD-vibration-20140619/">
+        W3C Last Call Working Draft 19 June 2014</a>
+        (<a href="CR-diff.html">diff</a>):
       </p>
       <ul>
         <li>
-          <a href="http://www.w3.org/TR/2014/WD-vibration-20140211/#dfn-processing-vibration-patterns">
-          The step 5 in the processing vibration patterns algorithm defined in
-          the previous LC</a> was made a <a href="#remove-last-entry">
-          non-normative note</a>, since it is an implementation detail that
-          cannot be tested.
+          The step 9.2 in the <a href="#dfn-processing-vibration-patterns">
+          processing vibration patterns</a> algorithm was clarified by
+          explicitly mentioning a single entry with a value of 0.
         </li>
       </ul>
+      <p>
+        The CR exit criterion is two interoperable deployed implementations of
+        each feature. No features are marked as 'at-risk'. The group will create
+        an <a href="http://www.w3.org/2009/dap/wiki/ImplementationStatus">
+        Implementation Report</a>.
+      </p>
       <p>
         This document represents the consensus of the group on the scope and
         features of the Vibration API. It should be noted that the group is
@@ -209,8 +207,9 @@
               patterns</a> algorithm, if any.
             </li>
             <li>
-              If <var>pattern</var> is an empty list, or if the device is
-              unable to vibrate, then return true and terminate these steps.
+              If <var>pattern</var> is an empty list, contains a single entry
+              with a value of 0, or if the device is unable to vibrate, then
+              return true and terminate these steps.
             </li>
           </ol>
         <li>
