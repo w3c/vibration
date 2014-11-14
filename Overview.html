@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" typeof="bibo:Document w3p:PR" about="" property="dcterms:language" content="en">
+<html lang="en" dir="ltr" typeof="bibo:Document " about="" property="dcterms:language" content="en">
 <head>
     <title>Vibration API</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -427,7 +427,7 @@ table.exceptions table {
     border-collapse:    collapse;
     width:  100%;
 }
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-PR"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
+</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-ED"><!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]--></head>
   <body class="h-entry" role="document" id="respecDocument"><div class="head" role="contentinfo" id="respecHeader">
   <p>
       
@@ -438,11 +438,11 @@ table.exceptions table {
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title">Vibration API</h1>
   
-  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-12-08T22:00:00.000Z" id="w3c-proposed-recommendation-09-december-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Proposed Recommendation <time class="dt-published" datetime="2014-12-09">09 December 2014</time></h2>
+  <h2 property="dcterms:issued" datatype="xsd:dateTime" content="2014-11-14T17:44:20.000Z" id="w3c-editor-s-draft-14-november-2014"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2014-11-14">14 November 2014</time></h2>
   <dl>
     
       <dt>This version:</dt>
-      <dd><a class="u-url" href="http://www.w3.org/TR/2014/PR-vibration-20141209/">http://www.w3.org/TR/2014/PR-vibration-20141209/</a></dd>
+      <dd><a class="u-url" href="http://dev.w3.org/2009/dap/vibration/">http://dev.w3.org/2009/dap/vibration/</a></dd>
       <dt>Latest published version:</dt>
       <dd><a href="http://www.w3.org/TR/vibration/">http://www.w3.org/TR/vibration/</a></dd>
     
@@ -460,9 +460,8 @@ table.exceptions table {
     
     
     
+      
     
-      <dt>Previous version:</dt>
-      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2014/CR-vibration-20140909/">http://www.w3.org/TR/2014/CR-vibration-20140909/</a></dd>
     
     
     <dt>Editor:</dt>
@@ -528,23 +527,18 @@ table.exceptions table {
       </p>
     
         <p>
-          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as a Proposed Recommendation.
-          
-            This document is intended to become a <abbr title="World Wide Web Consortium">W3C</abbr> Recommendation.
+          This document was published by the <a href="http://www.w3.org/2009/dap/">Device APIs Working Group</a> as an Editor's Draft.
           
           
+            If you wish to make comments regarding this document, please send them to 
+            <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> 
+            (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
+            <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
           
           
           
-              The <abbr title="World Wide Web Consortium">W3C</abbr> Membership and other interested parties are invited to review the document and
-              send comments to
-              <a rel="discussion" href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> 
-              (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
-              <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>)
-              through 20 January 2015. Advisory Committee Representatives should consult their
-              <a href="https://www.w3.org/2002/09/wbs/myQuestionnaires">WBS questionnaires</a>. 
-              Note that substantive technical comments were expected during the Last Call review
-              period that ended 24 July 2014.
+          
+            All comments are welcome.
           
         </p>
         
@@ -555,7 +549,7 @@ table.exceptions table {
         
         
           <p>
-            Publication as a Proposed Recommendation does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
+            Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr>
             Membership. This is a draft document and may be updated, replaced or obsoleted by other
             documents at any time. It is inappropriate to cite this document as other than work in
             progress.
@@ -656,13 +650,30 @@ table.exceptions table {
         for <a href="#dfn-processing-vibration-patterns" class="internalDFN">processing vibration patterns</a>.
       </p>
       <p>
+        The first method argument is referred to as
+        <dfn id="dfn-vibration-pattern">vibration pattern</dfn>.
+      </p>
+      <p>
         The rules for <dfn id="dfn-processing-vibration-patterns">processing vibration patterns</dfn> are as given in
         the following algorithm:
       </p>
       <ol>
         <li>
-          Let <var>pattern</var> be the value of the first argument.
+          Let <var>pattern</var> be the <a href="#dfn-vibration-pattern" class="internalDFN">vibration pattern</a>.
         </li>
+        <li>
+          Let <var>valid pattern</var> be the result of passing
+          <var>pattern</var> to <a href="#dfn-validate-and-normalize" class="internalDFN">validate and normalize</a>.
+        </li>
+        <li>
+          <a href="#dfn-perform-vibration" class="internalDFN">Perform vibration</a> with <var>valid pattern</var>.
+        </li>
+      </ol>
+      <p>
+        To <dfn id="dfn-validate-and-normalize">validate and normalize</dfn> a <a href="#dfn-vibration-pattern" class="internalDFN">vibration pattern</a> given
+        <var>pattern</var>, run these steps:
+      </p>
+      <ol>
         <li>
           If <var>pattern</var> is a list, proceed to the next step.
           Otherwise run the following substeps:
@@ -712,6 +723,15 @@ table.exceptions table {
           <var>max duration</var>, set the entry's value to
           <var>max duration</var>.
         </li>
+        <li>
+          Return <var>pattern</var>.
+        </li>
+      </ol>
+      <p>
+        To <dfn id="dfn-perform-vibration">perform vibration</dfn> using <var>pattern</var>, run these
+        steps:
+      </p>
+      <ol>
         <li>
           If the <code>
           <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">

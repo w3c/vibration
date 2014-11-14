@@ -6,9 +6,9 @@
     <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
     <script class='remove'>
       var respecConfig = {
-          specStatus:           "PR",
+          specStatus:           "ED",
           shortName:            "vibration",
-          publishDate:          "2014-12-09",
+          //publishDate:          "2014-12-09",
           previousPublishDate:  "2014-09-09",
           previousMaturity:     "CR",
           edDraftURI:           "http://dev.w3.org/2009/dap/vibration/",
@@ -107,13 +107,30 @@
         for <a>processing vibration patterns</a>.
       </p>
       <p>
+        The first method argument is referred to as
+        <dfn>vibration pattern</dfn>.
+      </p>
+      <p>
         The rules for <dfn>processing vibration patterns</dfn> are as given in
         the following algorithm:
       </p>
       <ol>
         <li>
-          Let <var>pattern</var> be the value of the first argument.
+          Let <var>pattern</var> be the <a>vibration pattern</a>.
         </li>
+        <li>
+          Let <var>valid pattern</var> be the result of passing
+          <var>pattern</var> to <a>validate and normalize</a>.
+        </li>
+        <li>
+          <a>Perform vibration</a> with <var>valid pattern</var>.
+        </li>
+      </ol>
+      <p>
+        To <dfn>validate and normalize</dfn> a <a>vibration pattern</a> given
+        <var>pattern</var>, run these steps:
+      </p>
+      <ol>
         <li>
           If <var>pattern</var> is a list, proceed to the next step.
           Otherwise run the following substeps:
@@ -163,6 +180,15 @@
           <var>max duration</var>, set the entry's value to
           <var>max duration</var>.
         </li>
+        <li>
+          Return <var>pattern</var>.
+        </li>
+      </ol>
+      <p>
+        To <dfn>perform vibration</dfn> using <var>pattern</var>, run these
+        steps:
+      </p>
+      <ol>
         <li>
           If the <code>
           <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
