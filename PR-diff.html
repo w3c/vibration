@@ -460,7 +460,7 @@ table.exceptions table {
 :focus { border: thin red solid}
 </style>
 </head>
-<body class="h-entry" role="document" id="respecDocument">
+<body style="" class="h-entry" role="document" id="respecDocument">
 <div class="head" role="contentinfo" id="respecHeader">
 <p>
 <a href="http://www.w3.org/">
@@ -712,15 +712,16 @@ http://www.w3.org/TR/.
 </em>
 </p>
 <p>
-<del class="diff-old">The
+The
 following
-</del>
-<ins class="diff-chg">No
-substantive
+<ins class="diff-new">editorial
 </ins>
 changes
-have
+<del class="diff-old">have
 been
+</del>
+<ins class="diff-chg">were
+</ins>
 made
 since
 the
@@ -746,16 +747,40 @@ September
 <a href="PR-diff.html">
 diff
 </a>
-<del class="diff-old">):
-The
+):
+</p>
+<ul>
+<li>
+<del class="diff-old">The
 step
 9.2
 in
+</del>
+<ins class="diff-chg">A
+dedicated
+name
+has
+been
+given
+to
+</ins>
 the
-processing
+<del class="diff-old">processing
+</del>
+<a href="#dfn-vibration-pattern">
 vibration
-patterns
-algorithm
+<del class="diff-old">patterns
+</del>
+<ins class="diff-chg">pattern
+</ins></a>.</li><li><ins class="diff-chg">
+The
+</ins><a href="#dfn-validate-and-normalize"><ins class="diff-chg">
+validate
+and
+normalize
+</ins>
+</a>
+<del class="diff-old">algorithm
 was
 clarified
 by
@@ -769,7 +794,21 @@ a
 value
 of
 0.
-The
+</del>
+<ins class="diff-chg">and
+</ins><a href="#dfn-perform-vibration"><ins class="diff-chg">
+perform
+vibration
+</ins></a><ins class="diff-chg">
+algorithmss
+were
+made
+standalone.
+</ins>
+</li>
+</ul>
+<p>
+<del class="diff-old">The
 CR
 exit
 criterion
@@ -796,10 +835,6 @@ Implementation
 Report
 .
 </del>
-<ins class="diff-chg">).
-</ins>
-</p>
-<p>
 This
 document
 represents
@@ -1588,6 +1623,19 @@ patterns
 </p>
 <p>
 The
+<ins class="diff-new">first
+method
+argument
+is
+referred
+to
+as
+</ins><dfn id="dfn-vibration-pattern"><ins class="diff-new">
+vibration
+pattern
+</ins></dfn>.</p><p><ins class="diff-new">
+The
+</ins>
 rules
 for
 <dfn id="dfn-processing-vibration-patterns">
@@ -1611,13 +1659,66 @@ pattern
 </var>
 be
 the
-value
+<del class="diff-old">value
 of
+</del>
+<a href="#dfn-vibration-pattern" class="internalDFN">
+<ins class="diff-chg">vibration
+pattern
+</ins></a>.</li><li><ins class="diff-chg">
+Let
+</ins><var><ins class="diff-chg">
+valid
+pattern
+</ins></var><ins class="diff-chg">
+be
+</ins>
 the
-first
+<del class="diff-old">first
 argument.
+</del>
+<ins class="diff-chg">result
+of
+passing
+</ins><var><ins class="diff-chg">
+pattern
+</ins></var><ins class="diff-chg">
+to
+</ins><a href="#dfn-validate-and-normalize" class="internalDFN"><ins class="diff-chg">
+validate
+and
+normalize
+</ins></a>.
 </li>
 <li>
+<a href="#dfn-perform-vibration" class="internalDFN">
+<ins class="diff-new">Perform
+vibration
+</ins></a><ins class="diff-new">
+with
+</ins><var><ins class="diff-new">
+valid
+pattern
+</ins></var>.</li></ol><p><ins class="diff-new">
+To
+</ins><dfn id="dfn-validate-and-normalize"><ins class="diff-new">
+validate
+and
+normalize
+</ins></dfn><ins class="diff-new">
+a
+</ins><a href="#dfn-vibration-pattern" class="internalDFN"><ins class="diff-new">
+vibration
+pattern
+</ins></a><ins class="diff-new">
+given
+</ins><var><ins class="diff-new">
+pattern
+</ins></var>,<ins class="diff-new">
+run
+these
+steps:
+</ins></p><ol><li>
 If
 <var>
 pattern
@@ -1930,6 +2031,23 @@ duration
 </var>.
 </li>
 <li>
+<ins class="diff-new">Return
+</ins><var><ins class="diff-new">
+pattern
+</ins></var>.</li></ol><p><ins class="diff-new">
+To
+</ins><dfn id="dfn-perform-vibration"><ins class="diff-new">
+perform
+vibration
+</ins></dfn><ins class="diff-new">
+using
+</ins><var><ins class="diff-new">
+pattern
+</ins></var>,<ins class="diff-new">
+run
+these
+steps:
+</ins></p><ol><li>
 If
 the
 <code>
@@ -2309,7 +2427,7 @@ Example
 1
 </span>
 </div>
-<pre class="example highlight prettyprint prettyprinted">
+<pre class="example highlight prettyprint prettyprinted" style="">
 <span class="com">// vibrate for 1000 ms</span><span class="pln">
 navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">(</span><span class="lit">1000</span><span class="pun">);</span><span class="pln">
 </span><span class="com">// or alternatively</span><span class="pln">
@@ -2351,7 +2469,7 @@ Example
 2
 </span>
 </div>
-<pre class="example highlight prettyprint prettyprinted">
+<pre class="example highlight prettyprint prettyprinted" style="">
 <span class="pln">navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">([</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">150</span><span class="pun">]);</span>
 </pre>
 </div>
@@ -2373,7 +2491,7 @@ Example
 3
 </span>
 </div>
-<pre class="example highlight prettyprint prettyprinted">
+<pre class="example highlight prettyprint prettyprinted" style="">
 <span class="com">// cancel any existing vibrations</span><span class="pln">
 navigator</span><span class="pun">.</span><span class="pln">vibrate</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);</span><span class="pln">
 </span><span class="com">// or alternatively</span><span class="pln">
