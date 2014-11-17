@@ -38,11 +38,23 @@
     
     <section id='sotd'>
       <p>
-        No substantive changes have been made
-        since the <a href="http://www.w3.org/TR/2014/CR-vibration-20140909/">
+        The following editorial changes were made since the
+        <a href="http://www.w3.org/TR/2014/CR-vibration-20140909/">
         W3C Candidate Recommendation 09 September 2014</a>
-        (<a href="PR-diff.html">diff</a>).
+        (<a href="PR-diff.html">diff</a>):
       </p>
+      <ul>
+        <li>
+          A dedicated name has been given to the
+          <a href="#dfn-vibration-pattern">vibration pattern</a>.
+        </li>
+        <li>
+          The
+          <a href="#dfn-validate-and-normalize">validate and normalize</a> and
+          <a href="#dfn-perform-vibration">perform vibration</a> algorithmss
+          were made standalone.
+        </li>
+      </ul>
       <p>
         This document represents the consensus of the group on the scope and
         features of the Vibration API. It should be noted that the group is
@@ -107,13 +119,30 @@
         for <a>processing vibration patterns</a>.
       </p>
       <p>
+        The first method argument is referred to as
+        <dfn>vibration pattern</dfn>.
+      </p>
+      <p>
         The rules for <dfn>processing vibration patterns</dfn> are as given in
         the following algorithm:
       </p>
       <ol>
         <li>
-          Let <var>pattern</var> be the value of the first argument.
+          Let <var>pattern</var> be the <a>vibration pattern</a>.
         </li>
+        <li>
+          Let <var>valid pattern</var> be the result of passing
+          <var>pattern</var> to <a>validate and normalize</a>.
+        </li>
+        <li>
+          <a>Perform vibration</a> with <var>valid pattern</var>.
+        </li>
+      </ol>
+      <p>
+        To <dfn>validate and normalize</dfn> a <a>vibration pattern</a> given
+        <var>pattern</var>, run these steps:
+      </p>
+      <ol>
         <li>
           If <var>pattern</var> is a list, proceed to the next step.
           Otherwise run the following substeps:
@@ -163,6 +192,15 @@
           <var>max duration</var>, set the entry's value to
           <var>max duration</var>.
         </li>
+        <li>
+          Return <var>pattern</var>.
+        </li>
+      </ol>
+      <p>
+        To <dfn>perform vibration</dfn> using <var>pattern</var>, run these
+        steps:
+      </p>
+      <ol>
         <li>
           If the <code>
           <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
