@@ -754,6 +754,14 @@ diff
 </p>
 <ul>
 <li>
+<ins class="diff-new">A
+</ins><code><a href="#idl-def-VibratePattern"><ins class="diff-new">
+VibratePattern
+</ins></a></code><ins class="diff-new">
+shorthand
+was
+added.
+</ins></li><li>
 The
 <del class="diff-old">step
 9.2
@@ -761,48 +769,42 @@ in
 the
 processing
 </del>
-<ins class="diff-chg">concept
-of
-a
-</ins><a href="#dfn-vibration-pattern">
+<a href="#dfn-validate-and-normalize">
+<ins class="diff-chg">validate
+and
+normalize
+</ins></a><ins class="diff-chg">
+and
+</ins><a href="#dfn-perform-vibration"><ins class="diff-chg">
+perform
+</ins>
 vibration
 <del class="diff-old">patterns
 </del>
-<ins class="diff-chg">pattern
-</ins>
 </a>
 <del class="diff-old">algorithm
-</del>
 was
-<del class="diff-old">clarified
+clarified
 by
 explicitly
 mentioning
-</del>
-<ins class="diff-chg">given
-</ins>
 a
-<del class="diff-old">single
+single
 entry
 with
-</del>
-<ins class="diff-chg">name
-and
-</ins>
 a
-<del class="diff-old">value
+value
 of
 0.
 </del>
-<code>
-<a href="#idl-def-VibratePattern">
-<ins class="diff-chg">VibratePattern
-</ins></a></code><ins class="diff-chg">
-shorthand
-was
-added.
+<ins class="diff-chg">algorithms
+were
+made
+standalone.
 </ins>
 </li>
+</ul>
+<p>
 <del class="diff-old">The
 CR
 exit
@@ -821,10 +823,8 @@ are
 marked
 as
 'at-risk'.
-</del>
-<li>
 The
-<del class="diff-old">group
+group
 will
 create
 an
@@ -832,22 +832,6 @@ Implementation
 Report
 .
 </del>
-<a href="#dfn-validate-and-normalize">
-<ins class="diff-chg">validate
-and
-normalize
-</ins></a><ins class="diff-chg">
-and
-</ins><a href="#dfn-perform-vibration"><ins class="diff-chg">
-perform
-vibration
-</ins></a><ins class="diff-chg">
-algorithms
-were
-made
-standalone.
-</ins></li></ul>
-<p>
 This
 document
 represents
@@ -1638,19 +1622,6 @@ patterns
 </p>
 <p>
 The
-<ins class="diff-new">first
-method
-argument
-is
-referred
-to
-as
-</ins><dfn id="dfn-vibration-pattern"><ins class="diff-new">
-vibration
-pattern
-</ins></dfn>.</p><p><ins class="diff-new">
-The
-</ins>
 rules
 for
 <dfn id="dfn-processing-vibration-patterns">
@@ -1676,21 +1647,32 @@ be
 the
 <del class="diff-old">value
 </del>
-<a href="#dfn-vibration-pattern" class="internalDFN">
-<ins class="diff-chg">vibration
-pattern
-</ins></a>.</li><li><ins class="diff-chg">
-Let
-</ins><var><ins class="diff-chg">
+<ins class="diff-chg">first
+method
+argument
+</ins>
+of
+the
+<del class="diff-old">first
+argument.
+</del>
+<code>
+<ins class="diff-chg">vibrate()
+</ins></code><ins class="diff-chg">
+method.
+</ins>
+</li>
+<li>
+<ins class="diff-new">Let
+</ins><var><ins class="diff-new">
 valid
 pattern
-</ins></var><ins class="diff-chg">
+</ins></var><ins class="diff-new">
 be
 the
 result
-</ins>
 of
-<ins class="diff-new">passing
+passing
 </ins><var><ins class="diff-new">
 pattern
 </ins></var><ins class="diff-new">
@@ -1701,20 +1683,15 @@ and
 normalize
 </ins></a>.</li><li><ins class="diff-new">
 If
-</ins>
 the
-<del class="diff-old">first
-argument.
-</del>
-<code>
-<a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
-<ins class="diff-chg">hidden
-</ins></a></code><ins class="diff-chg">
+</ins><code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden"><ins class="diff-new">
+hidden
+</ins></a></code><ins class="diff-new">
 attribute
 [
-</ins><cite><a class="bibref" href="#bib-PAGE-VISIBILITY"><ins class="diff-chg">
+</ins><cite><a class="bibref" href="#bib-PAGE-VISIBILITY"><ins class="diff-new">
 PAGE-VISIBILITY
-</ins></a></cite><ins class="diff-chg">
+</ins></a></cite><ins class="diff-new">
 ]
 is
 set
@@ -1727,9 +1704,9 @@ and
 terminate
 these
 steps.
-</ins><div class="note"><div class="note-title" aria-level="1" role="heading" id="h_note_1"><span><ins class="diff-chg">
+</ins><div class="note"><div class="note-title" aria-level="1" role="heading" id="h_note_1"><span><ins class="diff-new">
 Note
-</ins></span></div><div class=""><ins class="diff-chg">
+</ins></span></div><div class=""><ins class="diff-new">
 A
 trusted
 (also
@@ -1766,11 +1743,8 @@ ignore
 the
 previous
 step.
-</ins></div></div>
-</li>
-<li>
-<a href="#dfn-perform-vibration" class="internalDFN">
-<ins class="diff-new">Perform
+</ins></div></div></li><li><a href="#dfn-perform-vibration" class="internalDFN"><ins class="diff-new">
+Perform
 vibration
 </ins></a><ins class="diff-new">
 with
@@ -1785,10 +1759,8 @@ and
 normalize
 </ins></dfn><ins class="diff-new">
 a
-</ins><a href="#dfn-vibration-pattern" class="internalDFN"><ins class="diff-new">
 vibration
 pattern
-</ins></a><ins class="diff-new">
 given
 </ins><var><ins class="diff-new">
 pattern
@@ -2265,23 +2237,34 @@ limit.
 </li>
 <li>
 If
-there
+<del class="diff-old">there
 is
 a
 pre-existing
+</del>
+<ins class="diff-chg">another
+</ins>
 instance
 of
 the
-<a href="#dfn-processing-vibration-patterns" class="internalDFN">
-processing
+<del class="diff-old">processing
+</del>
+<a href="#dfn-perform-vibration" class="internalDFN">
+<ins class="diff-chg">perform
+</ins>
 vibration
-patterns
+<del class="diff-old">patterns
+</del>
 </a>
 algorithm
+<ins class="diff-new">is
+already
+</ins>
 running
 for
 this
-browsing
+<del class="diff-old">browsing
+</del>
 context,
 run
 the
@@ -2289,16 +2272,25 @@ following
 substeps:
 <ol>
 <li>
-Cancel
+<del class="diff-old">Cancel
 the
 pre-existing
+</del>
+<ins class="diff-chg">Abort
+that
+other
+</ins>
 instance
 of
 the
-<a href="#dfn-processing-vibration-patterns" class="internalDFN">
-processing
+<del class="diff-old">processing
+</del>
+<a href="#dfn-perform-vibration" class="internalDFN">
+<ins class="diff-chg">perform
+</ins>
 vibration
-patterns
+<del class="diff-old">patterns
+</del>
 </a>
 algorithm,
 if
@@ -2440,12 +2432,18 @@ agent
 <em class="rfc2119" title="MUST">
 MUST
 </em>
-cancel
+<del class="diff-old">cancel
 the
 pre-existing
 instance
 of
+</del>
+<ins class="diff-chg">abort
+</ins>
 the
+<ins class="diff-new">already
+running
+</ins>
 <a href="#dfn-processing-vibration-patterns" class="internalDFN">
 processing
 vibration
