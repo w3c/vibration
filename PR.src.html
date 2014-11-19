@@ -45,13 +45,16 @@
       </p>
       <ul>
         <li>
-          A dedicated name has been given to the
-          <a href="#dfn-vibration-pattern">vibration pattern</a>.
+          The concept of a
+          <a href="#dfn-vibration-pattern">vibration pattern</a> was given a
+          name and a
+          <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
+          shorthand was added.
         </li>
         <li>
           The
           <a href="#dfn-validate-and-normalize">validate and normalize</a> and
-          <a href="#dfn-perform-vibration">perform vibration</a> algorithmss
+          <a href="#dfn-perform-vibration">perform vibration</a> algorithms
           were made standalone.
         </li>
       </ul>
@@ -103,11 +106,12 @@
     
     <section>
       <h2>Vibration Interface</h2>
-      <dl title='partial interface Navigator' class='idl'>
+      <dl title="typedef (unsigned long or sequence&lt;unsigned long&gt;) VibratePattern" class="idl"></dl>
+      <dl title='partial interface Navigator' class='idl' data-merge="VibratePattern">
       <dt>boolean vibrate()</dt>
       <dd>
         <dl class='parameters'>
-          <dt>(unsigned long or sequence&lt;unsigned long&gt;) pattern</dt>
+          <dt>VibratePattern pattern</dt>
           <dd></dd>
         </dl>
       </dd>
@@ -133,6 +137,18 @@
         <li>
           Let <var>valid pattern</var> be the result of passing
           <var>pattern</var> to <a>validate and normalize</a>.
+        </li>
+        <li>
+          If the <code>
+          <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
+          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
+          then return false and terminate these steps.
+          <div class="note">
+            A trusted (also known as privileged) application that integrates
+            closely with the operating system's functionality may vibrate the
+            device even if such an application is not visible at all, and thus
+            may ignore the previous step.
+          </div>
         </li>
         <li>
           <a>Perform vibration</a> with <var>valid pattern</var>.
@@ -201,18 +217,6 @@
         steps:
       </p>
       <ol>
-        <li>
-          If the <code>
-          <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
-          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
-          then return false and terminate these steps.
-          <div class="note">
-            A trusted (also known as privileged) application that integrates
-            closely with the operating system's functionality may vibrate the
-            device even if such an application is not visible at all, and thus
-            may ignore the previous step.
-          </div>
-        </li>
         <li>
           An implementation MAY return false and terminate these steps.
           <div class="note">
