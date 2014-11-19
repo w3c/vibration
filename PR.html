@@ -521,10 +521,7 @@ table.exceptions table {
       </p>
       <ul>
         <li>
-          The concept of a
-          <a href="#dfn-vibration-pattern">vibration pattern</a> was given a
-          name and a
-          <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
+          A <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
           shorthand was added.
         </li>
         <li>
@@ -672,16 +669,13 @@ table.exceptions table {
         for <a href="#dfn-processing-vibration-patterns" class="internalDFN">processing vibration patterns</a>.
       </p>
       <p>
-        The first method argument is referred to as
-        <dfn id="dfn-vibration-pattern">vibration pattern</dfn>.
-      </p>
-      <p>
         The rules for <dfn id="dfn-processing-vibration-patterns">processing vibration patterns</dfn> are as given in
         the following algorithm:
       </p>
       <ol>
         <li>
-          Let <var>pattern</var> be the <a href="#dfn-vibration-pattern" class="internalDFN">vibration pattern</a>.
+          Let <var>pattern</var> be the first method argument of the
+          <code>vibrate()</code> method.
         </li>
         <li>
           Let <var>valid pattern</var> be the result of passing
@@ -704,7 +698,7 @@ table.exceptions table {
         </li>
       </ol>
       <p>
-        To <dfn id="dfn-validate-and-normalize">validate and normalize</dfn> a <a href="#dfn-vibration-pattern" class="internalDFN">vibration pattern</a> given
+        To <dfn id="dfn-validate-and-normalize">validate and normalize</dfn> a vibration pattern given
         <var>pattern</var>, run these steps:
       </p>
       <ol>
@@ -778,13 +772,12 @@ table.exceptions table {
           </div></div>
         </li>
         <li>
-          If there is a pre-existing instance of the <a href="#dfn-processing-vibration-patterns" class="internalDFN">processing vibration
-          patterns</a> algorithm running for this browsing context, run the
-          following substeps:
+          If another instance of the <a href="#dfn-perform-vibration" class="internalDFN">perform vibration</a> algorithm is
+          already running for this context, run the following substeps:
           <ol>
             <li>
-              Cancel the pre-existing instance of the <a href="#dfn-processing-vibration-patterns" class="internalDFN">processing vibration
-              patterns</a> algorithm, if any.
+              Abort that other instance of the <a href="#dfn-perform-vibration" class="internalDFN">perform vibration</a>
+              algorithm, if any.
             </li>
             <li>
               If <var>pattern</var> is an empty list, contains a single entry
@@ -814,9 +807,8 @@ table.exceptions table {
         <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
         visibilitychange</a></code> event [<cite><a class="bibref" href="#bib-PAGE-VISIBILITY">PAGE-VISIBILITY</a></cite>] is dispatched at
         the <code>Document</code> in a <a href="#dfn-browsing-context" class="internalDFN">browsing context</a>, the
-        <a class="product-ua" href="#ua">user agent</a> <em class="rfc2119" title="MUST">MUST</em> cancel the
-        pre-existing instance of the <a href="#dfn-processing-vibration-patterns" class="internalDFN">processing vibration patterns</a>
-        algorithm, if any.
+        <a class="product-ua" href="#ua">user agent</a> <em class="rfc2119" title="MUST">MUST</em> abort the
+        already running <a href="#dfn-processing-vibration-patterns" class="internalDFN">processing vibration patterns</a> algorithm, if any.
       </p>
     </section>
 

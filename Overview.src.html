@@ -45,10 +45,7 @@
       </p>
       <ul>
         <li>
-          The concept of a
-          <a href="#dfn-vibration-pattern">vibration pattern</a> was given a
-          name and a
-          <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
+          A <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
           shorthand was added.
         </li>
         <li>
@@ -123,16 +120,13 @@
         for <a>processing vibration patterns</a>.
       </p>
       <p>
-        The first method argument is referred to as
-        <dfn>vibration pattern</dfn>.
-      </p>
-      <p>
         The rules for <dfn>processing vibration patterns</dfn> are as given in
         the following algorithm:
       </p>
       <ol>
         <li>
-          Let <var>pattern</var> be the <a>vibration pattern</a>.
+          Let <var>pattern</var> be the first method argument of the
+          <code>vibrate()</code> method.
         </li>
         <li>
           Let <var>valid pattern</var> be the result of passing
@@ -155,7 +149,7 @@
         </li>
       </ol>
       <p>
-        To <dfn>validate and normalize</dfn> a <a>vibration pattern</a> given
+        To <dfn>validate and normalize</dfn> a vibration pattern given
         <var>pattern</var>, run these steps:
       </p>
       <ol>
@@ -229,13 +223,12 @@
           </div>
         </li>
         <li>
-          If there is a pre-existing instance of the <a>processing vibration
-          patterns</a> algorithm running for this browsing context, run the
-          following substeps:
+          If another instance of the <a>perform vibration</a> algorithm is
+          already running for this context, run the following substeps:
           <ol>
             <li>
-              Cancel the pre-existing instance of the <a>processing vibration
-              patterns</a> algorithm, if any.
+              Abort that other instance of the <a>perform vibration</a>
+              algorithm, if any.
             </li>
             <li>
               If <var>pattern</var> is an empty list, contains a single entry
@@ -265,9 +258,8 @@
         <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
         visibilitychange</a></code> event [[!PAGE-VISIBILITY]] is dispatched at
         the <code>Document</code> in a <a>browsing context</a>, the
-        <a class="product-ua" href="#ua">user agent</a> MUST cancel the
-        pre-existing instance of the <a>processing vibration patterns</a>
-        algorithm, if any.
+        <a class="product-ua" href="#ua">user agent</a> MUST abort the
+        already running <a>processing vibration patterns</a> algorithm, if any.
       </p>
     </section>
 
