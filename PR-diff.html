@@ -754,63 +754,55 @@ diff
 </p>
 <ul>
 <li>
-<del class="diff-old">The
-step
+The
+<del class="diff-old">step
 9.2
 in
-</del>
-<ins class="diff-chg">A
-dedicated
-name
-has
-been
-given
-to
-</ins>
 the
-<del class="diff-old">processing
+processing
 </del>
-<a href="#dfn-vibration-pattern">
+<ins class="diff-chg">concept
+of
+a
+</ins><a href="#dfn-vibration-pattern">
 vibration
 <del class="diff-old">patterns
 </del>
 <ins class="diff-chg">pattern
-</ins></a>.</li><li><ins class="diff-chg">
-The
-</ins><a href="#dfn-validate-and-normalize"><ins class="diff-chg">
-validate
-and
-normalize
 </ins>
 </a>
 <del class="diff-old">algorithm
+</del>
 was
-clarified
+<del class="diff-old">clarified
 by
 explicitly
 mentioning
+</del>
+<ins class="diff-chg">given
+</ins>
 a
-single
+<del class="diff-old">single
 entry
 with
+</del>
+<ins class="diff-chg">name
+and
+</ins>
 a
-value
+<del class="diff-old">value
 of
 0.
 </del>
-<ins class="diff-chg">and
-</ins><a href="#dfn-perform-vibration"><ins class="diff-chg">
-perform
-vibration
-</ins></a><ins class="diff-chg">
-algorithmss
-were
-made
-standalone.
+<code>
+<a href="#idl-def-VibratePattern">
+<ins class="diff-chg">VibratePattern
+</ins></a></code><ins class="diff-chg">
+shorthand
+was
+added.
 </ins>
 </li>
-</ul>
-<p>
 <del class="diff-old">The
 CR
 exit
@@ -829,8 +821,10 @@ are
 marked
 as
 'at-risk'.
+</del>
+<li>
 The
-group
+<del class="diff-old">group
 will
 create
 an
@@ -838,6 +832,22 @@ Implementation
 Report
 .
 </del>
+<a href="#dfn-validate-and-normalize">
+<ins class="diff-chg">validate
+and
+normalize
+</ins></a><ins class="diff-chg">
+and
+</ins><a href="#dfn-perform-vibration"><ins class="diff-chg">
+perform
+vibration
+</ins></a><ins class="diff-chg">
+algorithms
+were
+made
+standalone.
+</ins></li></ul>
+<p>
 This
 document
 represents
@@ -1599,8 +1609,10 @@ Vibration
 Interface
 </h2>
 <pre class="idl">
-<span class="idlInterface" id="idl-def-Navigator">partial interface <span class="idlInterfaceID">Navigator</span> {
-<span class="idlMethod">    <span class="idlMethType">boolean</span> <span class="idlMethName"><a href="#widl-Navigator-vibrate-boolean-unsigned-long-sequence-unsigned-long--pattern">vibrate</a></span> (<span class="idlParam"><span class="idlParamType">(unsigned long or sequence&lt;unsigned long&gt;)</span> <span class="idlParamName">pattern</span></span>);</span>
+<del class="diff-old"> {
+</del>
+<span class="idlInterface" id="idl-def-Navigator"><span class="idlTypedef" id="idl-def-VibratePattern">typedef <span class="idlTypedefType">(unsigned long or sequence&lt;unsigned long&gt;)</span> <span class="idlTypedefID">VibratePattern</span>;</span><br><br>partial interface <span class="idlInterfaceID">Navigator</span> {
+<span class="idlMethod">    <span class="idlMethType">boolean</span> <span class="idlMethName"><a href="#widl-Navigator-vibrate-boolean-VibratePattern-pattern">vibrate</a></span> (<span class="idlParam"><span class="idlParamType"><a href="#idl-def-VibratePattern" class="idlType"><code>VibratePattern</code></a></span> <span class="idlParamName">pattern</span></span>);</span>
 };</span>
 </pre>
 <p>
@@ -1663,7 +1675,6 @@ pattern
 be
 the
 <del class="diff-old">value
-of
 </del>
 <a href="#dfn-vibration-pattern" class="internalDFN">
 <ins class="diff-chg">vibration
@@ -1675,23 +1686,87 @@ valid
 pattern
 </ins></var><ins class="diff-chg">
 be
+the
+result
+</ins>
+of
+<ins class="diff-new">passing
+</ins><var><ins class="diff-new">
+pattern
+</ins></var><ins class="diff-new">
+to
+</ins><a href="#dfn-validate-and-normalize" class="internalDFN"><ins class="diff-new">
+validate
+and
+normalize
+</ins></a>.</li><li><ins class="diff-new">
+If
 </ins>
 the
 <del class="diff-old">first
 argument.
 </del>
-<ins class="diff-chg">result
-of
-passing
-</ins><var><ins class="diff-chg">
-pattern
-</ins></var><ins class="diff-chg">
+<code>
+<a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
+<ins class="diff-chg">hidden
+</ins></a></code><ins class="diff-chg">
+attribute
+[
+</ins><cite><a class="bibref" href="#bib-PAGE-VISIBILITY"><ins class="diff-chg">
+PAGE-VISIBILITY
+</ins></a></cite><ins class="diff-chg">
+]
+is
+set
 to
-</ins><a href="#dfn-validate-and-normalize" class="internalDFN"><ins class="diff-chg">
-validate
+true,
+then
+return
+false
 and
-normalize
-</ins></a>.
+terminate
+these
+steps.
+</ins><div class="note"><div class="note-title" aria-level="1" role="heading" id="h_note_1"><span><ins class="diff-chg">
+Note
+</ins></span></div><div class=""><ins class="diff-chg">
+A
+trusted
+(also
+known
+as
+privileged)
+application
+that
+integrates
+closely
+with
+the
+operating
+system's
+functionality
+may
+vibrate
+the
+device
+even
+if
+such
+an
+application
+is
+not
+visible
+at
+all,
+and
+thus
+may
+ignore
+the
+previous
+step.
+</ins></div></div>
 </li>
 <li>
 <a href="#dfn-perform-vibration" class="internalDFN">
@@ -1788,7 +1863,7 @@ of
 pattern
 </var>.
 <div class="note">
-<div class="note-title" aria-level="1" role="heading" id="h_note_1">
+<div class="note-title" aria-level="1" role="heading" id="h_note_2">
 <span>
 Note
 </span>
@@ -1937,7 +2012,7 @@ length
 </var>
 entries.
 <div class="note">
-<div class="note-title" aria-level="1" role="heading" id="h_note_2">
+<div class="note-title" aria-level="1" role="heading" id="h_note_3">
 <span>
 Note
 </span>
@@ -2034,37 +2109,12 @@ duration
 </var>.
 </li>
 <li>
-<ins class="diff-new">Return
-</ins><var><ins class="diff-new">
-pattern
-</ins></var>.</li></ol><p><ins class="diff-new">
-To
-</ins><dfn id="dfn-perform-vibration"><ins class="diff-new">
-perform
-vibration
-</ins></dfn><ins class="diff-new">
-using
-</ins><var><ins class="diff-new">
-pattern
-</ins></var>,<ins class="diff-new">
-run
-these
-steps:
-</ins></p><ol><li>
-If
+<del class="diff-old">If
 the
-<code>
-<a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
 hidden
-</a>
-</code>
 attribute
 [
-<cite>
-<a class="bibref" href="#bib-PAGE-VISIBILITY">
 PAGE-VISIBILITY
-</a>
-</cite>
 ]
 is
 set
@@ -2077,13 +2127,7 @@ and
 terminate
 these
 steps.
-<div class="note">
-<div class="note-title" aria-level="1" role="heading" id="h_note_3">
-<span>
 Note
-</span>
-</div>
-<div class="">
 A
 trusted
 (also
@@ -2120,9 +2164,27 @@ ignore
 the
 previous
 step.
-</div>
-</div>
+</del>
+<ins class="diff-chg">Return
+</ins><var><ins class="diff-chg">
+pattern
+</ins></var>.
 </li>
+</ol>
+<p>
+<ins class="diff-new">To
+</ins><dfn id="dfn-perform-vibration"><ins class="diff-new">
+perform
+vibration
+</ins></dfn><ins class="diff-new">
+using
+</ins><var><ins class="diff-new">
+pattern
+</ins></var>,<ins class="diff-new">
+run
+these
+steps:
+</ins></p><ol>
 <li>
 An
 implementation
