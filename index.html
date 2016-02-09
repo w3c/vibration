@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vibration API</title>
-    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
-    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' async class='remove'></script>
+    <title>
+      Vibration API
+    </title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' async
+    class='remove'>
+    </script>
     <script class='remove'>
       var respecConfig = {
           specStatus:           "ED",
@@ -44,24 +48,20 @@
       This specification defines an API that provides access to the vibration
       mechanism of the hosting device. Vibration is a form of tactile feedback.
     </section>
-    
     <section id='sotd'>
       <p>
-        The following editorial changes were made since the
-        <a href="http://www.w3.org/TR/2014/CR-vibration-20140909/">
-        W3C Candidate Recommendation 09 September 2014</a>
-        (<a href="releases/PR-diff.html">diff</a>):
+        The following editorial changes were made since the <a href=
+        "http://www.w3.org/TR/2014/CR-vibration-20140909/">W3C Candidate
+        Recommendation 09 September 2014</a> (<a href=
+        "releases/PR-diff.html">diff</a>):
       </p>
       <ul>
-        <li>
-          A <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
-          shorthand was added.
+        <li>A <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
+        shorthand was added.
         </li>
-        <li>
-          The
-          <a href="#dfn-validate-and-normalize">validate and normalize</a> and
-          <a href="#dfn-perform-vibration">perform vibration</a> algorithms
-          were made standalone.
+        <li>The <a href="#dfn-validate-and-normalize">validate and
+        normalize</a> and <a href="#dfn-perform-vibration">perform
+        vibration</a> algorithms were made standalone.
         </li>
       </ul>
       <p>
@@ -72,20 +72,20 @@
         revision.
       </p>
     </section>
-    
     <section class="informative">
-      <h2>Introduction</h2>
+      <h2>
+        Introduction
+      </h2>
       <p>
         The API is specifically designed to address use cases that require
         simple tactile feedback only. Use cases requiring more fine-grained
         control are out of scope for this specification. This API is not meant
         to be used as a generic notification mechanism. Such use cases may be
         handled using the <cite>Notifications API</cite> [[NOTIFICATIONS]]
-        specification. In addition, determining whether vibration is enabled
-        is out of scope for this specification.
+        specification. In addition, determining whether vibration is enabled is
+        out of scope for this specification.
       </p>
     </section>
-    
     <section id='conformance'>
       <p>
         This specification defines conformance criteria that apply to a single
@@ -99,53 +99,60 @@
         as this specification uses that specification and terminology.
       </p>
     </section>
-    
     <section>
-      <h2>Terminology</h2>
+      <h2>
+        Terminology
+      </h2>
       <p>
-        The concepts <dfn><a href="http://www.w3.org/TR/html5/browsers.html#browsing-context">
-        browsing context</a></dfn> and
-        <dfn><a href="http://www.w3.org/TR/html5/webappapis.html#spin-the-event-loop">
-        spin the event loop</a></dfn> are defined in [[!HTML5]].
+        The concepts <dfn><a href=
+        "http://www.w3.org/TR/html5/browsers.html#browsing-context">browsing
+        context</a></dfn> and <dfn><a href=
+        "http://www.w3.org/TR/html5/webappapis.html#spin-the-event-loop">spin
+        the event loop</a></dfn> are defined in [[!HTML5]].
       </p>
     </section>
-    
     <section>
-      <h2>Vibration Interface</h2>
-      <dl title="typedef (unsigned long or sequence&lt;unsigned long&gt;) VibratePattern" class="idl"></dl>
-      <dl title='partial interface Navigator' class='idl' data-merge="VibratePattern">
-      <dt>boolean vibrate()</dt>
-      <dd>
-        <dl class='parameters'>
-          <dt>VibratePattern pattern</dt>
-          <dd></dd>
-        </dl>
-      </dd>
+      <h2>
+        Vibration Interface
+      </h2>
+      <dl title=
+      "typedef (unsigned long or sequence&lt;unsigned long&gt;) VibratePattern"
+      class="idl"></dl>
+      <dl title='partial interface Navigator' class='idl' data-merge=
+      "VibratePattern">
+        <dt>
+          boolean vibrate()
+        </dt>
+        <dd>
+          <dl class='parameters'>
+            <dt>
+              VibratePattern pattern
+            </dt>
+            <dd></dd>
+          </dl>
+        </dd>
       </dl>
-      
       <p>
-        The <code id="widl-Navigator-vibrate-boolean-unsigned-long-sequence-unsigned-long--pattern">vibrate()</code>
-        method, when invoked, MUST run the algorithm
-        for <a>processing vibration patterns</a>.
+        The <code id=
+        "widl-Navigator-vibrate-boolean-unsigned-long-sequence-unsigned-long--pattern">
+        vibrate()</code> method, when invoked, MUST run the algorithm for
+        <a>processing vibration patterns</a>.
       </p>
       <p>
         The rules for <dfn>processing vibration patterns</dfn> are as given in
         the following algorithm:
       </p>
       <ol>
-        <li>
-          Let <var>pattern</var> be the first method argument of the
-          <code>vibrate()</code> method.
+        <li>Let <var>pattern</var> be the first method argument of the
+        <code>vibrate()</code> method.
         </li>
-        <li>
-          Let <var>valid pattern</var> be the result of passing
-          <var>pattern</var> to <a>validate and normalize</a>.
+        <li>Let <var>valid pattern</var> be the result of passing
+        <var>pattern</var> to <a>validate and normalize</a>.
         </li>
-        <li>
-          If the <code>
-          <a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
-          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true,
-          then return false and terminate these steps.
+        <li>If the <code><a href=
+        "http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#dom-document-hidden">
+          hidden</a></code> attribute [[!PAGE-VISIBILITY]] is set to true, then
+          return false and terminate these steps.
           <div class="note">
             A trusted (also known as privileged) application that integrates
             closely with the operating system's functionality may vibrate the
@@ -162,22 +169,18 @@
         <var>pattern</var>, run these steps:
       </p>
       <ol>
-        <li>
-          If <var>pattern</var> is a list, proceed to the next step.
-          Otherwise run the following substeps:
+        <li>If <var>pattern</var> is a list, proceed to the next step.
+        Otherwise run the following substeps:
           <ol>
-            <li>
-              Let <var>list</var> be an initially empty list, and add
-              <var>pattern</var> to <var>list</var>.
+            <li>Let <var>list</var> be an initially empty list, and add
+            <var>pattern</var> to <var>list</var>.
             </li>
-            <li>
-              Set <var>pattern</var> to <var>list</var>.
+            <li>Set <var>pattern</var> to <var>list</var>.
             </li>
           </ol>
         </li>
-        <li>
-          Let <var>max length</var> be an implementation-dependent maximum
-          length of <var>pattern</var>.
+        <li>Let <var>max length</var> be an implementation-dependent maximum
+        length of <var>pattern</var>.
           <div class='note'>
             If the length of a pattern is greater than max length an
             implementation of this API could consider breaking the request
@@ -192,27 +195,24 @@
             acceptable.
           </div>
         </li>
-        <li>
-          If the length of <var>pattern</var> is greater than
-          <var>max length</var>, truncate <var>pattern</var>, leaving only
-          the first <var>max length</var> entries.
+        <li>If the length of <var>pattern</var> is greater than <var>max
+        length</var>, truncate <var>pattern</var>, leaving only the first <var>
+          max length</var> entries.
           <div class="note" id="remove-last-entry">
             If the length of the <var>pattern</var> is even and not zero then
             the last entry in the pattern will have no effect so an
-            implementation can remove it from the <var>pattern</var> at this point.
+            implementation can remove it from the <var>pattern</var> at this
+            point.
           </div>
         </li>
-        <li>
-          Let <var>max duration</var> be an implementation-dependent maximum
-          duration for a single vibration entry in a <var>pattern</var>.
+        <li>Let <var>max duration</var> be an implementation-dependent maximum
+        duration for a single vibration entry in a <var>pattern</var>.
         </li>
-        <li>
-          For each entry in <var>pattern</var> whose value is greater than
-          <var>max duration</var>, set the entry's value to
-          <var>max duration</var>.
+        <li>For each entry in <var>pattern</var> whose value is greater than
+        <var>max duration</var>, set the entry's value to <var>max
+        duration</var>.
         </li>
-        <li>
-          Return <var>pattern</var>.
+        <li>Return <var>pattern</var>.
         </li>
       </ol>
       <p>
@@ -220,62 +220,57 @@
         steps:
       </p>
       <ol>
-        <li>
-          An implementation MAY return false and terminate these steps.
+        <li>An implementation MAY return false and terminate these steps.
           <div class="note">
-            For example, an implementation might abort the
-            algorithm because the user has set a preference indicating that
-            pages at a given origin should never be able to vibrate the device,
-            or an implementation might cap the total amount of time a page may
-            cause the device to vibrate and reject requests in excess of this
-            limit.
+            For example, an implementation might abort the algorithm because
+            the user has set a preference indicating that pages at a given
+            origin should never be able to vibrate the device, or an
+            implementation might cap the total amount of time a page may cause
+            the device to vibrate and reject requests in excess of this limit.
           </div>
         </li>
-        <li>
-          If another instance of the <a>perform vibration</a> algorithm is
-          already running, run the following substeps:
+        <li>If another instance of the <a>perform vibration</a> algorithm is
+        already running, run the following substeps:
           <ol>
-            <li>
-              Abort that other instance of the <a>perform vibration</a>
-              algorithm, if any.
+            <li>Abort that other instance of the <a>perform vibration</a>
+            algorithm, if any.
             </li>
-            <li>
-              If <var>pattern</var> is an empty list, contains a single entry
-              with a value of 0, or if the device is unable to vibrate, then
-              return true and terminate these steps.
+            <li>If <var>pattern</var> is an empty list, contains a single entry
+            with a value of 0, or if the device is unable to vibrate, then
+            return true and terminate these steps.
             </li>
           </ol>
-        <li>
-          Return true, and then continue running these steps asynchronously.
         </li>
-        <li>
-          For each <var>time</var> in <var>pattern</var>, run the following
-          substeps:
+        <li>Return true, and then continue running these steps asynchronously.
+        </li>
+        <li>For each <var>time</var> in <var>pattern</var>, run the following
+        substeps:
           <ol>
-            <li>
-              If the index of <var>time</var> is even (the first entry has
-              index 0), vibrate the device for <var>time</var> milliseconds.
+            <li>If the index of <var>time</var> is even (the first entry has
+            index 0), vibrate the device for <var>time</var> milliseconds.
             </li>
-            <li>
-              Otherwise wait for <var>time</var> milliseconds.
+            <li>Otherwise wait for <var>time</var> milliseconds.
             </li>
           </ol>
         </li>
       </ol>
       <p>
-        When the
-        <code><a href="http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
+        When the <code><a href=
+        "http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/PageVisibility/Overview.html#sec-visibilitychange-event">
         visibilitychange</a></code> event [[!PAGE-VISIBILITY]] is dispatched at
-        the <code>Document</code> in a <a>browsing context</a>, the
-        <a class="product-ua" href="#ua">user agent</a> MUST abort the
-        already running <a>processing vibration patterns</a> algorithm, if any.
+        the <code>Document</code> in a <a>browsing context</a>, the <a class=
+        "product-ua" href="#ua">user agent</a> MUST abort the already running
+        <a>processing vibration patterns</a> algorithm, if any.
       </p>
     </section>
-
     <section class='informative'>
-      <h2>Examples</h2>
+      <h2>
+        Examples
+      </h2>
       <p>
-        In the following example the device will vibrate for 1000 milliseconds (ms):
+        In the following example the device will vibrate for 1000 milliseconds
+        (ms):
+      </p>
       <pre class='example highlight'>
         // vibrate for 1000 ms
         navigator.vibrate(1000);
@@ -291,10 +286,9 @@
         navigator.vibrate([50, 100, 150]);
       </pre>
       <p>
-        <p>
-          The following example cancels any existing vibrations:
-        </p>
-        <pre class='example highlight'>
+        The following example cancels any existing vibrations:
+      </p>
+      <pre class='example highlight'>
           // cancel any existing vibrations
           navigator.vibrate(0);
           
@@ -303,13 +297,15 @@
         </pre>
     </section>
     <section class='appendix'>
-      <h2>Acknowledgements</h2>
+      <h2>
+        Acknowledgements
+      </h2>
       <p>
         The group is deeply indebted to Justin Lebar, Mounir Lamouri, Jonas
         Sicking, and the Mozilla WebAPI team for their contributions, and for
-        providing the WebVibrator prototype as an initial input. Thanks to
-        Anne van Kesteren for suggestions on how to make the specification
-        reusable in other contexts.
+        providing the WebVibrator prototype as an initial input. Thanks to Anne
+        van Kesteren for suggestions on how to make the specification reusable
+        in other contexts.
       </p>
     </section>
   </body>
