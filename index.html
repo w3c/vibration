@@ -263,6 +263,24 @@
         vibration patterns</a> algorithm, if any.
       </p>
     </section>
+    <section>
+      <h2>
+        Security and privacy considerations
+      </h2>
+      <p>
+        Vibration API is not a source of data on its own and as such is not
+        producing any data possible to consume on the Web. However, it is known
+        that it can serve as a source of events for other APIs. In particular,
+        it is known that certain sensors such as accelerometers or gyroscopes
+        are prone to tiny imperfections during their manufacturing. As such,
+        they provide a fingerprinting surface that can be exploited utilizing
+        the vibration stimuli generated via the Vibration API. In this sense,
+        Vibration API provides an indirect privacy risk, in conjunction with
+        other mechanisms. Additionally, in case the user intends to remain
+        anonymous, causing a device to vibrate might be visible to external
+        physical observers.
+      </p>
+    </section>
     <section class='informative'>
       <h2>
         Examples
@@ -305,7 +323,8 @@
         Sicking, and the Mozilla WebAPI team for their contributions, and for
         providing the WebVibrator prototype as an initial input. Thanks to Anne
         van Kesteren for suggestions on how to make the specification reusable
-        in other contexts.
+        in other contexts, and to Lukasz Olejnik for the privacy
+        considerations.
       </p>
     </section>
   </body>
