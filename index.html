@@ -23,7 +23,6 @@
           ],
           inlineCSS:    true,
           noIDLIn:      true,
-          noLegacyStyle:true,
           wg:           "Device APIs Working Group",
           wgURI:        "http://www.w3.org/2009/dap/",
           wgPublicList: "public-device-apis",
@@ -126,36 +125,24 @@
       <h2>
         Vibration Interface
       </h2>
-      <dl title=
-      "typedef (unsigned long or sequence&lt;unsigned long&gt;) VibratePattern"
-      class="idl"></dl>
-      <dl title='partial interface Navigator' class='idl' data-merge=
-      "VibratePattern">
-        <dt>
-          boolean vibrate()
-        </dt>
-        <dd>
-          <dl class='parameters'>
-            <dt>
-              VibratePattern pattern
-            </dt>
-            <dd></dd>
-          </dl>
-        </dd>
-      </dl>
-      <p>
-        The <code id=
-        "widl-Navigator-vibrate-boolean-unsigned-long-sequence-unsigned-long--pattern">
-        vibrate()</code> method, when invoked, MUST run the algorithm for
-        <a>processing vibration patterns</a>.
+      <pre class="idl">
+        typedef (unsigned long or sequence&lt;unsigned long&gt;) VibratePattern;
+
+        partial interface Navigator {
+            boolean vibrate (VibratePattern pattern);
+        };
+      </pre>
+      <p link-for="Navigator">
+        The <code><a>vibrate</a>()</code> method, when invoked, MUST run the
+        algorithm for <a>processing vibration patterns</a>.
       </p>
       <p>
         The rules for <dfn>processing vibration patterns</dfn> are as given in
         the following algorithm:
       </p>
-      <ol>
+      <ol link-for="Navigator">
         <li>Let <var>pattern</var> be the first method argument of the
-        <code>vibrate()</code> method.
+        <code><a>vibrate</a>()</code> method.
         </li>
         <li>Let <var>valid pattern</var> be the result of passing
         <var>pattern</var> to <a>validate and normalize</a>.
