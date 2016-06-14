@@ -295,8 +295,15 @@
         they provide a fingerprinting surface that can be exploited utilizing
         the vibration stimuli generated via the Vibration API. In this sense,
         Vibration API provides an indirect privacy risk, in conjunction with
-        other mechanisms. Additionally, a device that is vibrating might be
-        visible to external observers and enable physical tracking of the user.
+        other mechanisms. This can create possibly unexpected privacy risks,
+        including cross-device tracking and communication. Additionally, a
+        device that is vibrating might be visible to external observers and
+        enable physical identification, and possibly tracking of the user.
+      </p>
+      <p>
+        For these reasons, the user agent SHOULD inform the user when the API
+        is being used and provide a mechanism to disable the API (effectively
+        no-op), on a per-origin basis or globally.
       </p>
     </section>
     <section class='informative'>
