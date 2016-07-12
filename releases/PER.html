@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" typeof="bibo:Document w3p:PER" prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta lang="" property="dc:language" content="en">
+  <style>
+    /*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+    
+    .hljs {
+      display: block;
+      overflow-x: auto;
+      padding: 0.5em;
+      color: #333;
+      background: #f8f8f8;
+    }
+    
+    .hljs-comment,
+    .hljs-quote {
+      color: #998;
+      font-style: italic;
+    }
+    
+    .hljs-keyword,
+    .hljs-selector-tag,
+    .hljs-subst {
+      color: #333;
+      font-weight: bold;
+    }
+    
+    .hljs-number,
+    .hljs-literal,
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-tag .hljs-attr {
+      color: #008080;
+    }
+    
+    .hljs-string,
+    .hljs-doctag {
+      color: #d14;
+    }
+    
+    .hljs-title,
+    .hljs-section,
+    .hljs-selector-id {
+      color: #900;
+      font-weight: bold;
+    }
+    
+    .hljs-subst {
+      font-weight: normal;
+    }
+    
+    .hljs-type,
+    .hljs-class .hljs-title {
+      color: #458;
+      font-weight: bold;
+    }
+    
+    .hljs-tag,
+    .hljs-name,
+    .hljs-attribute {
+      color: #000080;
+      font-weight: normal;
+    }
+    
+    .hljs-regexp,
+    .hljs-link {
+      color: #009926;
+    }
+    
+    .hljs-symbol,
+    .hljs-bullet {
+      color: #990073;
+    }
+    
+    .hljs-built_in,
+    .hljs-builtin-name {
+      color: #0086b3;
+    }
+    
+    .hljs-meta {
+      color: #999;
+      font-weight: bold;
+    }
+    
+    .hljs-deletion {
+      background: #fdd;
+    }
+    
+    .hljs-addition {
+      background: #dfd;
+    }
+    
+    .hljs-emphasis {
+      font-style: italic;
+    }
+    
+    .hljs-strong {
+      font-weight: bold;
+    }
+  </style>
+  <style>
+    /* --- EXAMPLES --- */
+    
+    div.example-title {
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.example-title span {
+      text-transform: uppercase;
+    }
+    
+    aside.example,
+    div.example,
+    div.illegal-example {
+      padding: 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    div.illegal-example {
+      color: red
+    }
+    
+    div.illegal-example p {
+      color: black
+    }
+    
+    aside.example,
+    div.example {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+      border-color: #e0cb52;
+      background: #fcfaee;
+    }
+    
+    aside.example div.example {
+      border-left-width: .1em;
+      border-color: #999;
+      background: #fff;
+    }
+    
+    aside.example div.example div.example-title {
+      color: #999;
+    }
+  </style>
+  <style>
+    /* --- ISSUES/NOTES --- */
+    
+    div.issue-title,
+    div.note-title,
+    div.ednote-title,
+    div.warning-title {
+      padding-right: 1em;
+      min-width: 7.5em;
+      color: #b9ab2d;
+    }
+    
+    div.issue-title {
+      color: #e05252;
+    }
+    
+    div.note-title,
+    div.ednote-title {
+      color: #2b2;
+    }
+    
+    div.warning-title {
+      color: #f22;
+    }
+    
+    div.issue-title span,
+    div.note-title span,
+    div.ednote-title span,
+    div.warning-title span {
+      text-transform: uppercase;
+    }
+    
+    div.note,
+    div.issue,
+    div.ednote,
+    div.warning {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    
+    .note> p:first-child,
+    .ednote> p:first-child,
+    .issue> p:first-child,
+    .warning> p:first-child {
+      margin-top: 0
+    }
+    
+    .issue,
+    .note,
+    .ednote,
+    .warning {
+      padding: .5em;
+      border-left-width: .5em;
+      border-left-style: solid;
+    }
+    
+    div.issue,
+    div.note,
+    div.ednote,
+    div.warning {
+      padding: 1em 1.2em 0.5em;
+      margin: 1em 0;
+      position: relative;
+      clear: both;
+    }
+    
+    span.note,
+    span.ednote,
+    span.issue,
+    span.warning {
+      padding: .1em .5em .15em;
+    }
+    
+    .issue {
+      border-color: #e05252;
+      background: #fbe9e9;
+    }
+    
+    .note,
+    .ednote {
+      border-color: #52e052;
+      background: #e9fbe9;
+    }
+    
+    .warning {
+      border-color: #f11;
+      border-width: .2em;
+      border-style: solid;
+      background: #fbe9e9;
+    }
+    
+    .warning-title:before {
+      content: "⚠";
+      /*U+26A0 WARNING SIGN*/
+      font-size: 3em;
+      float: left;
+      height: 100%;
+      padding-right: .3em;
+      vertical-align: top;
+      margin-top: -0.5em;
+    }
+    
+    li.task-list-item {
+      list-style: none;
+    }
+    
+    input.task-list-item-checkbox {
+      margin: 0 0.35em 0.25em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <style>
+    /* --- WEB IDL --- */
+    
+    pre.idl {
+      border-top: 1px solid #90b8de;
+      border-bottom: 1px solid #90b8de;
+      padding: 1em;
+      line-height: 120%;
+    }
+    
+    @media print {
+      pre.idl {
+        white-space: pre-wrap;
+      }
+    }
+    
+    pre.idl::before {
+      content: "WebIDL";
+      display: block;
+      width: 150px;
+      background: #90b8de;
+      color: #fff;
+      font-family: sans-serif;
+      padding: 3px;
+      font-weight: bold;
+      margin: -1em 0 1em -1em;
+    }
+    
+    .idlType {
+      color: #ff4500;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    /*.idlModule*/
+    /*.idlModuleID*/
+    /*.idlInterface*/
+    
+    .idlInterfaceID,
+    .idlDictionaryID,
+    .idlCallbackID,
+    .idlEnumID {
+      font-weight: bold;
+      color: #005a9c;
+    }
+    
+    a.idlEnumItem {
+      color: #000;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    .idlSuperclass {
+      font-style: italic;
+      color: #005a9c;
+    }
+    /*.idlAttribute*/
+    
+    .idlAttrType,
+    .idlFieldType,
+    .idlMemberType {
+      color: #005a9c;
+    }
+    
+    .idlAttrName,
+    .idlFieldName,
+    .idlMemberName {
+      color: #ff4500;
+    }
+    
+    .idlAttrName a,
+    .idlFieldName a,
+    .idlMemberName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlMethod*/
+    
+    .idlMethType,
+    .idlCallbackType {
+      color: #005a9c;
+    }
+    
+    .idlMethName {
+      color: #ff4500;
+    }
+    
+    .idlMethName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlCtor*/
+    
+    .idlCtorName {
+      color: #ff4500;
+    }
+    
+    .idlCtorName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlParam*/
+    
+    .idlParamType {
+      color: #005a9c;
+    }
+    
+    .idlParamName,
+    .idlDefaultValue {
+      font-style: italic;
+    }
+    
+    .extAttr {
+      color: #666;
+    }
+    /*.idlSectionComment*/
+    
+    .idlSectionComment {
+      color: gray;
+    }
+    /*.idlIterable*/
+    
+    .idlIterableKeyType,
+    .idlIterableValueType {
+      color: #005a9c;
+    }
+    /*.idlMaplike*/
+    
+    .idlMaplikeKeyType,
+    .idlMaplikeValueType {
+      color: #005a9c;
+    }
+    /*.idlConst*/
+    
+    .idlConstType {
+      color: #005a9c;
+    }
+    
+    .idlConstName {
+      color: #ff4500;
+    }
+    
+    .idlConstName a {
+      color: #ff4500;
+      border-bottom: 1px dotted #ff4500;
+      text-decoration: none;
+    }
+    /*.idlException*/
+    
+    .idlExceptionID {
+      font-weight: bold;
+      color: #c00;
+    }
+    
+    .idlTypedefID,
+    .idlTypedefType {
+      color: #005a9c;
+    }
+    
+    .idlRaises,
+    .idlRaises a.idlType,
+    .idlRaises a.idlType code,
+    .excName a,
+    .excName a code {
+      color: #c00;
+      font-weight: normal;
+    }
+    
+    .excName a {
+      font-family: monospace;
+    }
+    
+    .idlRaises a.idlType,
+    .excName a.idlType {
+      border-bottom: 1px dotted #c00;
+    }
+    
+    .excGetSetTrue,
+    .excGetSetFalse,
+    .prmNullTrue,
+    .prmNullFalse,
+    .prmOptTrue,
+    .prmOptFalse {
+      width: 45px;
+      text-align: center;
+    }
+    
+    .excGetSetTrue,
+    .prmNullTrue,
+    .prmOptTrue {
+      color: #0c0;
+    }
+    
+    .excGetSetFalse,
+    .prmNullFalse,
+    .prmOptFalse {
+      color: #c00;
+    }
+    
+    .idlImplements a {
+      font-weight: bold;
+    }
+    
+    dl.attributes,
+    dl.methods,
+    dl.constants,
+    dl.constructors,
+    dl.fields,
+    dl.dictionary-members {
+      margin-left: 2em;
+    }
+    
+    .attributes dt,
+    .methods dt,
+    .constants dt,
+    .constructors dt,
+    .fields dt,
+    .dictionary-members dt {
+      font-weight: normal;
+    }
+    
+    .attributes dt code,
+    .methods dt code,
+    .constants dt code,
+    .constructors dt code,
+    .fields dt code,
+    .dictionary-members dt code {
+      font-weight: bold;
+      color: #000;
+      font-family: monospace;
+    }
+    
+    .attributes dt code,
+    .fields dt code,
+    .dictionary-members dt code {
+      background: #ffffd2;
+    }
+    
+    .attributes dt .idlAttrType code,
+    .fields dt .idlFieldType code,
+    .dictionary-members dt .idlMemberType code {
+      color: #005a9c;
+      background: transparent;
+      font-family: inherit;
+      font-weight: normal;
+      font-style: italic;
+    }
+    
+    .methods dt code {
+      background: #d9e6f8;
+    }
+    
+    .constants dt code {
+      background: #ddffd2;
+    }
+    
+    .constructors dt code {
+      background: #cfc;
+    }
+    
+    .attributes dd,
+    .methods dd,
+    .constants dd,
+    .constructors dd,
+    .fields dd,
+    .dictionary-members dd {
+      margin-bottom: 1em;
+    }
+    
+    table.parameters,
+    table.exceptions {
+      border-spacing: 0;
+      border-collapse: collapse;
+      margin: 0.5em 0;
+      width: 100%;
+    }
+    
+    table.parameters {
+      border-bottom: 1px solid #90b8de;
+    }
+    
+    table.exceptions {
+      border-bottom: 1px solid #deb890;
+    }
+    
+    .parameters th,
+    .exceptions th {
+      color: #fff;
+      padding: 3px 5px;
+      text-align: left;
+      font-weight: normal;
+      text-shadow: #666 1px 1px 0;
+    }
+    
+    .parameters th {
+      background: #90b8de;
+    }
+    
+    .exceptions th {
+      background: #deb890;
+    }
+    
+    .parameters td,
+    .exceptions td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+      vertical-align: top;
+    }
+    
+    .parameters tr:first-child td,
+    .exceptions tr:first-child td {
+      border-top: none;
+    }
+    
+    .parameters td.prmName,
+    .exceptions td.excName,
+    .exceptions td.excCodeName {
+      width: 100px;
+    }
+    
+    .parameters td.prmType {
+      width: 120px;
+    }
+    
+    table.exceptions table {
+      border-spacing: 0;
+      border-collapse: collapse;
+      width: 100%;
+    }
+  </style>
+  <style id="respec-mainstyle">
+    /*****************************************************************
+ * ReSpec 3 CSS
+ * Robin Berjon - http://berjon.com/
+ *****************************************************************/
+    /* Override code highlighter background */
+    
+    .hljs {
+      background: transparent !important;
+    }
+    /* --- INLINES --- */
+    
+    em.rfc2119 {
+      text-transform: lowercase;
+      font-variant: small-caps;
+      font-style: normal;
+      color: #900;
+    }
+    
+    h1 acronym,
+    h2 acronym,
+    h3 acronym,
+    h4 acronym,
+    h5 acronym,
+    h6 acronym,
+    a acronym,
+    h1 abbr,
+    h2 abbr,
+    h3 abbr,
+    h4 abbr,
+    h5 abbr,
+    h6 abbr,
+    a abbr {
+      border: none;
+    }
+    
+    dfn {
+      font-weight: bold;
+    }
+    
+    a.internalDFN {
+      color: inherit;
+      border-bottom: 1px solid #99c;
+      text-decoration: none;
+    }
+    
+    a.externalDFN {
+      color: inherit;
+      border-bottom: 1px dotted #ccc;
+      text-decoration: none;
+    }
+    
+    a.bibref {
+      text-decoration: none;
+    }
+    
+    cite .bibref {
+      font-style: normal;
+    }
+    
+    code {
+      color: #C83500;
+    }
+    /* --- TOC --- */
+    
+    .toc a,
+    .tof a {
+      text-decoration: none;
+    }
+    
+    a .secno,
+    a .figno {
+      color: #000;
+    }
+    
+    ul.tof,
+    ol.tof {
+      list-style: none outside none;
+    }
+    
+    .caption {
+      margin-top: 0.5em;
+      font-style: italic;
+    }
+    /* --- TABLE --- */
+    
+    table.simple {
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-bottom: 3px solid #005a9c;
+    }
+    
+    .simple th {
+      background: #005a9c;
+      color: #fff;
+      padding: 3px 5px;
+      text-align: left;
+    }
+    
+    .simple th[scope="row"] {
+      background: inherit;
+      color: inherit;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple td {
+      padding: 3px 10px;
+      border-top: 1px solid #ddd;
+    }
+    
+    .simple tr:nth-child(even) {
+      background: #f0f6ff;
+    }
+    /* --- DL --- */
+    
+    .section dd> p:first-child {
+      margin-top: 0;
+    }
+    
+    .section dd> p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section dd {
+      margin-bottom: 1em;
+    }
+    
+    .section dl.attrs dd,
+    .section dl.eldef dd {
+      margin-bottom: 0;
+    }
+    
+    .respec-hidden {
+      display: none;
+    }
+    
+    @media print {
+      .removeOnSave {
+        display: none;
+      }
+    }
+  </style>
+  <title>
+    Vibration API
+  </title>
+
+
+
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-PER">
+  <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+  <script id="initialUserConfig" type="application/json">
+    {
+      "specStatus": "PER",
+      "shortName": "vibration",
+      "publishDate": "2016-07-14",
+      "previousPublishDate": "2014-09-09",
+      "previousMaturity": "CR",
+      "edDraftURI": "https://w3c.github.io/vibration/",
+      "lcEnd": "2014-07-24",
+      "prEnd": "2015-01-20",
+      "perEnd": "2016-08-31",
+      "editors": [
+      {
+        "name": "Anssi Kostiainen",
+        "company": "Intel"
+      }],
+      "inlineCSS": true,
+      "noIDLIn": true,
+      "wg": "Device and Sensors Working Group",
+      "wgURI": "http://www.w3.org/2009/dap/",
+      "wgPublicList": "public-device-apis",
+      "wgPatentURI": "http://www.w3.org/2004/01/pp-impl/43696/status",
+      "testSuiteURI": "http://w3c-test.org/vibration/",
+      "implementationReportURI": "http://w3c.github.io/test-results/vibration/20141118.html",
+      "processVersion": 2005,
+      "localBiblio":
+      {
+        "NOTIFICATIONS":
+        {
+          "title": "Notifications API",
+          "href": "https://notifications.spec.whatwg.org/",
+          "authors": [
+            "Anne van Kesteren"
+          ],
+          "status": "Living Standard",
+          "publisher": "WHATWG"
+        }
+      },
+      "otherLinks": [
+      {
+        "key": "Translation",
+        "data": [
+        {
+          "value": "简体中文",
+          "href": "https://w3c-html-ig-zh.github.io/vibration/"
+        }]
+      },
+      {
+        "key": "Participate",
+        "data": [
+        {
+          "value": "public-device-apis@w3.org",
+          "href": "http://lists.w3.org/Archives/Public/public-device-apis/"
+        },
+        {
+          "value": "GitHub w3c/vibration",
+          "href": "https://github.com/w3c/vibration/"
+        },
+        {
+          "value": "GitHub w3c/vibration/issues",
+          "href": "https://github.com/w3c/vibration/issues"
+        },
+        {
+          "value": "GitHub w3c/vibration/commits",
+          "href": "https://github.com/w3c/vibration/commits/"
+        }]
+      }]
+    }
+  </script>
+</head>
+<body class="h-entry" role="document" id="respecDocument">
+  <div class="head" role="contentinfo" id="respecHeader">
+    <p>
+      <a class="logo" href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
+    </p>
+    <h1 class="title p-name" id="title" property="dcterms:title">Vibration API</h1>
+    <h2 id="w3c-proposed-edited-recommendation-14-july-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Proposed Edited Recommendation <time property="dcterms:issued" class="dt-published" datetime="2016-07-14">14 July 2016</time></h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd><a class="u-url" href="http://www.w3.org/TR/2016/PER-vibration-20160714/">http://www.w3.org/TR/2016/PER-vibration-20160714/</a></dd>
+      <dt>Latest published version:</dt>
+      <dd><a href="http://www.w3.org/TR/vibration/">http://www.w3.org/TR/vibration/</a></dd>
+      <dt>Latest editor's draft:</dt>
+      <dd><a href="https://w3c.github.io/vibration/">https://w3c.github.io/vibration/</a></dd>
+      <dt>Test suite:</dt>
+      <dd><a href="http://w3c-test.org/vibration/">http://w3c-test.org/vibration/</a></dd>
+      <dt>Implementation report:</dt>
+      <dd><a href="http://w3c.github.io/test-results/vibration/20141118.html">http://w3c.github.io/test-results/vibration/20141118.html</a></dd>
+      <dt>Previous version:</dt>
+      <dd><a rel="dcterms:replaces" href="http://www.w3.org/TR/2014/CR-vibration-20140909/">http://www.w3.org/TR/2014/CR-vibration-20140909/</a></dd>
+      <dt>Editor:</dt>
+      <dd class="p-author h-card vcard" property="bibo:editor" resource="_:editor0"><span property="rdf:first" typeof="foaf:Person"><span property="foaf:name" class="p-name fn">Anssi Kostiainen</span>, Intel</span>
+        <span property="rdf:rest" resource="rdf:nil"></span>
+      </dd>
+
+      <dt>Translation:</dt>
+      <dd>
+        <a href="https://w3c-html-ig-zh.github.io/vibration/">
+                      简体中文
+                    </a>
+      </dd>
+      <dt>Participate:</dt>
+      <dd>
+        <a href="http://lists.w3.org/Archives/Public/public-device-apis/">
+                      public-device-apis@w3.org
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://github.com/w3c/vibration/">
+                      GitHub w3c/vibration
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://github.com/w3c/vibration/issues">
+                      GitHub w3c/vibration/issues
+                    </a>
+      </dd>
+      <dd>
+        <a href="https://github.com/w3c/vibration/commits/">
+                      GitHub w3c/vibration/commits
+                    </a>
+      </dd>
+    </dl>
+    <p class="copyright">
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2016
+
+      <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+      <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+      <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
+      <abbr title="World Wide Web Consortium">W3C</abbr> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
+      <a rel="license" href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
+    </p>
+    <hr title="Separator for header">
+  </div>
+
+  <section id="abstract" class="introductory" property="dc:abstract">
+    <h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
+    <p>
+      This specification defines an API that provides access to the vibration mechanism of the hosting device. Vibration is a form of tactile feedback.
+    </p>
+  </section>
+
+  <section id="sotd" class="introductory">
+    <h2 id="h-sotd" resource="#h-sotd"><span property="xhv:role" resource="xhv:heading">Status of This Document</span></h2>
+    <p>
+      <em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at http://www.w3.org/TR/.</em>
+    </p>
+
+    <p>
+      The following editorial changes were made since the <a href="https://www.w3.org/TR/2015/REC-vibration-20150210/"><abbr title="World Wide Web Consortium">W3C</abbr> Recommendation
+        10 February 2015</a> (<a href="PER-diff.html">diff</a>):
+    </p>
+    <ul>
+      <li>a privacy &amp; security section was added based on risks of fingerprinting based on vibration
+      </li>
+      <li>the reference to WebIDL was updated
+      </li>
+      <li>the text has been aligned with the hook provided by latest Page Visibility API
+      </li>
+      <li>the term "browsing context" was clarified to refer to "top-level browsing context"
+      </li>
+    </ul>
+
+    <p>
+      This document was published by the <a href="http://www.w3.org/2009/dap/">Device and Sensors Working Group</a> as a Proposed Edited Recommendation. If you wish to make comments regarding this document, please send them to
+      <a href="mailto:public-device-apis@w3.org">public-device-apis@w3.org</a> (<a href="mailto:public-device-apis-request@w3.org?subject=subscribe">subscribe</a>,
+      <a href="http://lists.w3.org/Archives/Public/public-device-apis/">archives</a>).
+
+    </p>
+    <p>
+      Please see the Working Group's <a href="http://w3c.github.io/test-results/vibration/20141118.html">implementation
+              report</a>.
+    </p>
+    <p>
+      Publication as a Proposed Edited Recommendation does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
+    </p>
+    <p>
+      This document was produced by a group operating under the
+      <a id="sotd_patent" property="w3p:patentRules" href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
+              Policy</a>.
+      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/43696/status" rel="disclosure">public list of any patent
+                disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
+      <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+              Claim(s)</a> must disclose the information in accordance with
+      <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+    </p>
+    <p>
+      This document is governed by the <a id="w3c_process_revision" href="http://www.w3.org/2005/10/Process-20051014/">14 October 2005 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+    </p>
+
+  </section>
+  <nav id="toc">
+    <h2 class="introductory" id="table-of-contents" resource="#table-of-contents"><span property="xhv:role" resource="xhv:heading">Table of Contents</span></h2>
+    <ul class="toc" role="directory">
+      <li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>
+        Introduction
+      </a></li>
+      <li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li>
+      <li class="tocline"><a href="#terminology" class="tocxref"><span class="secno">3. </span>
+        Terminology
+      </a></li>
+      <li class="tocline"><a href="#vibration-interface" class="tocxref"><span class="secno">4. </span>
+        Vibration Interface
+      </a></li>
+      <li class="tocline"><a href="#security-and-privacy-considerations" class="tocxref"><span class="secno">5. </span>
+        Security and privacy considerations
+      </a></li>
+      <li class="tocline"><a href="#examples" class="tocxref"><span class="secno">6. </span>
+        Examples
+      </a></li>
+      <li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A. </span>
+        Acknowledgements
+      </a></li>
+      <li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a>
+        <ul class="toc">
+          <li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li>
+          <li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.2 </span>Informative references</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="informative" id="introduction" typeof="bibo:Chapter" resource="#introduction" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-introduction" resource="#h-introduction"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>
+        Introduction
+      </span></h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>
+      The API is specifically designed to address use cases that require simple tactile feedback only. Use cases requiring more fine-grained control are out of scope for this specification. This API is not meant to be used as a generic notification mechanism. Such use cases may be handled using the <cite>Notifications API</cite> [<cite><a class="bibref" href="#bib-NOTIFICATIONS">NOTIFICATIONS</a></cite>] specification. In addition, determining whether vibration is enabled is out of scope for this specification.
+    </p>
+  </section>
+
+  <section id="conformance" typeof="bibo:Chapter" resource="#conformance" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-conformance" resource="#h-conformance"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Conformance</span></h2>
+    <p>
+      As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.
+    </p>
+    <p id="respecRFC2119">The key words <em class="rfc2119" title="MAY">MAY</em>, <em class="rfc2119" title="MUST">MUST</em>, and <em class="rfc2119" title="SHOULD">SHOULD</em> are to be interpreted as described in [<cite><a class="bibref" href="#bib-RFC2119">RFC2119</a></cite>].
+    </p>
+
+    <p>
+      This specification defines conformance criteria that apply to a single product: the <dfn id="ua" data-dfn-type="dfn">user agent</dfn> that implements the interfaces that it contains.
+    </p>
+    <p>
+      Implementations that use ECMAScript to implement the APIs defined in this specification must implement them in a manner consistent with the ECMAScript Bindings defined in the Web IDL specification [<cite><a class="bibref" href="#bib-WEBIDL-1">WEBIDL-1</a></cite>], as this specification uses that specification and terminology.
+    </p>
+  </section>
+
+  <section id="terminology" typeof="bibo:Chapter" resource="#terminology" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-terminology" resource="#h-terminology"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>
+        Terminology
+      </span></h2>
+    <p>
+      The concepts <dfn data-dfn-type="dfn" id="dfn-top-level-browsing-context"><a href="https://www.w3.org/TR/html5/browsers.html#top-level-browsing-context">top-level
+        browsing context</a></dfn> and <dfn data-dfn-type="dfn" id="dfn-spin-the-event-loop"><a href="http://www.w3.org/TR/html5/webappapis.html#spin-the-event-loop">spin
+        the event loop</a></dfn> are defined in [<cite><a class="bibref" href="#bib-HTML5">HTML5</a></cite>].
+    </p>
+  </section>
+
+  <section id="vibration-interface" typeof="bibo:Chapter" resource="#vibration-interface" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-vibration-interface" resource="#h-vibration-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>
+        Vibration Interface
+      </span></h2>
+    <pre class="def idl"><span class="idlTypedef" id="idl-def-vibratepattern" data-idl="" data-title="VibratePattern">typedef <span class="idlTypedefType">(unsigned long or sequence&lt;unsigned long&gt;)</span> <span class="idlTypedefID">VibratePattern</span>;</span>
+
+<span class="idlInterface" id="idl-def-navigator-partial-1" data-idl="" data-title="Navigator">partial interface <span class="idlInterfaceID">Navigator</span> {
+<span class="idlMethod" id="idl-def-navigator-vibrate(vibratepattern)" data-idl="" data-title="vibrate" data-dfn-for="navigator">    <span class="idlMethType">boolean</span> <span class="idlMethName">vibrate</span>(<span class="idlParam"><span class="idlParamType"><a href="#idl-def-vibratepattern" class="internalDFN" data-link-type="dfn"><code>VibratePattern</code></a></span> <span class="idlParamName">pattern</span></span>);</span>
+};</span></pre>
+    <p data-link-for="Navigator">
+      The <code><a href="#idl-def-navigator-vibrate(vibratepattern)" class="internalDFN" data-link-type="dfn"><code>vibrate</code></a>()</code> method, when invoked, <em class="rfc2119" title="MUST">MUST</em> run the algorithm for <a href="#dfn-processing-vibration-patterns" class="internalDFN" data-link-type="dfn">processing vibration patterns</a>.
+    </p>
+    <p>
+      The rules for <dfn data-dfn-type="dfn" id="dfn-processing-vibration-patterns">processing vibration patterns</dfn> are as given in the following algorithm:
+    </p>
+    <ol data-link-for="Navigator">
+      <li>Let <var>pattern</var> be the first method argument of the
+        <code><a href="#idl-def-navigator-vibrate(vibratepattern)" class="internalDFN" data-link-type="dfn"><code>vibrate</code></a>()</code> method.
+      </li>
+      <li>Let <var>valid pattern</var> be the result of passing
+        <var>pattern</var> to <a href="#dfn-validate-and-normalize" class="internalDFN" data-link-type="dfn">validate and normalize</a>.
+      </li>
+      <li>If the result of running the steps to <a href="https://w3c.github.io/page-visibility/#dfn-steps-to-determine-the-visibility-state">
+          determine the visibility state</a> [<cite><a class="bibref" href="#bib-PAGE-VISIBILITY-2">PAGE-VISIBILITY-2</a></cite>] is not
+        <code>visible</code>, then return false and terminate these steps.
+        <div class="note">
+          <div class="note-title marker" aria-level="3" role="heading" id="h-note1"><span>Note</span></div>
+          <div class="">
+            A trusted (also known as privileged) application that integrates closely with the operating system's functionality may vibrate the device even if such an application is not visible at all, and thus may ignore the previous step.
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="#dfn-perform-vibration" class="internalDFN" data-link-type="dfn">Perform vibration</a> with <var>valid pattern</var>.
+      </li>
+    </ol>
+    <p>
+      To <dfn data-dfn-type="dfn" id="dfn-validate-and-normalize">validate and normalize</dfn> a vibration pattern given
+      <var>pattern</var>, run these steps:
+    </p>
+    <ol>
+      <li>If <var>pattern</var> is a list, proceed to the next step. Otherwise run the following substeps:
+        <ol>
+          <li>Let <var>list</var> be an initially empty list, and add
+            <var>pattern</var> to <var>list</var>.
+          </li>
+          <li>Set <var>pattern</var> to <var>list</var>.
+          </li>
+        </ol>
+      </li>
+      <li>Let <var>max length</var> be an implementation-dependent maximum length of <var>pattern</var>.
+        <div class="note">
+          <div class="note-title marker" aria-level="3" role="heading" id="h-note2"><span>Note</span></div>
+          <div class="">
+            If the length of a pattern is greater than max length an implementation of this API could consider breaking the request effectively into multiple shorter requests internally to achieve the same effect, rather than ignoring what follows the max length. There are cases, however, where it is appropriate to ignore the pattern exceeding the max length. An example is if the length is so long that it would effectively create a denial of service attack on the user. A web application might also make multiple requests if it is known to the application that the length is too long for some implementations and a possible gap in between patterns is acceptable.
+          </div>
+        </div>
+      </li>
+      <li>If the length of <var>pattern</var> is greater than <var>max
+        length</var>, truncate <var>pattern</var>, leaving only the first <var>
+          max length</var> entries.
+        <div class="note">
+          <div class="note-title marker" aria-level="3" role="heading" id="h-note3"><span>Note</span></div>
+          <div class="" id="remove-last-entry">
+            If the length of the <var>pattern</var> is even and not zero then the last entry in the pattern will have no effect so an implementation can remove it from the <var>pattern</var> at this point.
+          </div>
+        </div>
+      </li>
+      <li>Let <var>max duration</var> be an implementation-dependent maximum duration for a single vibration entry in a <var>pattern</var>.
+      </li>
+      <li>For each entry in <var>pattern</var> whose value is greater than
+        <var>max duration</var>, set the entry's value to <var>max
+        duration</var>.
+      </li>
+      <li>Return <var>pattern</var>.
+      </li>
+    </ol>
+    <p>
+      To <dfn data-dfn-type="dfn" id="dfn-perform-vibration">perform vibration</dfn> using <var>pattern</var>, run these steps:
+    </p>
+    <ol>
+      <li>An implementation <em class="rfc2119" title="MAY">MAY</em> return false and terminate these steps.
+        <div class="note">
+          <div class="note-title marker" aria-level="3" role="heading" id="h-note4"><span>Note</span></div>
+          <div class="">
+            For example, an implementation might abort the algorithm because no vibration hardware is present, the user has set a preference indicating that pages at a given origin should never be able to vibrate the device, or an implementation might cap the total amount of time a page may cause the device to vibrate and reject requests in excess of this limit.
+          </div>
+        </div>
+      </li>
+      <li>If another instance of the <a href="#dfn-perform-vibration" class="internalDFN" data-link-type="dfn">perform vibration</a> algorithm is already running, run the following substeps:
+        <ol>
+          <li>Abort that other instance of the <a href="#dfn-perform-vibration" class="internalDFN" data-link-type="dfn">perform vibration</a> algorithm, if any.
+          </li>
+          <li>If <var>pattern</var> is an empty list, contains a single entry with a value of 0, or if the device is unable to vibrate, then return true and terminate these steps.
+          </li>
+        </ol>
+      </li>
+      <li>Return true, and then continue running these steps asynchronously.
+      </li>
+      <li>For each <var>time</var> in <var>pattern</var>, run the following substeps:
+        <ol>
+          <li>If the index of <var>time</var> is even (the first entry has index 0), vibrate the device for <var>time</var> milliseconds.
+          </li>
+          <li>Otherwise wait for <var>time</var> milliseconds.
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <p>
+      When the user agent determines that the <a href="https://w3c.github.io/page-visibility/#dfn-visibility-states">visibility
+        state</a> of the <code>Document</code> of the <a href="#dfn-top-level-browsing-context" class="internalDFN" data-link-type="dfn">top-level browsing
+        context</a> changes, it <em class="rfc2119" title="MUST">MUST</em> abort the already running <a href="#dfn-processing-vibration-patterns" class="internalDFN" data-link-type="dfn">processing
+        vibration patterns</a> algorithm, if any.
+    </p>
+  </section>
+
+  <section id="security-and-privacy-considerations" typeof="bibo:Chapter" resource="#security-and-privacy-considerations" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-security-and-privacy-considerations" resource="#h-security-and-privacy-considerations"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>
+        Security and privacy considerations
+      </span></h2>
+    <p>
+      Vibration API is not a source of data on its own and as such is not producing any data possible to consume on the Web. However, it is known that it can serve as a source of events for other APIs. In particular, it is known that certain sensors such as accelerometers or gyroscopes are prone to tiny imperfections during their manufacturing. As such, they provide a fingerprinting surface that can be exploited utilizing the vibration stimuli generated via the Vibration API. In this sense, Vibration API provides an indirect privacy risk, in conjunction with other mechanisms. This can create possibly unexpected privacy risks, including cross-device tracking and communication. Additionally, a device that is vibrating might be visible to external observers and enable physical identification, and possibly tracking of the user.
+    </p>
+    <p>
+      For these reasons, the user agent <em class="rfc2119" title="SHOULD">SHOULD</em> inform the user when the API is being used and provide a mechanism to disable the API (effectively no-op), on a per-origin basis or globally.
+    </p>
+  </section>
+
+  <section class="informative" id="examples" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-examples" resource="#h-examples"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>
+        Examples
+      </span></h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>
+      In the following example the device will vibrate for 1000 milliseconds (ms):
+    </p>
+    <div class="example">
+      <div class="example-title marker"><span>Example 1</span></div><pre class="highlight hljs javascript"><span class="hljs-comment">// vibrate for 1000 ms</span>
+navigator.vibrate(<span class="hljs-number">1000</span>);
+
+<span class="hljs-comment">// or alternatively</span>
+navigator.vibrate([<span class="hljs-number">1000</span>]);</pre></div>
+    <p>
+      In the following example the pattern will cause the device to vibrate for 50 ms, be still for 100 ms, and then vibrate for 150 ms:
+    </p>
+    <div class="example">
+      <div class="example-title marker"><span>Example 2</span></div><pre class="highlight hljs css"><span class="hljs-selector-tag">navigator</span><span class="hljs-selector-class">.vibrate</span>(<span class="hljs-selector-attr">[50, 100, 150]</span>);</pre></div>
+    <p>
+      The following example cancels any existing vibrations:
+    </p>
+    <div class="example">
+      <div class="example-title marker"><span>Example 3</span></div><pre class="highlight hljs javascript"><span class="hljs-comment">// cancel any existing vibrations</span>
+navigator.vibrate(<span class="hljs-number">0</span>);
+
+<span class="hljs-comment">// or alternatively</span>
+navigator.vibrate([]);</pre></div>
+  </section>
+
+  <section class="appendix" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>
+        Acknowledgements
+      </span></h2>
+    <p>
+      The group is deeply indebted to Justin Lebar, Mounir Lamouri, Jonas Sicking, and the Mozilla WebAPI team for their contributions, and for providing the WebVibrator prototype as an initial input. Thanks to Anne van Kesteren for suggestions on how to make the specification reusable in other contexts, and to Lukasz Olejnik for the privacy considerations. Finally, thanks to Zhiqiang Zhang for the Simplified Chinese translation.
+    </p>
+  </section>
+
+
+  <section id="references" class="appendix" typeof="bibo:Chapter" resource="#references" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-references" resource="#h-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B. </span>References</span></h2>
+
+    <section id="normative-references" typeof="bibo:Chapter" resource="#normative-references" property="bibo:hasPart">
+      <h3 id="h-normative-references" resource="#h-normative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.1 </span>Normative references</span></h3>
+      <dl class="bibliography" resource=""><dt id="bib-HTML5">[HTML5]</dt>
+        <dd>Ian Hickson; Robin Berjon; Steve Faulkner; Travis Leithead; Erika Doyle Navara; Edward O'Connor; Silvia Pfeiffer. W3C. <a href="https://www.w3.org/TR/html5/" property="dc:requires"><cite>HTML5</cite></a>. 28 October 2014. W3C Recommendation. URL: <a href="https://www.w3.org/TR/html5/" property="dc:requires">https://www.w3.org/TR/html5/</a>
+        </dd><dt id="bib-PAGE-VISIBILITY-2">[PAGE-VISIBILITY-2]</dt>
+        <dd>Ilya Grigorik; Arvind Jain; Jatinder Mann. W3C. <a href="https://www.w3.org/TR/page-visibility-2/" property="dc:requires"><cite>Page Visibility 2</cite></a>. 23 June 2016. W3C Working Draft. URL: <a href="https://www.w3.org/TR/page-visibility-2/" property="dc:requires">https://www.w3.org/TR/page-visibility-2/</a>
+        </dd><dt id="bib-RFC2119">[RFC2119]</dt>
+        <dd>S. Bradner. IETF. <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119" property="dc:requires">https://tools.ietf.org/html/rfc2119</a>
+        </dd><dt id="bib-WEBIDL-1">[WEBIDL-1]</dt>
+        <dd>Cameron McCormack; Boris Zbarsky. W3C. <a href="https://www.w3.org/TR/WebIDL-1/" property="dc:requires"><cite>WebIDL Level 1</cite></a>. 8 March 2016. W3C Candidate Recommendation. URL: <a href="https://www.w3.org/TR/WebIDL-1/" property="dc:requires">https://www.w3.org/TR/WebIDL-1/</a>
+        </dd>
+      </dl>
+    </section>
+
+    <section id="informative-references" typeof="bibo:Chapter" resource="#informative-references" property="bibo:hasPart">
+      <h3 id="h-informative-references" resource="#h-informative-references"><span property="xhv:role" resource="xhv:heading"><span class="secno">B.2 </span>Informative references</span></h3>
+      <dl class="bibliography" resource=""><dt id="bib-NOTIFICATIONS">[NOTIFICATIONS]</dt>
+        <dd>Anne van Kesteren. WHATWG. <a href="https://notifications.spec.whatwg.org/" property="dc:references"><cite>Notifications API</cite></a>. Living Standard. URL: <a href="https://notifications.spec.whatwg.org/" property="dc:references">https://notifications.spec.whatwg.org/</a>
+        </dd>
+      </dl>
+    </section>
+  </section>
+  <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+</body>
+</html>
