@@ -87,7 +87,7 @@
         "releases/PR-diff.html">diff</a>):
       </p>
       <ul>
-        <li>A <code><a href="#idl-def-VibratePattern">VibratePattern</a></code>
+        <li>A <code><a href="#dom-vibratepattern">VibratePattern</a></code>
         shorthand was added.
         </li>
         <li>The <a href="#dfn-validate-and-normalize">validate and
@@ -139,7 +139,9 @@
         "https://www.w3.org/TR/html5/browsers.html#top-level-browsing-context">top-level
         browsing context</a></dfn> and <dfn><a href=
         "https://www.w3.org/TR/html5/webappapis.html#spin-the-event-loop">spin
-        the event loop</a></dfn> are defined in [[!HTML5]].
+        the event loop</a></dfn> and the <dfn><a href=
+        "https://www.w3.org/TR/html5/webappapis.html#the-navigator-object"><code>
+        Navigator</code></a></dfn> interface are defined in [[!HTML5]].
       </p>
     </section>
     <section>
@@ -154,8 +156,10 @@
         };
       </pre>
       <p link-for="Navigator">
-        The <code><a>vibrate</a>()</code> method, when invoked, MUST run the
-        algorithm for <a>processing vibration patterns</a>.
+        The <code><dfn data-dfn-for="Navigator">vibrate</dfn>()</code> method,
+        when invoked, MUST run the algorithm for <a>processing vibration
+        patterns</a>. A <dfn>vibration pattern</dfn> is represented by a
+        <dfn><code>VibratePattern</code></dfn> object.
       </p>
       <p>
         The rules for <dfn>processing vibration patterns</dfn> are as given in
@@ -184,7 +188,7 @@
         </li>
       </ol>
       <p>
-        To <dfn>validate and normalize</dfn> a vibration pattern given
+        To <dfn>validate and normalize</dfn> a <a>vibration pattern</a> given
         <var>pattern</var>, run these steps:
       </p>
       <ol>
