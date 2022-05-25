@@ -120,11 +120,16 @@
       <p>
         The concepts <dfn><a href=
         "https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level
-        browsing context</a></dfn> and <dfn><a href=
-        "https://html.spec.whatwg.org/multipage/webappapis.html#spin-the-event-loop">spin
-        the event loop</a></dfn> and the <dfn><a href=
-        "https://html.spec.whatwg.org/multipage/system-state.html#the-navigator-object"><code>
-        Navigator</code></a></dfn> interface are defined in [[!HTML]].
+        browsing context</a></dfn>, <dfn><a href=
+        "https://html.spec.whatwg.org/#concept-relevant-global"><code>
+        relevant global object</code></a></dfn> and <dfn><a href=
+        "https://html.spec.whatwg.org/#sticky-activation"><code>
+        sticky activation</code></a></dfn>
+        are defined in [[!HTML]].
+      </p>
+      <p>
+        The concept <dfn><a href="https://webidl.spec.whatwg.org/#this">this</a></dfn>
+        is defined in [[!WEBIDL]].
       </p>
     </section>
     <section>
@@ -226,6 +231,10 @@
         steps:
       </p>
       <ol>
+        <li>
+          If <a>this</a>'s <a>relevant global object</a> does not have
+          <a>sticky activation</a>, return false and terminate these steps.
+        </li>
         <li>An implementation MAY return false and terminate these steps.
           <div class="note">
             For example, an implementation might abort the algorithm because no
@@ -262,7 +271,7 @@
         </li>
       </ol>
       <p>
-        When the user agent determines that the <a href=
+        When the <a>user agent</a> determines that the <a href=
         "https://w3c.github.io/page-visibility/#dfn-visibility-states">visibility
         state</a> of the <code>Document</code> of the <a>top-level browsing
         context</a> changes, it MUST abort the already running <a>processing
@@ -288,9 +297,9 @@
         enable physical identification, and possibly tracking of the user.
       </p>
       <p>
-        For these reasons, the user agent SHOULD inform the user when the API
-        is being used and provide a mechanism to disable the API (effectively
-        no-op), on a per-origin basis or globally.
+        For these reasons, the <a>user agent</a> SHOULD inform the user when
+        the API is being used and provide a mechanism to disable the API
+        (effectively no-op), on a per-origin basis or globally.
       </p>
     </section>
     <section class='informative'>
