@@ -156,7 +156,8 @@
           </div>
         </li>
         <li>
-          <a>Perform vibration</a> with <a>this</a> and <var>valid pattern</var>.
+          <a>Perform vibration</a> with <a>this</a>'s <a>relevant global object
+          </a> and <var>valid pattern</var>.
         </li>
       </ol>
       <p>
@@ -211,13 +212,14 @@
         </li>
       </ol>
       <p>
-        To <dfn>perform vibration</dfn> using <a>this</a> and <var>pattern</var>,
+        To <dfn>perform vibration</dfn> using a <a>global object</a>
+        <var>global</var> and a <a>vibration pattern</a> <var>pattern</var>,
         run these steps:
       </p>
       <ol>
         <li>
-          If <a>this</a>'s <a>relevant global object</a> does not have
-          <a>sticky activation</a>, return false and terminate these steps.
+          If <var>global</var> does not have <a>sticky activation</a>,
+          return false and terminate these steps.
         </li>
         <li>An implementation MAY return false and terminate these steps.
           <div class="note">
