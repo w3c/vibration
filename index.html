@@ -28,6 +28,9 @@
           testSuiteURI: "https://w3c-test.org/vibration/",
           implementationReportURI: "https://w3c.github.io/test-results/vibration/20141118.html",
           processVersion: 2017,
+          xref: {
+            profile: "web-platform"
+          },
           localBiblio: {
             "NOTIFICATIONS": {
               title:     "Notifications API",
@@ -115,20 +118,6 @@
     </section>
     <section>
       <h2>
-        Terminology
-      </h2>
-      <p>
-        The concepts <dfn><a href=
-        "https://html.spec.whatwg.org/multipage/browsers.html#top-level-browsing-context">top-level
-        browsing context</a></dfn> and <dfn><a href=
-        "https://html.spec.whatwg.org/multipage/webappapis.html#spin-the-event-loop">spin
-        the event loop</a></dfn> and the <dfn><a href=
-        "https://html.spec.whatwg.org/multipage/system-state.html#the-navigator-object"><code>
-        Navigator</code></a></dfn> interface are defined in [[!HTML]].
-      </p>
-    </section>
-    <section>
-      <h2>
         Vibration Interface
       </h2>
       <pre class="idl" data-cite="HTML">
@@ -139,9 +128,9 @@
         };
       </pre>
       <p data-link-for="Navigator">
-        The <code><dfn data-dfn-for="Navigator">vibrate</dfn>()</code> method,
-        when invoked, MUST run the algorithm for <a>processing vibration
-        patterns</a>. A <dfn>vibration pattern</dfn> is represented by a
+        The <code><dfn data-dfn-for="Navigator">vibrate</dfn>()</code> method
+        steps are to run the <a>processing vibration patterns</a> algorithm.
+        A <dfn>vibration pattern</dfn> is represented by a
         <dfn><code>VibratePattern</code></dfn> object.
       </p>
       <p>
@@ -167,7 +156,8 @@
           </div>
         </li>
         <li>
-          <a>Perform vibration</a> with <var>valid pattern</var>.
+          <a>Perform vibration</a> with <a>this</a>'s <a>relevant global object
+          </a> and <var>valid pattern</var>.
         </li>
       </ol>
       <p>
@@ -222,10 +212,15 @@
         </li>
       </ol>
       <p>
-        To <dfn>perform vibration</dfn> using <var>pattern</var>, run these
-        steps:
+        To <dfn>perform vibration</dfn> using a <a>global object</a>
+        <var>global</var> and a <a>vibration pattern</a> <var>pattern</var>,
+        run these steps:
       </p>
       <ol>
+        <li>
+          If <var>global</var> does not have <a>sticky activation</a>,
+          return false and terminate these steps.
+        </li>
         <li>An implementation MAY return false and terminate these steps.
           <div class="note">
             For example, an implementation might abort the algorithm because no
@@ -262,7 +257,7 @@
         </li>
       </ol>
       <p>
-        When the user agent determines that the <a href=
+        When the <a>user agent</a> determines that the <a href=
         "https://w3c.github.io/page-visibility/#dfn-visibility-states">visibility
         state</a> of the <code>Document</code> of the <a>top-level browsing
         context</a> changes, it MUST abort the already running <a>processing
@@ -288,9 +283,9 @@
         enable physical identification, and possibly tracking of the user.
       </p>
       <p>
-        For these reasons, the user agent SHOULD inform the user when the API
-        is being used and provide a mechanism to disable the API (effectively
-        no-op), on a per-origin basis or globally.
+        For these reasons, the <a>user agent</a> SHOULD inform the user when
+        the API is being used and provide a mechanism to disable the API
+        (effectively no-op), on a per-origin basis or globally.
       </p>
     </section>
     <section class='informative'>
