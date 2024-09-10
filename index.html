@@ -114,9 +114,7 @@
         <li>Let <var>valid pattern</var> be the result of passing
         <var>pattern</var> to <a>validate and normalize</a>.
         </li>
-        <li>If the result of running the steps to <a href=
-        "https://w3c.github.io/page-visibility/#dfn-steps-to-determine-the-visibility-state">
-          determine the visibility state</a> [[!PAGE-VISIBILITY-2]] is not
+        <li>If the <a>document</a>'s [=Document/visibility state=] is not 
           <code>visible</code>, then return false and terminate these steps.
           <div class="note">
             A trusted (also known as privileged) application that integrates
@@ -227,9 +225,9 @@
         </li>
       </ol>
       <p>
-        When the <a>user agent</a> determines that the <a href=
-        "https://w3c.github.io/page-visibility/#dfn-visibility-states">visibility
-        state</a> of the <code>Document</code> of the <a>top-level browsing
+        When the <a>user agent</a> determines that 
+        the [=Document/visibility state=] of 
+        the <code>Document</code> of the <a>top-level browsing
         context</a> changes, it MUST abort the already running <a>processing
         vibration patterns</a> algorithm, if any.
       </p>
