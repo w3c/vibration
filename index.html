@@ -12,14 +12,12 @@
       var respecConfig = {
           specStatus:           "ED",
           shortName:            "vibration",
-          //publishDate:          "2014-12-09",
-          previousPublishDate:  "2014-09-09",
-          previousMaturity:     "CR",
+          previousPublishDate:  "2016-10-18",
+          previousMaturity:     "REC",
           github:               "w3c/vibration",
-          lcEnd:                "2014-07-24",
-          prEnd:                "2015-01-20",
+          crEnd:                "2024-10-01",
           editors:  [
-              { name: "Anssi Kostiainen", company: "Intel" }
+              { name: "Anssi Kostiainen", company: "Intel", w3cid: "41974" }
           ],
           inlineCSS:    true,
           noIDLIn:      true,
@@ -27,7 +25,7 @@
           wgPublicList: "public-device-apis",
           testSuiteURI: "https://wpt.live/vibration/",
           implementationReportURI: "https://wpt.fyi/results/vibration",
-          processVersion: 2017,
+          processVersion: 2023,
           xref: {
             profile: "web-platform"
           },
@@ -57,6 +55,9 @@
         aware of more advanced use cases that cannot be realized using this
         simpler first version. The intent is to address them in a future
         revision.
+      </p>
+      <p>
+        A history of <a href="#changes">changes</a> from previous version is provided.
       </p>
     </section>
     <section class="informative">
@@ -302,6 +303,30 @@
         considerations. Finally, thanks to Zhiqiang Zhang for the Simplified
         Chinese translation.
       </p>
+    </section>
+    <section class='appendix'>
+      <h2>
+        Changes
+      </h2>
+      <p>
+        Changes since <a href="https://www.w3.org/TR/2016/REC-vibration-20161018/">W3C Recommendation 18 October 2016</a>:
+      </p>
+      <ul>
+        <li>Require sticky activation to <a>perform vibration</a> to mitigate privacy concerns (<a href="https://github.com/w3c/vibration/pull/30/commits/41d039ece8a0cfb43ef7ec818dabf9156fc956d3">41d039e</a>, <a href="https://github.com/w3c/vibration/pull/30">#30</a>)</li>
+        <li>Add <a>vibration pattern</a> definition for reuse in other specifications (<a href="https://github.com/w3c/vibration/pull/18/commits/b454da89ae954d4c5a6caa6c311441511349e639">b454da8</a>, <a href="https://github.com/w3c/vibration/pull/18">#18</a>)</li>
+        <li>Refactor <a>perform vibration</a> algorithm to use method steps prose (<a href="https://github.com/w3c/vibration/pull/30/commits/a406e764dd4155c69a4cba4ca1ac15c7b5f47587">a406e76</a>, <a href="https://github.com/w3c/vibration/pull/30">#30</a>)</li>
+        <li>Add definitions for "this", "relevant global object", "sticky activation", "user agent" (<a href="https://github.com/w3c/vibration/pull/30/commits/167cf3c6b2131b3d4d2fd0d2678ca3b3a7bfec29">167cf3c</a>, <a href="https://github.com/w3c/vibration/pull/30">#30</a>)</li>
+        <li>Remove references to obsoleted "spin the event loop" concept (<a href="https://github.com/w3c/vibration/pull/30/commits/41d039ece8a0cfb43ef7ec818dabf9156fc956d3">41d039e</a>, <a href="https://github.com/w3c/vibration/pull/30">#30</a>)</li>
+        <li>Update normative reference from HTML5 to HTML Living Standard [[html]] (<a href="https://github.com/w3c/vibration/pull/23/commits/ee740335ee0ba305a97336d57c03bb449710a268">ee74033</a>, <a href="https://github.com/w3c/vibration/pull/23">#23</a>)</li>
+        <li>Update governance from W3C Process 2015 to 2023</li>
+        <li>Update visibility state definitions to [HTML], remove normative reference to [PAGE-VISIBILITY-2] (<a href="https://github.com/w3c/vibration/pull/41/commits/fff4fbc618a8230eb2b21987df8c6e985a09e786">fff4fbc</a>, <a href="https://github.com/w3c/vibration/pull/41/commits/b4dd105282b2a10d16bb11d53df55e487a0da6ec">b4dd105</a>, <a href="https://github.com/w3c/vibration/pull/41">#41</a>)</li>
+      </ul>
+      <p>
+        Other changes that do not functionally affect interpretation of the document:
+      </p>
+      <ul>
+        <li>Update test suite and implementation report references</li>
+      </ul>
     </section>
     <section id='idl-index' class='appendix'>
     </section>
