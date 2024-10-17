@@ -145,19 +145,6 @@
           </ol>
         </li>
         <li>Let <var>max length</var> have the value 10.
-          <div class='note'>
-            If the length of a pattern is greater than max length an
-            implementation of this API could consider breaking the request
-            effectively into multiple shorter requests internally to achieve
-            the same effect, rather than ignoring what follows the max length.
-            There are cases, however, where it is appropriate to ignore the
-            pattern exceeding the max length. An example is if the length is so
-            long that it would effectively create a denial of service attack on
-            the user. A web application might also make multiple requests if it
-            is known to the application that the length is too long for some
-            implementations and a possible gap in between patterns is
-            acceptable.
-          </div>
         </li>
         <li>If the length of <var>pattern</var> is greater than <var>max
         length</var>, truncate <var>pattern</var>, leaving only the first <var>
