@@ -239,7 +239,15 @@
       <p>
         For these reasons, the <a>user agent</a> SHOULD inform the user when
         the API is being used and provide a mechanism to disable the API
-        (effectively no-op), on a per-origin basis or globally.
+        (effectively no-op), on a per-origin basis or globally. Implementers
+        are encouraged to complement the normatively defined sticky
+        activation-based user activation-gating mitigation with the
+        above-mentioned <a>implementation-defined</a> mitigations.
+      </p>
+      <p>
+        The <a>user agent</a> SHOULD employ global rate limiting to restrict
+        the number of vibration requests made within a certain period
+        (e.g., per minute or hour) to prevent excessive use.
       </p>
     </section>
     <section class='informative'>
