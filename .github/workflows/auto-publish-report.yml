@@ -1,0 +1,27 @@
+name: Publish implementation report
+
+on:
+  push:
+    branches:
+      - gh-pages
+    paths:
+      - reports/implementation.html
+  pull_request:
+    paths:
+      - reports/implementation.html
+
+jobs:
+  generate-report:
+    name: Generate implementation report
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: w3c/spec-prod@v2
+        with:
+          SOURCE: reports/implementation.html
+          TOOLCHAIN: respec
+          VALIDATE_LINKS: false
+          VALIDATE_PUBRULES: false
+          GH_PAGES_BRANCH: gh-pages
