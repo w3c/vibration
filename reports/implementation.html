@@ -169,27 +169,45 @@
       Source code verification (April 2026)
     </h3>
     <p>
-      The following was verified by inspecting the source code of each
-      engine:
+      The following was verified by searching and reading the source code
+      of each engine. To reproduce, clone each repository and search for
+      the files and identifiers listed below (e.g., using <code>grep
+      -r</code> or your editor's search).
     </p>
     <ul>
       <li>
-        <strong>Blink:</strong> <code>VibrationController</code> is
-        implemented in
+        <strong>Blink</strong>
+        (<a href="https://chromium.googlesource.com/chromium/src/">chromium/src</a>):
+        <code>VibrationController</code> is implemented in
         <code>third_party/blink/renderer/modules/vibration/vibration_controller.cc</code>.
         The <code>vibrate()</code> method requires sticky user activation
-        and blocks calls from cross-origin iframes and fenced frames.
+        (<code>HasStickyUserActivation()</code>) and blocks calls from
+        cross-origin iframes
+        (<code>IsCrossOriginToNearestMainFrame()</code>) and fenced
+        frames. The WebIDL is in
+        <code>third_party/blink/renderer/modules/vibration/navigator_vibration.idl</code>.
       </li>
       <li>
-        <strong>Gecko:</strong> The <code>vibrate()</code> WebIDL binding
-        and HAL implementation remain in the tree, but are gated on
-        <code>dom.vibrator.enabled</code>, which defaults to
-        <code>false</code> on all platforms (including Android) since
-        Firefox 129. No platform-specific override exists.
+        <strong>Gecko</strong>
+        (<a href="https://searchfox.org/mozilla-central/source">mozilla-central</a>):
+        The <code>vibrate()</code> WebIDL binding is in
+        <code>dom/webidl/Navigator.webidl</code>, gated on the
+        <code>dom.vibrator.enabled</code> preference. That preference
+        defaults to <code>false</code> in
+        <code>modules/libpref/init/StaticPrefList.yaml</code>.
+        No platform-specific override exists in
+        <code>mobile/android/app/geckoview-prefs.yaml</code> or
+        elsewhere. The HAL implementation remains in
+        <code>hal/android/AndroidHal.cpp</code> (<code>Vibrate()</code>)
+        and <code>hal/fallback/FallbackVibration.cpp</code> (no-op
+        stub for desktop), but is unreachable with the preference
+        disabled.
       </li>
       <li>
-        <strong>WebKit:</strong> No <code>vibrate()</code> method in any
-        IDL file. No <code>VibrationController</code>,
+        <strong>WebKit</strong>
+        (<a href="https://github.com/WebKit/WebKit">WebKit/WebKit</a>):
+        No <code>vibrate()</code> method in any IDL file. No
+        <code>VibrationController</code>,
         <code>NavigatorVibration</code>, or <code>ENABLE_VIBRATION</code>
         flag anywhere in the source tree. The API is entirely absent.
       </li>
