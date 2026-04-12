@@ -21,8 +21,7 @@
     </script>
     <style>
       .pass,
-      .fail,
-      .stub {
+      .fail {
         color: white;
       }
       .pass {
@@ -31,18 +30,12 @@
       .fail {
         background-color: red;
       }
-      .stub {
-        background-color: #795548;
-      }
       .pass a,
       .pass a:link,
       .pass a:visited,
       .fail a,
       .fail a:link,
-      .fail a:visited,
-      .stub a,
-      .stub a:link,
-      .stub a:visited {
+      .fail a:visited {
         color: white !important;
         text-decoration: underline;
       }
@@ -63,7 +56,7 @@
       <p>
         The Vibration API is implemented in a single browser engine (Blink).
         Firefox (Gecko) removed support in version 129 (August 6, 2024).
-        WebKit has never implemented the API and formally opposes it.
+        WebKit has never shipped the API and formally opposes it.
       </p>
     </section>
     <h2>
@@ -105,11 +98,15 @@
           Firefox Desktop: support removed in version 129 (August 6, 2024),
           <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1900037">Bug
           1900037</a>.
-          Firefox for Android: API present as a stub since version 79
-          (returns <code>true</code> for web compatibility but performs no
-          vibration),
+          Firefox for Android: from version 79, the API is present but
+          vibration is disabled — <code>navigator.vibrate()</code> returns
+          <code>true</code> when the window is visible but produces no
+          haptic feedback (see
+          <a href=
+          "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate#browser_compatibility">
+          MDN compatibility data</a>,
           <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1653318">Bug
-          1653318</a>.
+          1653318</a>).
           Mozilla standards position: open, no position assigned,
           <a href="https://github.com/mozilla/standards-positions/issues/907">
           issue #907</a>.
@@ -120,15 +117,101 @@
         <td>Safari (macOS, iOS, iPadOS), all iOS/iPadOS browsers</td>
         <td class="fail">Not implemented</td>
         <td>
-          Never shipped. Removed from codebase in 2017 (changeset 216696).
+          Never shipped in Safari or any current WebKit-based browser.
+          Code was present for the discontinued EFL port (2012–2017,
+          see <a href="#historical">Historical implementation
+          experience</a>), then removed (changeset 216696,
+          <a href="https://webkit.org/b/171766">Bug 171766</a>).
           WebKit formal standards position: <strong>Oppose</strong>,
           <a href="https://github.com/WebKit/standards-positions/issues/267">
           issue #267</a> (closed 2023-11-14). Concerns: device independence,
-          portability, annoyance/abuse potential, power consumption,
-          integration infeasibility on Apple platforms.
+          unclear use cases, portability, annoyance/abuse potential, power
+          consumption, integration infeasibility on Apple platforms.
         </td>
       </tr>
     </table>
+    <h2 id="historical">
+      Historical implementation experience
+    </h2>
+    <p>
+      In addition to the current implementation status above, the Vibration
+      API has a history of implementation in engines that no longer support it.
+    </p>
+    <h3>
+      WebKit (EFL port, 2012–2017)
+    </h3>
+    <p>
+      Samsung engineer Kihong Kwon landed initial Vibration API support in
+      WebKit in 2012 for the EFL port, which was used on Samsung Tizen
+      devices. The EFL port enabled the feature
+      (<code>ENABLE_VIBRATION PUBLIC ON</code> in
+      <code>Source/cmake/OptionsEfl.cmake</code>) and received bug fixes
+      through 2015.
+    </p>
+    <p>
+      The EFL port was removed from the WebKit mainline in February 2017.
+      In May 2017, the Vibration API code itself was removed
+      (<a href="https://webkit.org/b/171766">Bug 171766</a>, changeset
+      216696). The removal bug states: "Not enabled by any ports. Tests
+      are skipped by all ports. Unmaintained code."
+    </p>
+    <p>
+      A separate fork,
+      <a href="https://github.com/ewebkit/webkit">ewebkit/webkit</a>,
+      retains the Vibration API code but has not been updated since July 3,
+      2017. The Tizen devices that used EFL WebKit are no longer in
+      production.
+    </p>
+    <p>
+      No Web Platform Test results exist for any EFL WebKit-based browser.
+    </p>
+    <h3>
+      Source code verification (April 2026)
+    </h3>
+    <p>
+      The following was verified by inspecting the source code of each
+      engine:
+    </p>
+    <ul>
+      <li>
+        <strong>Blink:</strong> <code>VibrationController</code> is
+        implemented in
+        <code>third_party/blink/renderer/modules/vibration/vibration_controller.cc</code>.
+        The <code>vibrate()</code> method requires sticky user activation
+        and blocks calls from cross-origin iframes and fenced frames.
+      </li>
+      <li>
+        <strong>Gecko:</strong> The <code>vibrate()</code> WebIDL binding
+        and HAL implementation remain in the tree, but are gated on
+        <code>dom.vibrator.enabled</code>, which defaults to
+        <code>false</code> on all platforms (including Android) since
+        Firefox 129. No platform-specific override exists.
+      </li>
+      <li>
+        <strong>WebKit:</strong> No <code>vibrate()</code> method in any
+        IDL file. No <code>VibrationController</code>,
+        <code>NavigatorVibration</code>, or <code>ENABLE_VIBRATION</code>
+        flag anywhere in the source tree. The API is entirely absent.
+      </li>
+    </ul>
+    <h3>
+      Gecko (Firefox, 2012–2024)
+    </h3>
+    <p>
+      Firefox supported the Vibration API from version 16 (October 2012)
+      through version 128 (desktop). On Android, vibration was disabled
+      starting in version 79 (July 2020): the API remained present and
+      <code>navigator.vibrate()</code> returned <code>true</code> when the
+      window was visible, but no haptic feedback was produced
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1653318">Bug
+      1653318</a>). The feature was not re-enabled due to abuse concerns.
+    </p>
+    <p>
+      Firefox Desktop removed the API entirely in version 129 (August 6,
+      2024,
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1900037">Bug
+      1900037</a>).
+    </p>
     <h2>
       Test results
     </h2>
@@ -151,65 +234,64 @@
       <dt>FAIL</dt>
       <dd>
         The test ran and the implementation does not conform to the
-        specification.
-      </dd>
-      <dt>STUB</dt>
-      <dd>
-        The test passed because the API is present and returns a value, but
-        the underlying functionality is not implemented. For Firefox for
-        Android, <code>navigator.vibrate()</code> returns <code>true</code>
-        for web compatibility but produces no haptic feedback. This does not
-        constitute a conforming implementation.
+        specification, or the API is not exposed.
       </dd>
     </dl>
     <h3>
       Automated test results
     </h3>
+    <p>
+      Results from
+      <a href="https://wpt.fyi/results/vibration?label=experimental&label=master&aligned">
+      wpt.fyi</a>, last verified April 9, 2026. Since Firefox 129
+      (August 2024), the API is no longer exposed on any Firefox platform
+      (see <a href="#historical">Historical implementation experience</a>).
+    </p>
     <table class="simple data">
       <caption>
         Automated WPT results for [[vibration]]
       </caption>
       <tr>
         <th>Test</th>
-        <th>Blink (Chrome for Android)</th>
-        <th>Gecko (Firefox for Android)</th>
-        <th>WebKit (Safari iOS)</th>
+        <th>Blink (Chrome 149)</th>
+        <th>Gecko (Firefox 151)</th>
+        <th>WebKit (Safari 240 preview)</th>
       </tr>
       <tr>
         <td>
           <a href="https://wpt.live/vibration/api-is-present.html">
           api-is-present.html</a>
         </td>
-        <td class="pass">PASS</td>
-        <td class="stub">STUB</td>
-        <td class="fail">FAIL</td>
+        <td class="pass">PASS (1/1)</td>
+        <td class="fail">FAIL (0/1)</td>
+        <td class="fail">FAIL (0/1)</td>
       </tr>
       <tr>
         <td>
           <a href="https://wpt.live/vibration/idlharness.window.js">
           idlharness.window.js</a>
         </td>
-        <td class="pass">PASS</td>
-        <td class="stub">STUB</td>
-        <td class="fail">FAIL</td>
+        <td class="pass">PASS (16/16)</td>
+        <td class="fail">FAIL (13/16)</td>
+        <td class="fail">FAIL (13/16)</td>
       </tr>
       <tr>
         <td>
           <a href="https://wpt.live/vibration/invalid-values.html">
           invalid-values.html</a>
         </td>
-        <td class="pass">PASS</td>
-        <td class="stub">STUB</td>
-        <td class="fail">FAIL</td>
+        <td class="pass">PASS (8/8)</td>
+        <td class="fail">FAIL (0/8)</td>
+        <td class="fail">FAIL (0/8)</td>
       </tr>
       <tr>
         <td>
           <a href="https://wpt.live/vibration/silent-ignore.html">
           silent-ignore.html</a>
         </td>
-        <td class="pass">PASS</td>
-        <td class="stub">STUB</td>
-        <td class="fail">FAIL</td>
+        <td class="pass">PASS (1/1)</td>
+        <td class="fail">FAIL (0/1)</td>
+        <td class="fail">FAIL (0/1)</td>
       </tr>
     </table>
     <h3>
@@ -347,10 +429,10 @@
     <p>
       <strong>No.</strong> Only one browser engine (Blink) provides a
       functional implementation. Firefox removed support in version 129
-      (August 6, 2024). WebKit has never implemented the API and formally
-      opposes it. The stub behavior in Firefox for Android does not constitute
-      an interoperable implementation: the API returns <code>true</code> but
-      produces no vibration.
+      (August 6, 2024); the API is now disabled on all Firefox platforms,
+      including Android (see <a href="#historical">Historical
+      implementation experience</a>). WebKit has never shipped the API
+      and formally opposes it.
     </p>
     <h2>
       Are the implementations by different, independent developers?
@@ -371,16 +453,22 @@
       Are there reports of difficulties or problems with implementation?
     </h2>
     <p>
-      Yes. Chrome introduced user gesture requirements (v60) and cross-origin
-      iframe restrictions (v55) in response to widespread abuse of the API by
-      advertisers and low-quality sites. Chrome use counter data (2022-2024)
-      showed 0.06-0.08% usage, concentrated in low-quality content. Firefox
-      disabled the API in Firefox for Android citing abuse concerns before
-      removing it entirely from Firefox Desktop in v129
+      Yes. Chrome introduced cross-origin iframe restrictions (v55) and user
+      gesture requirements (v60) in response to widespread abuse of the API.
+      A <a href="https://github.com/w3c/vibration/issues/33">manual review
+      of sites calling <code>navigator.vibrate()</code></a> found usage
+      dominated by notification emulation, ad-related scripts, and patterns
+      now blocked by Chrome's mitigations.
+      <a href=
+      "https://chromestatus.com/metrics/feature/timeline/popularity/850">Chrome
+      use counter data</a> shows approximately 0.05–0.13% of page loads
+      invoke the API (2022–2026). Firefox disabled the API on Android
+      citing abuse concerns before removing it entirely from Firefox Desktop
+      in v129
       (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1900037">Bug
-      1900037</a>). WebKit's opposition cites device independence, power
-      consumption, annoyance/abuse potential, portability, and infeasibility
-      of integration on Apple platforms
+      1900037</a>). WebKit's opposition cites device independence, unclear
+      use cases, power consumption, annoyance/abuse potential, portability,
+      and infeasibility of integration on Apple platforms
       (<a href="https://github.com/WebKit/standards-positions/issues/267">
       WebKit standards position #267</a>).
     </p>
