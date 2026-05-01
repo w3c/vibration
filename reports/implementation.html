@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://www.w3.org/Tools/respec/respec-w3c" async class=
+    "remove"></script>
+    <script class="remove">
+      // All config options at https://respec.org/docs/
+      var respecConfig = {
+        specStatus: "DNOTE",
+        shortName: "vibration-implementation-report",
+        group: "das",
+        editors: [
+          {
+            name: "Marcos Cáceres",
+            company: "Apple",
+            w3cid: "85615",
+          },
+        ],
+        xref: "web-platform",
+      };
+    </script>
+    <style>
+      .pass,
+      .fail {
+        color: white;
+      }
+      .pass {
+        background-color: green;
+      }
+      .fail {
+        background-color: red;
+      }
+      .pass a,
+      .pass a:link,
+      .pass a:visited,
+      .fail a,
+      .fail a:link,
+      .fail a:visited {
+        color: white !important;
+        text-decoration: underline;
+      }
+    </style>
+    <title>
+      Vibration API - Implementation Report
+    </title>
+  </head>
+  <body>
+    <section id="abstract">
+      <p>
+        This is an implementation report for the [[vibration]] specification,
+        produced in response to the W3C Council recommendation
+        (<a href="https://www.w3.org/2025/08/vibration2-council-report.html#recommendations">
+        Vibration API Council Report, August 2025</a>) that the Working Group
+        document what implementation experience the API currently has.
+      </p>
+      <p>
+        The Vibration API is implemented in a single browser engine (Blink).
+        Firefox (Gecko) removed support in version 129 (August 6, 2024).
+        WebKit has never shipped the API and formally opposes it.
+      </p>
+    </section>
+    <section id="sotd">
+      <p>
+        This document was produced in response to the
+        <a href="https://www.w3.org/2025/08/vibration2-council-report.html#recommendations">
+        W3C Council recommendation</a> that the Working Group document
+        the implementation experience of the [[vibration]] specification.
+      </p>
+    </section>
+    <h2>
+      Browser engine support
+    </h2>
+    <p>
+      The following table lists <em>browser engines</em>, not individual
+      browsers. Chromium-based browsers (Chrome, Edge, Opera, Samsung Internet,
+      WebView Android, etc.) all share the Blink engine and are counted as a
+      single implementation.
+    </p>
+    <table class="simple data">
+      <caption>
+        Browser engine implementation experience for [[vibration]]
+      </caption>
+      <tr>
+        <th>Engine</th>
+        <th>Browsers</th>
+        <th>Status</th>
+        <th>Notes</th>
+      </tr>
+      <tr>
+        <td><strong>Blink</strong></td>
+        <td>Chrome, Edge, Opera, Samsung Internet, Chrome for Android,
+        WebView Android, and other Chromium-based browsers</td>
+        <td class="pass">Implemented</td>
+        <td>
+          Cross-origin iframe restrictions added in Chrome 55.
+          User gesture requirement added in Chrome 60.
+          See <a href="https://chromestatus.com/feature/5698768766877696">
+          Chrome Status</a>.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Gecko</strong></td>
+        <td>Firefox</td>
+        <td class="fail">Removed</td>
+        <td>
+          Firefox Desktop: support removed in version 129 (August 6, 2024),
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1900037">Bug
+          1900037</a>.
+          Firefox for Android: from version 79, the API is present but
+          vibration is disabled — <code>navigator.vibrate()</code> returns
+          <code>true</code> when the window is visible but produces no
+          haptic feedback (see
+          <a href=
+          "https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate#browser_compatibility">
+          MDN compatibility data</a>,
+          <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1653318">Bug
+          1653318</a>).
+          Mozilla standards position: open, no position assigned,
+          <a href="https://github.com/mozilla/standards-positions/issues/907">
+          issue #907</a>.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>WebKit</strong></td>
+        <td>Safari (macOS, iOS, iPadOS), all iOS/iPadOS browsers</td>
+        <td class="fail">Not implemented</td>
+        <td>
+          Never shipped in Safari or any current WebKit-based browser.
+          Code was present for the discontinued EFL port (2012–2017,
+          see <a href="#historical">Historical implementation
+          experience</a>), then removed (changeset 216696,
+          <a href="https://webkit.org/b/171766">Bug 171766</a>).
+          WebKit formal standards position: <strong>Oppose</strong>,
+          <a href="https://github.com/WebKit/standards-positions/issues/267">
+          issue #267</a> (closed 2023-11-14). Concerns: device independence,
+          unclear use cases, portability, annoyance/abuse potential, power
+          consumption, integration infeasibility on Apple platforms.
+        </td>
+      </tr>
+    </table>
+    <h2 id="historical">
+      Historical implementation experience
+    </h2>
+    <p>
+      In addition to the current implementation experience above, the Vibration
+      API has a history of implementation in engines that no longer support it.
+    </p>
+    <h3>
+      WebKit (EFL port, 2012–2017)
+    </h3>
+    <p>
+      Samsung engineer Kihong Kwon landed initial Vibration API support in
+      WebKit in 2012 for the EFL port, which was used on Samsung Tizen
+      devices. The EFL port enabled the feature
+      (<code>ENABLE_VIBRATION PUBLIC ON</code> in
+      <code>Source/cmake/OptionsEfl.cmake</code>) and received bug fixes
+      through 2015.
+    </p>
+    <p>
+      The EFL port was removed from the WebKit mainline in February 2017.
+      In May 2017, the Vibration API code itself was removed
+      (<a href="https://webkit.org/b/171766">Bug 171766</a>, changeset
+      216696). The removal bug states: "Not enabled by any ports. Tests
+      are skipped by all ports. Unmaintained code."
+    </p>
+    <p>
+      A separate fork,
+      <a href="https://github.com/ewebkit/webkit">ewebkit/webkit</a>,
+      retains the Vibration API code but has not been updated since July 3,
+      2017. The Tizen devices that used EFL WebKit are no longer in
+      production.
+    </p>
+    <p>
+      No Web Platform Test results exist for any EFL WebKit-based browser.
+    </p>
+    <h3>
+      Source code verification (April 2026)
+    </h3>
+    <p>
+      The following was verified by searching and reading the source code
+      of each engine. To reproduce, clone each repository and search for
+      the files and identifiers listed below (e.g., using <code>grep
+      -r</code> or your editor's search).
+    </p>
+    <ul>
+      <li>
+        <strong>Blink</strong>
+        (<a href="https://chromium.googlesource.com/chromium/src/">chromium/src</a>):
+        <code>VibrationController</code> is implemented in
+        <code>third_party/blink/renderer/modules/vibration/vibration_controller.cc</code>.
+        The <code>vibrate()</code> method requires sticky user activation
+        (<code>HasStickyUserActivation()</code>) and blocks calls from
+        cross-origin iframes
+        (<code>IsCrossOriginToNearestMainFrame()</code>) and fenced
+        frames. The WebIDL is in
+        <code>third_party/blink/renderer/modules/vibration/navigator_vibration.idl</code>.
+      </li>
+      <li>
+        <strong>Gecko</strong>
+        (<a href="https://searchfox.org/mozilla-central/source">mozilla-central</a>):
+        The <code>vibrate()</code> WebIDL binding is in
+        <code>dom/webidl/Navigator.webidl</code>, gated on the
+        <code>dom.vibrator.enabled</code> preference. That preference
+        defaults to <code>false</code> in
+        <code>modules/libpref/init/StaticPrefList.yaml</code>.
+        No platform-specific override exists in
+        <code>mobile/android/app/geckoview-prefs.yaml</code> or
+        elsewhere. The HAL implementation remains in
+        <code>hal/android/AndroidHal.cpp</code> (<code>Vibrate()</code>)
+        and <code>hal/fallback/FallbackVibration.cpp</code> (no-op
+        stub for desktop), but is unreachable with the preference
+        disabled.
+      </li>
+      <li>
+        <strong>WebKit</strong>
+        (<a href="https://github.com/WebKit/WebKit">WebKit/WebKit</a>):
+        No <code>vibrate()</code> method in any IDL file. No
+        <code>VibrationController</code>,
+        <code>NavigatorVibration</code>, or <code>ENABLE_VIBRATION</code>
+        flag anywhere in the source tree. The API is entirely absent.
+      </li>
+    </ul>
+    <h3>
+      Gecko (Firefox, 2012–2024)
+    </h3>
+    <p>
+      Firefox supported the Vibration API from version 16 (October 2012)
+      through version 128 (desktop). On Android, vibration was disabled
+      starting in version 79 (July 2020): the API remained present and
+      <code>navigator.vibrate()</code> returned <code>true</code> when the
+      window was visible, but no haptic feedback was produced
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1653318">Bug
+      1653318</a>). The feature was not re-enabled due to abuse concerns.
+    </p>
+    <p>
+      Firefox Desktop removed the API entirely in version 129 (August 6,
+      2024,
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1900037">Bug
+      1900037</a>).
+    </p>
+    <h2>
+      Test results
+    </h2>
+    <p>
+      The following tests verify conformance to [[vibration]].
+    </p>
+    <p class="note">
+      For the latest automated test results, visit
+      <a href="https://wpt.fyi/results/vibration">wpt.fyi/results/vibration</a>.
+    </p>
+    <h3>
+      Status legend
+    </h3>
+    <dl>
+      <dt>PASS</dt>
+      <dd>
+        The test ran successfully and the implementation conforms to the
+        specification.
+      </dd>
+      <dt>FAIL</dt>
+      <dd>
+        The test ran and the implementation does not conform to the
+        specification, or the API is not exposed.
+      </dd>
+    </dl>
+    <h3>
+      Automated test results
+    </h3>
+    <p>
+      Results from
+      <a href="https://wpt.fyi/results/vibration?label=experimental&label=master&aligned">
+      wpt.fyi</a>, last verified April 9, 2026. Since Firefox 129
+      (August 2024), the API is no longer exposed on any Firefox platform
+      (see <a href="#historical">Historical implementation experience</a>).
+    </p>
+    <table class="simple data">
+      <caption>
+        Automated WPT results for [[vibration]]
+      </caption>
+      <tr>
+        <th>Test</th>
+        <th>Blink (Chrome 149)</th>
+        <th>Gecko (Firefox 151)</th>
+        <th>WebKit (Safari 240 preview)</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/api-is-present.html">
+          api-is-present.html</a>
+        </td>
+        <td class="pass">PASS (1/1)</td>
+        <td class="fail">FAIL (0/1)</td>
+        <td class="fail">FAIL (0/1)</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/idlharness.window.js">
+          idlharness.window.js</a>
+        </td>
+        <td class="pass">PASS (16/16)</td>
+        <td class="fail">FAIL (13/16)</td>
+        <td class="fail">FAIL (13/16)</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/invalid-values.html">
+          invalid-values.html</a>
+        </td>
+        <td class="pass">PASS (8/8)</td>
+        <td class="fail">FAIL (0/8)</td>
+        <td class="fail">FAIL (0/8)</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/silent-ignore.html">
+          silent-ignore.html</a>
+        </td>
+        <td class="pass">PASS (1/1)</td>
+        <td class="fail">FAIL (0/1)</td>
+        <td class="fail">FAIL (0/1)</td>
+      </tr>
+    </table>
+    <h3>
+      Manual test results
+    </h3>
+    <p>
+      Manual tests verify that the vibration mechanism is actually triggered
+      on the device. These tests cannot be automated. Tests were conducted on
+      2024-06-08 (see
+      <a href="https://github.com/w3c/vibration/issues/33">w3c/vibration#33</a>)
+      against the following browser versions:
+    </p>
+    <ul>
+      <li>Chrome for Android 125.0.6422 (Blink engine)</li>
+      <li>Firefox for Android 126.0.1 (Gecko engine)</li>
+      <li>Safari on iOS 17.4.1 (WebKit engine)</li>
+    </ul>
+    <table class="simple data">
+      <caption>
+        Manual WPT results for [[vibration]]
+      </caption>
+      <tr>
+        <th>Test</th>
+        <th>Blink (Chrome for Android 125)</th>
+        <th>Gecko (Firefox for Android 126)</th>
+        <th>WebKit (Safari iOS 17.4.1)</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/cancel-when-hidden-manual.html">
+          cancel-when-hidden-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/cancel-with-0-manual.html">
+          cancel-with-0-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/cancel-with-array-0-manual.html">
+          cancel-with-array-0-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href=
+          "https://wpt.live/vibration/cancel-with-empty-array-manual.html">
+          cancel-with-empty-array-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/cancel-with-new-manual.html">
+          cancel-with-new-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href=
+          "https://wpt.live/vibration/pattern-array-extra-manual.html">
+          pattern-array-extra-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/pattern-array-manual.html">
+          pattern-array-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href=
+          "https://wpt.live/vibration/pattern-array-with-0-manual.html">
+          pattern-array-with-0-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/simple-array-manual.html">
+          simple-array-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://wpt.live/vibration/simple-scalar-manual.html">
+          simple-scalar-manual.html</a>
+        </td>
+        <td class="pass">PASS</td>
+        <td class="fail">FAIL</td>
+        <td class="fail">FAIL</td>
+      </tr>
+    </table>
+    <h2>
+      Is each feature of the current specification implemented, and how is
+      this demonstrated?
+    </h2>
+    <p>
+      All features of [[vibration]] are implemented in the Blink engine (Chrome
+      for Android, Chrome desktop, Edge, and other Chromium-based browsers).
+      This is demonstrated through the automated and manual WPT results above.
+      No other engine provides a functional implementation.
+    </p>
+    <h2>
+      Are there independent interoperable implementations of each feature?
+    </h2>
+    <p>
+      <strong>No.</strong> Only one browser engine (Blink) provides a
+      functional implementation. Firefox removed support in version 129
+      (August 6, 2024); the API is now disabled on all Firefox platforms,
+      including Android (see <a href="#historical">Historical
+      implementation experience</a>). WebKit has never shipped the API
+      and formally opposes it.
+    </p>
+    <h2>
+      Are the implementations by different, independent developers?
+    </h2>
+    <p>
+      The Chromium-based implementations (Chrome, Edge, Opera, Samsung
+      Internet, etc.) share the same Blink engine codebase and are not
+      independent of each other. They represent a single implementation.
+    </p>
+    <h2>
+      Are the implementations deployed on production systems?
+    </h2>
+    <p>
+      Yes, in Chromium-based browsers. Not in Firefox (removed) or Safari
+      (never shipped).
+    </p>
+    <h2>
+      Are there reports of difficulties or problems with implementation?
+    </h2>
+    <p>
+      Yes. Chrome introduced cross-origin iframe restrictions (v55) and user
+      gesture requirements (v60) in response to widespread abuse of the API.
+      A <a href="https://github.com/w3c/vibration/issues/33">manual review
+      of sites calling <code>navigator.vibrate()</code></a> found usage
+      dominated by notification emulation, ad-related scripts, and patterns
+      now blocked by Chrome's mitigations.
+      <a href=
+      "https://chromestatus.com/metrics/feature/timeline/popularity/850">Chrome
+      use counter data</a> shows approximately 0.05–0.13% of page loads
+      invoke the API (2022–2026). Firefox disabled the API on Android
+      citing abuse concerns before removing it entirely from Firefox Desktop
+      in v129
+      (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1900037">Bug
+      1900037</a>). WebKit's opposition cites device independence, unclear
+      use cases, power consumption, annoyance/abuse potential, portability,
+      and infeasibility of integration on Apple platforms
+      (<a href="https://github.com/WebKit/standards-positions/issues/267">
+      WebKit standards position #267</a>).
+    </p>
+  </body>
+</html>
