@@ -5,6 +5,9 @@ on:
   pull_request: {}
   push:
     branches: [gh-pages]
+    paths:
+      - index.html
+      - reports/implementation.html
 jobs:
   main:
     name: Build, Validate and Deploy
