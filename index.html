@@ -215,11 +215,11 @@
         </li>
       </ol>
       <p>
-        When the <a>user agent</a> determines that 
-        the [=Document/visibility state=] of 
-        the <code>Document</code> of the <a>top-level browsing
-        context</a> changes, it MUST abort the already running <a>processing
-        vibration patterns</a> algorithm, if any.
+        For a running instance of <a>perform vibration</a> with a
+        <var>global</var>, when the <a>user agent</a> determines that the
+        [=Document/visibility state=] of the [=navigable/active document=] of
+        <var>global</var>'s [=Window/navigable=]'s [=navigable/top-level traversable=]
+        changes, it MUST abort that instance.
       </p>
     </section>
     <section>
